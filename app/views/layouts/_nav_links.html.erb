@@ -1,0 +1,9 @@
+<%= link_to 'Home', root_path, class:"mdl-navigation__link" %>
+<%= link_to 'Volunteer Opportunities', volunteer_opportunities_path, class: 'mdl-navigation__link' %>
+<% if user_signed_in? %>
+<%= link_to 'My Application', apply_path, class: 'mdl-navigation__link' %>
+<%= link_to 'Logout', logout_path, class: 'mdl-navigation__link' %>
+<% else %>
+<%= link_to 'Apply', apply_path, class: 'mdl-navigation__link' %>
+<a class="mdl-navigation__link force_cursor_pointer" onclick="lock.show()">Login / Sign up</a>
+<% end %>

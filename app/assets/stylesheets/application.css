@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+
+.page-content {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin-top: 1rem;
+  flex: 1 1;
+  padding: 1rem;
+}
+
+input:-webkit-autofill,
+ input:-webkit-autofill:hover,
+ input:-webkit-autofill:focus,
+ input:-webkit-autofill:active {
+ -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  }
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: rgb(255, 255, 255)!important;
+}
+
+small{color: #808080}
+
+.force_cursor_pointer{
+  cursor: pointer;
+}

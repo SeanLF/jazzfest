@@ -10,5 +10,10 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require_tree .
 //= require turbolinks
+//= require jquery
+//= require jquery_ujs
+//= require froala_editor.min
+//= require plugins/lists.min
+//= require main
+//= require_tree .

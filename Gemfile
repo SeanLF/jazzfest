@@ -26,20 +26,21 @@ gem 'turbolinks'
 gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-gem 'dotenv-rails'
+# authentication / authorization
+gem 'auth0'
 gem 'omniauth', '~> 1.3.1'
 gem 'omniauth-auth0', '~> 1.4.1'
-gem 'auth0'
+gem 'pundit'
+
+# for editing volunteer opportunities
+gem 'font-awesome-sass'
+gem 'wysiwyg-rails', github: 'froala/wysiwyg-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'dotenv-rails'
 end
 
 group :development do

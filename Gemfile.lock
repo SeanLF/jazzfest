@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/froala/wysiwyg-rails.git
+  revision: e55ad7c5f29241a0313308fb8ced739cef6717a6
+  specs:
+    wysiwyg-rails (2.4.2)
+      font-awesome-sass (~> 4.4, >= 4.4.0)
+      railties (>= 3.2, < 6.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -39,12 +47,14 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
-    auth0 (4.0.0)
-      httmultiparty (~> 0.3.16)
+    auth0 (4.1.0)
+      rest-client (~> 1.8.0)
     builder (3.2.3)
     byebug (9.0.6)
     concurrent-ruby (1.0.4)
     debug_inspector (0.0.2)
+    domain_name (0.5.20161129)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.0)
     dotenv-rails (2.2.0)
       dotenv (= 2.2.0)
@@ -54,15 +64,13 @@ GEM
     faraday (0.10.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.17)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashie (3.5.3)
-    httmultiparty (0.3.16)
-      httparty (>= 0.7.3)
-      mimemagic
-      multipart-post
-    httparty (0.14.0)
-      multi_xml (>= 0.5.2)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     i18n (0.8.0)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -72,23 +80,22 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jwt (1.5.6)
-    listen (3.0.8)
+    listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+      ruby_dep (~> 1.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
-    mime-types (3.1)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0521)
-    mimemagic (0.3.2)
+    mime-types (2.99.3)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    netrc (0.11.0)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
@@ -108,6 +115,8 @@ GEM
       omniauth (~> 1.2)
     pg (0.19.0)
     puma (3.7.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -138,6 +147,11 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
+    ruby_dep (1.5.0)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -167,6 +181,9 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
     web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -183,6 +200,7 @@ DEPENDENCIES
   auth0
   byebug
   dotenv-rails
+  font-awesome-sass
   jbuilder
   jquery-rails
   listen
@@ -190,6 +208,7 @@ DEPENDENCIES
   omniauth-auth0 (~> 1.4.1)
   pg
   puma
+  pundit
   rails (< 5.1)
   sass-rails
   spring
@@ -197,6 +216,7 @@ DEPENDENCIES
   turbolinks
   uglifier
   web-console
+  wysiwyg-rails!
 
 BUNDLED WITH
    1.13.6

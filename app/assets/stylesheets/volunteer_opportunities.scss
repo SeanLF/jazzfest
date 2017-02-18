@@ -1,0 +1,50 @@
+// Place all the styles related to the VolunteerOpportunities controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.volunteer_opportunities{
+  .volunteer_opportunity-cards{
+    display: flex;
+    flex: 1 1;
+    flex-flow: row wrap;
+    align-items: baseline;
+    justify-content: center;
+  }
+  .volunteer_opportunity-card{
+    margin: 1rem;
+    width: auto;
+
+    .mdl-card__title{
+      background-color: rgb(63,81,181);
+      color: white;
+      .mdl-card__title-text{
+        display: block;
+
+        *{
+          font-size: 1.5rem;
+          margin: 0;
+        }
+      }
+    }
+
+    .mdl-card__supporting-text > h6:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+#volunteer_opportunity_title{
+  display: block;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Helvetica;
+}
+
+
+.volunteer_opportunities.index {
+  .volunteer_opportunity-card{
+    max-width: 36rem;
+  }
+}

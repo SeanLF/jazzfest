@@ -1,0 +1,33 @@
+
+
+<h1>Opportunity Applications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Profile</th>
+      <th>Availability</th>
+      <th>Choices</th>
+      <th>Submitted</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @opportunity_applications.each do |opportunity_application| %>
+      <tr>
+        <td><%= opportunity_application.profile %></td>
+        <td><%= opportunity_application.availability %></td>
+        <td><%= opportunity_application.choices %></td>
+        <td><%= opportunity_application.submitted %></td>
+        <td><%= link_to 'Show', opportunity_application %></td>
+        <td><%= link_to 'Edit', edit_opportunity_application_path(opportunity_application) %></td>
+        <td><%= link_to 'Destroy', opportunity_application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Opportunity Application', new_opportunity_application_path %>

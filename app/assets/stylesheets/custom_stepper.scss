@@ -1,0 +1,22 @@
+@media only screen and (min-width: 841px){
+  .mdl-stepper--horizontal {
+    min-height: 90vh!important;
+  }
+
+  @media only screen and (max-height: 1050px){
+    .mdl-step__content{
+      overflow-y: auto!important;
+    }
+  }
+}
+
+.mdl-stepper{
+  .mdl-step{
+    height: auto;
+    overflow: hidden;
+    position: relative;
+  }
+  .mdl-step__content{
+    overflow: hidden;
+  }
+}

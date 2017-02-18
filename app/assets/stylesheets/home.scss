@@ -1,0 +1,30 @@
+.home.code_of_conduct{
+  padding: 0vw 2vw;
+  strong{
+    text-transform: uppercase;
+    color: rgb(255,64,129);
+  }
+  .cards{
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .mdl-card{
+    min-height: auto;
+    width: auto;
+    flex: 1 1 640px;
+    margin: 1vw;
+
+    .mdl-card__title{
+      background-color: rgb(63,81,181);
+      color: white;
+    }
+
+    .mdl-card__title-text{
+      padding: 0;
+    }
+
+    .mdl-card__supporting-text ul li{
+      font-size: 1.2rem;
+    }
+  }
+}

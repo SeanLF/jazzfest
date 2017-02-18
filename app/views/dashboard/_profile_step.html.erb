@@ -1,0 +1,117 @@
+<li class="mdl-step mdl-step--editable" id="stepper-step-profile">
+  <span class="mdl-step__label">
+    <span class="mdl-step__title">
+      <span class="mdl-step__title-text">Profile</span>
+      <span class="mdl-step__title-message">Who are you?</span>
+    </span>
+  </span>
+  <div class="mdl-step__content">
+    <%= form_for(@profile, remote: true) do |f| %>
+
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+      <hr>
+
+      <div class="field">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+      </div>
+      <hr>
+
+      <div class="field">
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+      </div>
+
+      <div class="field">
+        <%= f.label :city %>
+        <%= f.text_field :city %>
+      </div>
+
+      <div class="field">
+        <%= f.label :province %>
+        <%= f.text_field :province %>
+      </div>
+
+      <div class="field">
+        <%= f.label :postal_code %>
+        <%= f.text_field :postal_code %>
+      </div>
+      <hr>
+
+      <div class="field">
+        <%= f.label :home_phone_number %>
+        <%= f.phone_field :home_phone_number %>
+      </div>
+
+      <div class="field">
+        <%= f.label :cell_phone_number %>
+        <%= f.phone_field :cell_phone_number %>
+      </div>
+
+      <div class="field">
+        <%= f.label :work_phone_number %>
+        <%= f.phone_field :work_phone_number %>
+      </div>
+      <hr>
+
+      <div class="field radio">
+        <%= f.label :age_group %>
+        <% for age_group in ['14-17', '18-24', '25-55', '55+'] do %>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="profile_age_group_<%= age_group %>">
+          <%= f.radio_button :age_group, age_group, {class: "mdl-radio__button"} %>
+          <span class="mdl-radio__label"><%= age_group %></span>
+        </label>
+        <% end %>
+      </div>
+      <hr>
+
+      <div class="field radio">
+        <%= f.label :t_shirt_size %>
+        <% for shirt_size in ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'] do %>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="profile_t_shirt_size_<%= shirt_size.downcase %>">
+          <%= f.radio_button :t_shirt_size, shirt_size, {class: "mdl-radio__button"} %>
+          <span class="mdl-radio__label"><%= shirt_size %></span>
+        </label>
+        <% end %>
+      </div>
+      <hr>
+
+      <div class="field">
+        <%= f.label :emergency_contact_name %>
+        <%= f.text_field :emergency_contact_name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :emergency_contact_number, 'Emergency contact phone number' %>
+        <%= f.phone_field :emergency_contact_number %>
+      </div>
+      <hr>
+
+      <div class="field">
+        <%= f.label :notes, 'Skills (ie: smartserve)' %>
+        <%= f.text_area :notes, rows: 5 %>
+      </div>
+      <hr>
+
+      <div class="field checkbox">
+        <%= f.label :code_of_conduct, {class: 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect'} do %>
+          <%= f.check_box :code_of_conduct, {class: 'mdl-checkbox__input'} %>
+          <span class="mdl-checkbox__label">I have read, understood and agree to the terms outlined in the <%= link_to 'code of conduct', code_of_conduct_path, {target: '_BLANK'} %>.&nbsp;<small>(opens in new tab)</small></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="mdl-step__actions">
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised" data-stepper-next>
+      Continue
+    </button>
+  </div>
+</li>

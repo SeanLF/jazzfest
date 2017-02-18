@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  auth0_id: MyText
+  email: MyText
+  first_name: MyText
+  last_name: MyText
+  address: MyText
+  city: MyText
+  province: MyText
+  postal_code: MyText
+  home_phone_number: MyText
+  cell_phone_number: MyText
+  work_phone_number: MyText
+  t_shirt_size: MyText
+  age_group: MyText
+  emergency_contact_name: MyText
+  emergency_contact_number: MyText
+  notes: MyText
+  code_of_conduct: false
+
+two:
+  auth0_id: MyText
+  email: MyText
+  first_name: MyText
+  last_name: MyText
+  address: MyText
+  city: MyText
+  province: MyText
+  postal_code: MyText
+  home_phone_number: MyText
+  cell_phone_number: MyText
+  work_phone_number: MyText
+  t_shirt_size: MyText
+  age_group: MyText
+  emergency_contact_name: MyText
+  emergency_contact_number: MyText
+  notes: MyText
+  code_of_conduct: false

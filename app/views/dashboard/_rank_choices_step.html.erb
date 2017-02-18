@@ -1,0 +1,50 @@
+<%= javascript_include_tag 'html.sortable.min' %>
+<%= javascript_include_tag 'ios-drag-drop' %>
+<li class="mdl-step mdl-step--editable" id="stepper-step-rank-choices">
+  <span class="mdl-step__label">
+    <span class="mdl-step__title">
+      <span class="mdl-step__title-text">Apply to opportunities</span>
+      <span class="mdl-step__title-message">Rank your choices</span>
+    </span>
+  </span>
+  <div class="mdl-step__content">
+    <%= form_for @opportunity_application, remote: true do |f| %>
+      <%= f.check_box :submitted, checked: true, class: 'hidden' %>
+      <div class="field">
+        <%= f.label :choices, 'Please select at most # volunteer opportunities then drag and drop them to indicate your order of preference.' %>
+        <%= f.hidden_field :choices %>
+      </div>
+    <% end %>
+    <div class="interaction-div">
+      <div class="choices"></div>
+      <div class="source">
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+          <thead class="hidden">
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @volunteer_opportunities.each do |volunteer_opportunity| %>
+            <tr data-volunteer-opportunity-id="<%= volunteer_opportunity.id %>">
+              <td class="mdl-data-table__cell--non-numeric"><%= link_to volunteer_opportunity.title, volunteer_opportunity %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="mdl-step__actions">
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised" data-stepper-next>
+      Finish
+    </button>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back>
+      Back
+    </button>
+  </div>
+</li>
+
+<script type="text/javascript">
+  successPath = '<%= apply_success_path %>?update=<%= @opportunity_application.submitted %>'
+</script>

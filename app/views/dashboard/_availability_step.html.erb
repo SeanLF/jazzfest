@@ -1,0 +1,29 @@
+<%= javascript_include_tag 'sys.datepicker' %>
+<li class="mdl-step mdl-step--editable" id="stepper-step-availability">
+  <span class="mdl-step__label">
+    <span class="mdl-step__title">
+      <span class="mdl-step__title-text">Availability</span>
+      <span class="mdl-step__title-message">When are you free?</span>
+    </span>
+  </span>
+  <div class="mdl-step__content">
+    <%= form_for @opportunity_application, remote: true do |f| %>
+      <div class="field">
+        <%= f.label :availability do %>
+          <span>Please indicate all dates for which you are available</span>
+          <br>
+          <small><i class="fa fa-warning">&nbsp;</i>You must select at least four (4) dates.</small>
+        <% end %>
+        <%= f.hidden_field :availability %>
+      </div>
+    <% end %>
+  </div>
+  <div class="mdl-step__actions">
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised" data-stepper-next>
+      Continue
+    </button>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back>
+      Back
+    </button>
+  </div>
+</li>

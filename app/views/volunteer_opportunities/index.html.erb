@@ -1,0 +1,32 @@
+<h1>Volunteer Opportunities</h1>
+
+<% if policy(VolunteerOpportunity).new? %>
+<%= link_to 'New Volunteer Opportunity', new_volunteer_opportunity_path %>
+<% end %>
+
+<div class="volunteer_opportunity-cards">
+  <% @volunteer_opportunities.each do |volunteer_opportunity| %>
+    <div class="volunteer_opportunity-card mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <div class="mdl-card__title-text fr-view"><%= volunteer_opportunity.title.html_safe %></div>
+      </div>
+      <div class="mdl-card__supporting-text">
+        <h6>Objective</h6>
+        <div class='fr-view'><%= volunteer_opportunity.objective.html_safe %></div>
+        <h6></h6>
+        <h6>Shifts</h6>
+        <div class='fr-view'><%= volunteer_opportunity.shifts.html_safe %></div>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <%= link_to 'More Info', volunteer_opportunity %>
+        <%= link_to 'Apply', apply_path(volunteer_opportunity_id: volunteer_opportunity.id) %>
+        <% if policy(VolunteerOpportunity).edit? %>
+        <%= link_to 'Edit', edit_volunteer_opportunity_path(volunteer_opportunity) %>
+        <% end %>
+        <% if policy(VolunteerOpportunity).destroy? %>
+        <%= link_to 'Destroy', volunteer_opportunity, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

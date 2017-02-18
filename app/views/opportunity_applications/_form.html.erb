@@ -1,0 +1,37 @@
+<%= form_for(opportunity_application) do |f| %>
+  <% if opportunity_application.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(opportunity_application.errors.count, "error") %> prohibited this opportunity_application from being saved:</h2>
+
+      <ul>
+      <% opportunity_application.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :profile_id %>
+    <%= f.text_field :profile_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :availability %>
+    <%= f.text_area :availability %>
+  </div>
+
+  <div class="field">
+    <%= f.label :choices %>
+    <%= f.text_field :choices %>
+  </div>
+
+  <div class="field">
+    <%= f.label :submitted %>
+    <%= f.check_box :submitted %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
