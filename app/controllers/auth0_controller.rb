@@ -29,6 +29,7 @@ class Auth0Controller < ApplicationController
   # if user authentication fails on the provider side OmniAuth will redirect to /auth/failure,
   # passing the error message in the 'message' request param.
   def failure
-    @error_msg = request.params['message']
+    @error_type = request.params['error_type']
+    @error_msg = request.params['error_msg']
   end
 end

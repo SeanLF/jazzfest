@@ -7,7 +7,7 @@ class OpportunityApplicationsController < ApplicationController
   # GET /opportunity_applications
   # GET /opportunity_applications.json
   def index
-    @opportunity_applications = OpportunityApplication.all
+    @opportunity_applications = policy_scope(OpportunityApplication).order(:created_at)
   end
 
   # GET /opportunity_applications/1
