@@ -11,7 +11,7 @@ document.addEventListener('turbolinks:load', function() {
 
   // Material ripple button for form submit buttons
   $('form .actions input').addClass('mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored')
-  $('.mdl-card__actions').children().addClass('mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect')
+  $('.mdl-card__actions').children('a').addClass('mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect')
 
   convertNoticeToToast()
 });

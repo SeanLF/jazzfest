@@ -20,6 +20,7 @@ class DashboardController < ApplicationController
 
   private
   def store_opportunity_id_if_not_authorized_yet
-    session[:volunteer_opportunity_id] = [params['volunteer_opportunity_id']].to_json
+    session[:volunteer_opportunity_id] = nil
+    session[:volunteer_opportunity_id] = [params['volunteer_opportunity_id']].to_json if params['volunteer_opportunity_id'].present?
   end
 end

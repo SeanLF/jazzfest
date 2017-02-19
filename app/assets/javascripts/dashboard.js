@@ -1,5 +1,5 @@
 document.addEventListener('turbolinks:load', function() {
-  if (!($(".page-content.dashboard.show").length > 0)) {
+  if (!($(".dashboard.show").length > 0)) {
     return;
   }
   Stepper = setupStepper()
@@ -67,7 +67,7 @@ function setupAvailabilityStep(Stepper){
 
   $('#opportunity_application_availability').datepicker({
     firstDay: 1,
-    minDate: '2017-06-21',
+    minDate: '2017-06-20',
     maxDate: '2017-07-02',
     selectedDates: datesFromInput
   })

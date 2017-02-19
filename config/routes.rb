@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   get '/logout' => 'logout#logout'
 
   get 'code_of_conduct' => 'home#code_of_conduct'
+  get 'privacy_policy' => 'home#privacy_policy'
 end

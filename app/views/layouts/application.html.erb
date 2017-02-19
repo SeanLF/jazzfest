@@ -40,33 +40,7 @@
   </script>
 
 </head>
-<body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <!-- Title -->
-        <span class="mdl-layout-title">Jazzify</span>
-        <!-- Add spacer, to align navigation to the right -->
-        <div class="mdl-layout-spacer"></div>
-        <!-- Navigation. We hide it in small screens. -->
-        <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <%= render 'layouts/nav_links' %>
-        </nav>
-      </div>
-    </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">Jazzify</span>
-      <nav class="mdl-navigation">
-        <%= render 'layouts/nav_links' %>
-      </nav>
-    </div>
-    <main class="mdl-layout__content">
-      <div class="page-content <%= controller_name %> <%= action_name %>"> <%= yield %> </div>
-    </main>
-  </div>
-  <p id="notice"><%= notice %></p>
-  <div id="toast" class="mdl-js-snackbar mdl-snackbar">
-    <div class="mdl-snackbar__text"></div>
-    <button class="mdl-snackbar__action" type="button"></button>
-  </div>
+<body class="mdl-color--grey-100 mdl-color-text--grey-700">
+  <%= render 'layouts/page_structure' %>
+  <%= render 'layouts/toast' %>
 </body>

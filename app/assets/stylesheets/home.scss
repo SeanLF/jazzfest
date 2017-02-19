@@ -28,3 +28,50 @@
     }
   }
 }
+
+.page-content.home.show{
+  display: inherit;
+  margin-top: 0;
+}
+.home.show{
+  padding-top: 4rem;
+  background-color: #fafafa;
+
+  .mdl-card__supporting-text{
+    p:last-child{
+      margin-bottom: 0;
+    }
+
+    h4 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  .section-map{
+    min-height: 45vh;
+    iframe{
+      height: 100%;
+    }
+  }
+
+  .section-dates .mdl-card{
+    min-height: 0;
+    h4{
+      margin-bottom: 0;
+    }
+    .mdl-card__supporting-text{
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .font-icon-step-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .font-icon-step{
+    font-size: 2rem;
+  }
+}

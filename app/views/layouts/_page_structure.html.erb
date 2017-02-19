@@ -1,0 +1,42 @@
+<!-- Uses a header that scrolls with the text, rather than staying
+  locked at the top -->
+<div class="mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--scroll">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Jazzify</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+        <%= render 'layouts/nav_links' %>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Jazzify</span>
+    <nav class="mdl-navigation">
+      <%= render 'layouts/nav_links' %>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <!-- Content goes here -->
+    <div class="page-content  <%= controller_name %> <%= action_name %>">
+      <%= yield %>
+    </div>
+    <footer class="mdl-mega-footer">
+      <div class="mdl-mega-footer--bottom-section">
+        <div class="mdl-logo">
+          Jazzify &copy; 2017
+        </div>
+        <ul class="mdl-mega-footer--link-list">
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'About', root_path %></li>
+          <li><%= link_to 'Help', root_path %></li>
+          <li><%= link_to 'Privacy Policy', privacy_policy_path %></li>
+          <li><%= link_to 'Volunteer Code of Conduct', code_of_conduct_path %></li>
+        </ul>
+      </div>
+    </footer>
+  </main>
+</div>

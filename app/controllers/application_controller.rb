@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   before_action :user_signed_in?
+  before_action do
+    @festival_start_date = '2017-06-20'
+    @festival_end_date = '2017-07-02'
+    @registration_start_date = '2017-03-01'
+  end
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
