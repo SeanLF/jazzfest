@@ -36,4 +36,10 @@ class ProfilePolicy < ApplicationPolicy
   def destroy?
     permission?('delete:profile')
   end
+
+  def permitted_attributes
+    attributes = [:email, :first_name, :last_name, :address, :city, :province, :postal_code, :home_phone_number, :cell_phone_number, :work_phone_number, :t_shirt_size, :age_group, :emergency_contact_name, :emergency_contact_number, :notes, :code_of_conduct]
+    attributes << :auth0_id if permission?('create:profile') || permission?('edit:profile')
+    attributes
+  end
 end

@@ -52,4 +52,11 @@ class OpportunityApplicationPolicy < ApplicationPolicy
   def decline?
     permission?('decline:volunteer-application')
   end
+
+  def permitted_attributes
+    attributes = [:availability, :choices, :submitted]
+    attributes << :profile_id if permission?('edit:volunteer-application')
+    attributes << :opportunity_application_status_id if permission?('accept:volunteer-application')
+    attributes
+  end
 end
