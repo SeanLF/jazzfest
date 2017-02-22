@@ -22,14 +22,21 @@
         <td><%= event.registration_start_date %></td>
         <td><%= event.registration_end_date %></td>
         <td><%= event.active %></td>
+        <% if policy(Event).show? %>
         <td><%= link_to 'Show', event %></td>
+        <% end %>
+        <% if policy(Event).edit? %>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <% end %>
+        <% if policy(Event).destroy? %>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<% if policy(Event).new? %>
 <br>
-
 <%= link_to 'New Event', new_event_path %>
+<% end %>
