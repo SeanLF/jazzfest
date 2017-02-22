@@ -1,8 +1,9 @@
 class OpportunityApplicationsController < ApplicationController
   before_action :set_opportunity_application, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  after_action except: [:update] { authorize OpportunityApplication }
   before_action only: [:update] { authorize @opportunity_application }
+  before_action except: [:update] { authorize OpportunityApplication }
+  before_action except: [:index] { @opportunity_application.user = session[:userinfo] }
 
   # GET /opportunity_applications
   # GET /opportunity_applications.json
