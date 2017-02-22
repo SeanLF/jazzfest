@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :settings
   resources :events
 
-  get '/apply' => 'dashboard#show'
+  get '/apply' => 'dashboard#apply'
   get '/apply/success' => 'dashboard#success'
   get '/dashboard' => 'dashboard#elevated_user_dashboard'
 

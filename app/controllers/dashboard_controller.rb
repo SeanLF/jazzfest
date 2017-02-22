@@ -2,7 +2,8 @@ class DashboardController < ApplicationController
   before_action :store_opportunity_id_if_not_authorized_yet, only: [:show]
   before_action :authenticate_user!
 
-  def show
+  def apply
+    authorize :dashboard
     @profile = Profile.find_by(auth0_id: session[:userinfo]['uid'])
     authorize @profile, :update?
     @opportunity_application = OpportunityApplication.find_or_initialize_by(profile: @profile)

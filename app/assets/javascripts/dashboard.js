@@ -1,5 +1,5 @@
 document.addEventListener('turbolinks:load', function() {
-  if (!($(".dashboard.show").length > 0)) {
+  if (!($(".dashboard.apply").length > 0)) {
     return;
   }
   Stepper = setupStepper()
