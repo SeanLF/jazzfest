@@ -1,7 +1,11 @@
 class VolunteerOpportunityPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      if permission?('read:volunteer_opportunity')
+        scope.all
+      elsif permission?('read:visible-volunteer-opportunity')
+        scope.visible_or_applied_to(Pundit.policy_scope(user, OpportunityApplication))
+      end
     end
   end
 
@@ -9,9 +13,7 @@ class VolunteerOpportunityPolicy < ApplicationPolicy
     true
   end
 
-  def show?
-    true
-  end
+  # show if in scope
 
   def create?
     permission?('create:volunteer-opportunity')

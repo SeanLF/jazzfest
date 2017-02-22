@@ -11,7 +11,13 @@
     <%= form_for @opportunity_application, remote: true do |f| %>
       <%= f.check_box :submitted, checked: true, class: 'hidden' %>
       <div class="field">
-        <%= f.label :choices, 'Please select at most # volunteer opportunities then drag and drop them to indicate your order of preference.' %>
+        <%= f.label :choices do %>
+          <ol>
+            <li>Please select at most # volunteer opportunities by clicking on its checkbox.</li>
+            <li>Drag and drop the opportunities to indicate your order of preference.</li>
+          </ol>
+          <small>For the sake of convenience, <%= link_to 'here', volunteer_opportunities_path %> is the list of opportunties.</small>
+        <% end %>
         <%= f.hidden_field :choices %>
       </div>
     <% end %>
@@ -26,8 +32,8 @@
           </thead>
           <tbody>
             <% @volunteer_opportunities.each do |volunteer_opportunity| %>
-            <tr data-volunteer-opportunity-id="<%= volunteer_opportunity.id %>">
-              <td class="mdl-data-table__cell--non-numeric"><%= link_to volunteer_opportunity.title, volunteer_opportunity %></td>
+            <tr data-volunteer-opportunity-id="<%= volunteer_opportunity.id %>" data-volunteer-opportunity-title="<%= volunteer_opportunity.title %>">
+              <td class="mdl-data-table__cell--non-numeric"><%= volunteer_opportunity.title %></td>
             </tr>
             <% end %>
           </tbody>

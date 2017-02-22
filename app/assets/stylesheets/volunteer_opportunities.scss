@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .volunteer_opportunities{
+  display: inherit;
   .volunteer_opportunity-cards{
     display: flex;
     flex: 1 1;
@@ -14,8 +15,6 @@
     width: auto;
 
     .mdl-card__title{
-      background-color: rgb(63,81,181);
-      color: white;
       .mdl-card__title-text{
         display: block;
 

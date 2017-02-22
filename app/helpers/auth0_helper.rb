@@ -8,7 +8,7 @@ module Auth0Helper
     if auth0_session_present
       @current_user = session[:userinfo]
     else
-      @current_user = { 'extra' => { 'raw_info' => { 'permissions' => ['read:volunteer-opportunity'] } } }
+      @current_user = { 'extra' => { 'raw_info' => { 'permissions' => ['read:visible-volunteer-opportunity'] } } }
     end
     auth0_session_present
   end
@@ -27,6 +27,6 @@ module Auth0Helper
 
   # @return the path to the login page
   def login_path
-    root_path
+    root_path(anchor: 'authenticate_user')
   end
 end

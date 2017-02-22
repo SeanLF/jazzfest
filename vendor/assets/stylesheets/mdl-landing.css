@@ -41,7 +41,7 @@
   z-index: 999;
 }
 
-.mdl-layout__content section:not(:last-of-type) {
+.mdl-layout__content section {
   position: relative;
   margin-bottom: 48px;
 }

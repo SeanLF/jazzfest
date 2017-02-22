@@ -1,7 +1,7 @@
 class VolunteerOpportunitiesController < ApplicationController
   before_action :set_volunteer_opportunity, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action { authorize VolunteerOpportunity }
+  before_action except: [:show] { authorize VolunteerOpportunity }
 
   # GET /volunteer_opportunities
   # GET /volunteer_opportunities.json
@@ -12,6 +12,7 @@ class VolunteerOpportunitiesController < ApplicationController
   # GET /volunteer_opportunities/1
   # GET /volunteer_opportunities/1.json
   def show
+    authorize @volunteer_opportunity
   end
 
   # GET /volunteer_opportunities/new
@@ -71,6 +72,6 @@ class VolunteerOpportunitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def volunteer_opportunity_params
-      params.require(:volunteer_opportunity).permit(:title, :objective, :duties_and_responsibilities, :qualifications_and_requirements, :shifts)
+      params.require(:volunteer_opportunity).permit(:title, :objective, :duties_and_responsibilities, :qualifications_and_requirements, :shifts, :visible)
     end
 end

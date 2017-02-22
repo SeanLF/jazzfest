@@ -45,7 +45,6 @@
     overflow-x: hidden;
   }
   label[for=opportunity_application_availability] small{
-    color: #d50000;
     text-decoration: underline;
   }
 
@@ -90,6 +89,9 @@
 
     .field{
       flex: 1;
+      label[for=opportunity_application_choices] ol{
+        padding-left: 20px;
+      }
     }
 
     @media screen and (max-width: 841px) {

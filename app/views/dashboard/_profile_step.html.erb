@@ -64,9 +64,9 @@
 
       <div class="field radio">
         <%= f.label :age_group %>
-        <% for age_group in ['14-17', '18-24', '25-55', '55+'] do %>
+        <% ['14-17', '18-24', '25-55', '55+'].each_with_index do |age_group, ag_i| %>
         <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="profile_age_group_<%= age_group %>">
-          <%= f.radio_button :age_group, age_group, {class: "mdl-radio__button"} %>
+          <%= f.radio_button :age_group, age_group, {class: "mdl-radio__button", id: "profile_age_group_#{age_group}"} %>
           <span class="mdl-radio__label"><%= age_group %></span>
         </label>
         <% end %>

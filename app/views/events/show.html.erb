@@ -1,0 +1,32 @@
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @event.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @event.end_date %>
+</p>
+
+<p>
+  <strong>Registration start date:</strong>
+  <%= @event.registration_start_date %>
+</p>
+
+<p>
+  <strong>Registration end date:</strong>
+  <%= @event.registration_end_date %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @event.active %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

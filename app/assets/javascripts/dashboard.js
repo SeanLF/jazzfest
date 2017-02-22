@@ -24,7 +24,6 @@ function setupStepper(){
         form.reportValidity()
         Stepper.error()
       }
-      location.hash = 'stepper-step-profile'
     });
     stepperElement.addEventListener('onstepback', function (event) {Stepper.back();});
     stepperElement.addEventListener('onsteppercomplete', function (event) {location.href=successPath})
@@ -54,9 +53,11 @@ function setupProfileStep(Stepper){
     Stepper.next()
     setupAvailabilityStep(Stepper)
     showToast('Your profile was successfully updated')
+    location.hash = 'stepper-step-availability'
   }).on("ajax:error", function(e, data, status, xhr) {
     Stepper.error()
     showToast('Your profile could not be saved')
+    location.hash = 'stepper-step-profile'
     return $("form.edit_profile").render_form_errors('profile', data.responseJSON);
   });
 }
@@ -67,8 +68,8 @@ function setupAvailabilityStep(Stepper){
 
   $('#opportunity_application_availability').datepicker({
     firstDay: 1,
-    minDate: '2017-06-20',
-    maxDate: '2017-07-02',
+    minDate: window.festival_start_date,
+    maxDate: window.festival_end_date,
     selectedDates: datesFromInput
   })
 
@@ -77,9 +78,11 @@ function setupAvailabilityStep(Stepper){
     Stepper.next()
     setupRankChoicesStep(Stepper)
     showToast('Your availability has been successfully recorded')
+    location.hash = 'stepper-step-rank-choices'
   }).on("ajax:error", function(e, data, status, xhr) {
     Stepper.error()
     showToast('You have not selected enough dates')
+    location.hash = 'stepper-step-availability'
     return $("#stepper-step-availability form.edit_opportunity_application").render_form_errors('opportunity_application', data.responseJSON);
   });
 }
@@ -106,6 +109,7 @@ function setupRankChoicesStep(Stepper){
   }).on("ajax:error", function(e, data, status, xhr) {
     Stepper.error()
     showToast('Please select at least one opportunity')
+    location.hash = 'stepper-step-rank-choices'
     return $("#stepper-step-rank-choices form.edit_opportunity_application").render_form_errors('opportunity_application', data.responseJSON);
   });
 }
@@ -118,9 +122,11 @@ function limitChoices(index){
   if (getChoiceCount() >= 4){
     sortable('.choices', 'disable')
     $('.source .mdl-js-checkbox').each(function(){this.MaterialCheckbox.disable()})
+    $('.source').hide()
   } else {
     sortable('.choices', 'enable')
     $('.source .mdl-js-checkbox').each(function(){this.MaterialCheckbox.enable()})
+    $('.source').show()
   }
   updateChoicesInputFieldFromDOM()
 }
@@ -128,7 +134,7 @@ function limitChoices(index){
 function selectChoice(row){
   index = getChoiceCount() + 1
   volunteer_opportunity_id = row[0].dataset.volunteerOpportunityId
-  title = row.find('a').text()
+  title = row[0].dataset.volunteerOpportunityTitle
   row.hide()
   $('.choices').append(createChip(index, volunteer_opportunity_id, title,
     (function() {

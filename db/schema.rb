@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218052827) do
+ActiveRecord::Schema.define(version: 20170222002711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.date     "registration_start_date"
+    t.date     "registration_end_date"
+    t.boolean  "active"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "opportunity_applications", force: :cascade do |t|
     t.integer  "profile_id"
@@ -55,6 +66,7 @@ ActiveRecord::Schema.define(version: 20170218052827) do
     t.text     "shifts"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.boolean  "visible"
   end
 
   add_foreign_key "opportunity_applications", "profiles"

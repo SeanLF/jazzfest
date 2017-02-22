@@ -2,7 +2,6 @@
   padding: 0vw 2vw;
   strong{
     text-transform: uppercase;
-    color: rgb(255,64,129);
   }
   .cards{
     display: flex;
@@ -14,11 +13,6 @@
     flex: 1 1 640px;
     margin: 1vw;
 
-    .mdl-card__title{
-      background-color: rgb(63,81,181);
-      color: white;
-    }
-
     .mdl-card__title-text{
       padding: 0;
     }
@@ -29,11 +23,11 @@
   }
 }
 
-.page-content.home.show{
+.page-content.home.landing{
   display: inherit;
   margin-top: 0;
 }
-.home.show{
+.home.landing{
   padding-top: 4rem;
   background-color: #fafafa;
 
@@ -49,9 +43,9 @@
   }
 
   .section-map{
-    min-height: 45vh;
     iframe{
       height: 100%;
+      min-height: 45vh;
     }
   }
 
@@ -73,5 +67,26 @@
   }
   .font-icon-step{
     font-size: 2rem;
+  }
+}
+
+.mdl-mega-footer--link-list a{
+  cursor: pointer;
+}
+
+.home.help{
+  display: inherit;
+  margin-top: 25vh;
+  margin-bottom: 30vh;
+}
+
+
+.home.privacy_policy{
+  display: inherit;
+  p, li, a, address{
+    font-size: 1.3rem;
+  }
+  a{
+    cursor: pointer;
   }
 }

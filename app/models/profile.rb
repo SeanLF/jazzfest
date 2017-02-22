@@ -16,7 +16,7 @@ class Profile < ApplicationRecord
   }
 
   validates :t_shirt_size, inclusion: {
-    in: %w(XS S M L XL 2XL 2XL),
+    in: %w(XS S M L XL 2XL 3XL),
     message: '%{value} is not a valid size'
   }
 
