@@ -13,7 +13,7 @@
       <div class="field">
         <%= f.label :choices do %>
           <ol>
-            <li>Please select at most # volunteer opportunities by clicking on its checkbox.</li>
+            <li>Please select between <%= @min_num_choices %> and <%= @max_num_choices %> volunteer opportunities by clicking on its checkbox.</li>
             <li>Drag and drop the opportunities to indicate your order of preference.</li>
           </ol>
           <small>For the sake of convenience, <%= link_to 'here', volunteer_opportunities_path %> is the list of opportunties.</small>

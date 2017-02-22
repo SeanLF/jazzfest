@@ -119,7 +119,7 @@ function getChoiceCount(){
 }
 
 function limitChoices(index){
-  if (getChoiceCount() >= 4){
+  if (getChoiceCount() >= window.max_num_choices){
     sortable('.choices', 'disable')
     $('.source .mdl-js-checkbox').each(function(){this.MaterialCheckbox.disable()})
     $('.source').hide()

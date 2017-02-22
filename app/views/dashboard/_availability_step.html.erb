@@ -12,7 +12,7 @@
         <%= f.label :availability do %>
           <span>Please indicate all dates for which you are available</span>
           <br>
-          <small class="mdl-color-text--deep-orange"><i class="fa fa-warning">&nbsp;</i>You must select at least four (4) dates.</small>
+          <small class="mdl-color-text--deep-orange"><i class="fa fa-warning">&nbsp;</i>You must select at least <%= @min_dates %> dates.</small>
         <% end %>
         <%= f.hidden_field :availability %>
       </div>

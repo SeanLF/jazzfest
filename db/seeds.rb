@@ -14,3 +14,21 @@ Event.find_or_create_by(
   registration_end_date: Date.parse('2017/06/20'),
   active: true
 )
+
+Setting.find_or_create_by(
+  name: 'Minimum number of dates',
+  value_type: 'integer',
+  value: '4'
+)
+
+Setting.find_or_create_by(
+  name: 'Minimum number of choices',
+  value_type: 'integer',
+  value: '1'
+)
+
+Setting.find_or_create_by(
+  name: 'Maximum number of choices',
+  value_type: 'integer',
+  value: '4'
+)
