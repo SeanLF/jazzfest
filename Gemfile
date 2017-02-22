@@ -33,6 +33,9 @@ gem 'omniauth', '~> 1.3.1'
 gem 'omniauth-auth0', '~> 1.4.1'
 gem 'pundit'
 
+# error tracking
+gem 'rollbar'
+
 # for editing volunteer opportunities
 gem 'font-awesome-sass'
 gem 'wysiwyg-rails', github: 'froala/wysiwyg-rails'

@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def user_not_authorized
+    Rollbar.warning('Tried to access unauthorized resource')
     redirect_to :back, notice: 'Please don\'t try to do things you aren\'t supposed to'
   end
 end

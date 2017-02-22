@@ -25,6 +25,15 @@ module Auth0Helper
     @current_user
   end
 
+  def current_user_profile
+    Profile.find_by(auth0_id: current_user['uid'])
+  end
+
+  def current_user_profile_rollbar_js
+    current_user_js = current_user_profile
+    { id: current_user_js.id, username: current_user_js.auth0_id, email: current_user_js.email }.to_json
+  end
+
   # @return the path to the login page
   def login_path
     root_path(anchor: 'authenticate_user')

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script type="text/javascript">Rollbar.configure({payload: {person: <%= raw (current_user_profile_rollbar_js) %> }});</script>
   <title>Jazzfest</title>
   <%= csrf_meta_tags %>
   <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
