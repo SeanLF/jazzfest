@@ -1,0 +1,40 @@
+<div class="cards">
+  <div class="mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+      <div class="mdl-card__title-text">Administer Jazzify</div>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <% if policy(Event).index? %>
+        <h3><%= link_to 'Events', :events %></h3>
+        <ul>
+          <li>Define the registration period (first and last day to apply to volunteer)</li>
+          <li>Define the volunteering period (festival dates, for which we need volunteers)</li>
+        </ul>
+      <% end %>
+      <% if policy(VolunteerOpportunity).index? %>
+        <h3><%= link_to 'Volunteer Opportunities', :volunteer_opportunities %></h3>
+        <ul>
+          <li>List, create, see, edit (includes hiding) or delete opportunities that users can apply to.</li>
+        </ul>
+      <% end %>
+      <% if policy(Profile).index? %>
+        <h3><%= link_to 'Profiles', :profiles %></h3>
+        <ul>
+          <li>View the profiles submitted by users <small>(raw data)</small>.</li>
+        </ul>
+      <% end %>
+      <% if policy(OpportunityApplication).index? %>
+        <h3><%= link_to 'Applications', :opportunity_applications %></h3>
+        <ul>
+          <li>Review the applications submitted by users <small>(+ access to raw data).</small></li>
+        </ul>
+      <% end %>
+      <% if policy(Setting).index? %>
+        <h3><%= link_to 'Settings', :settings %></h3>
+        <ul>
+          <li>Edit settings regarding the application process.<br><small>i.e. the minumum number of dates users have to be available on, the minimum and maximum number of opportunities applicants should rank...</small></li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

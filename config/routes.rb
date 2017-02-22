@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
-  resources :settings
-  resources :events
   root to: 'home#landing'
 
   resources :opportunity_applications
   resources :volunteer_opportunities
   resources :profiles
+  resources :settings
+  resources :events
 
   get '/apply' => 'dashboard#show'
   get '/apply/success' => 'dashboard#success'
+  get '/dashboard' => 'dashboard#elevated_user_dashboard'
 
   get '/auth/callback' => 'auth0#callback'
   get '/auth/failure' => 'auth0#failure'

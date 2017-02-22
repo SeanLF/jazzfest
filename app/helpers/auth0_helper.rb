@@ -29,4 +29,12 @@ module Auth0Helper
   def login_path
     root_path(anchor: 'authenticate_user')
   end
+
+  def permission?(permission)
+    user['extra']['raw_info']['permissions'].include?(permission)
+  end
+
+  def role?(role)
+    user['extra']['raw_info']['roles'].include?(role)
+  end
 end

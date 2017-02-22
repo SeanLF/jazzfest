@@ -1,4 +1,5 @@
 class ApplicationPolicy
+  include Auth0Helper
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -38,11 +39,8 @@ class ApplicationPolicy
     Pundit.policy_scope!(user, record.class)
   end
 
-  def permission?(permission)
-    user['extra']['raw_info']['permissions'].include?(permission)
-  end
-
   class Scope
+    include Auth0Helper
     attr_reader :user, :scope
 
     def initialize(user, scope)
@@ -52,10 +50,6 @@ class ApplicationPolicy
 
     def resolve
       scope
-    end
-
-    def permission?(permission)
-      user['extra']['raw_info']['permissions'].include?(permission)
     end
   end
 end

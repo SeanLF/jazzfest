@@ -111,3 +111,19 @@
     margin-top: 0;
   }
 }
+
+.dashboard.elevated_user_dashboard{
+  // display: inherit;
+  .cards{
+    display: flex;
+    .mdl-card{
+      h3:first-child{
+        margin-top: 0;
+      }
+      width: auto;
+      ul li{
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
