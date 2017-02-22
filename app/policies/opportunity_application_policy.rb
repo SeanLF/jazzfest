@@ -3,8 +3,10 @@ class OpportunityApplicationPolicy < ApplicationPolicy
     def resolve
       if permission?('read:volunteer-application')
         scope.all
-      else
+      elsif permission?('edit:own-volunteer-application')
         scope.where(profile_id: Profile.find_by(auth0_id: user['uid']).id)
+      else
+        scope.none
       end
     end
   end
