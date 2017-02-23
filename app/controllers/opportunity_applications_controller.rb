@@ -1,9 +1,9 @@
 class OpportunityApplicationsController < ApplicationController
   before_action :set_opportunity_application, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action except: [:index, :new, :create] { @opportunity_application.user = session[:userinfo] }
   before_action only: [:update] { authorize @opportunity_application }
   before_action except: [:update] { authorize OpportunityApplication }
-  before_action except: [:index] { @opportunity_application.user = session[:userinfo] }
 
   # GET /opportunity_applications
   # GET /opportunity_applications.json
@@ -19,6 +19,7 @@ class OpportunityApplicationsController < ApplicationController
   # GET /opportunity_applications/new
   def new
     @opportunity_application = OpportunityApplication.new
+    @opportunity_application.user = session[:userinfo]
   end
 
   # GET /opportunity_applications/1/edit
@@ -29,6 +30,7 @@ class OpportunityApplicationsController < ApplicationController
   # POST /opportunity_applications.json
   def create
     @opportunity_application = OpportunityApplication.new(opportunity_application_params)
+    @opportunity_application.user = session[:userinfo]
 
     respond_to do |format|
       if @opportunity_application.save

@@ -1,5 +1,3 @@
-
-
 <p>
   <strong>Profile:</strong>
   <%= @opportunity_application.profile %>
@@ -14,6 +12,18 @@
   <strong>Choices:</strong>
   <%= @opportunity_application.choices %>
 </p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @opportunity_application.opportunity_application_status.name %>
+</p>
+
+<% if policy(OpportunityApplication).accept? %>
+<p>
+  <strong>Coordinator notes:</strong>
+  <%= @opportunity_application.coordinator_notes %>
+</p>
+<% end %>
 
 <p>
   <strong>Submitted:</strong>

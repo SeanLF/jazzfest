@@ -32,3 +32,7 @@ Setting.find_or_create_by(
   value_type: 'integer',
   value: '4'
 )
+
+OpportunityApplicationStatus.find_or_create_by(name: 'Pending')
+OpportunityApplicationStatus.find_or_create_by(name: 'Accepted')
+OpportunityApplicationStatus.find_or_create_by(name: 'Denied')

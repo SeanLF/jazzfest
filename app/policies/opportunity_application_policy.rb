@@ -59,6 +59,7 @@ class OpportunityApplicationPolicy < ApplicationPolicy
     attributes = [:availability, :choices, :submitted]
     attributes << :profile_id if permission?('edit:volunteer-application')
     attributes << :opportunity_application_status_id if permission?('accept:volunteer-application')
+    attributes << :coordinator_notes if role?('Coordinator') || role?('Admin')
     attributes
   end
 end

@@ -1,6 +1,7 @@
 class OpportunityApplication < ApplicationRecord
   attr_accessor :user
   belongs_to :profile
+  belongs_to :opportunity_application_status
 
   validate :min_dates_in_range
   validate :choice_in_range

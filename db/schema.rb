@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222083258) do
+ActiveRecord::Schema.define(version: 20170223011428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,13 +26,22 @@ ActiveRecord::Schema.define(version: 20170222083258) do
     t.datetime "updated_at",              null: false
   end
 
+  create_table "opportunity_application_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "opportunity_applications", force: :cascade do |t|
     t.integer  "profile_id"
     t.text     "availability"
     t.string   "choices"
     t.boolean  "submitted"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.text     "coordinator_notes"
+    t.integer  "opportunity_application_status_id"
+    t.index ["opportunity_application_status_id"], name: "index_applications_on_application_status_id", using: :btree
     t.index ["profile_id"], name: "index_opportunity_applications_on_profile_id", using: :btree
   end
 
@@ -77,5 +86,6 @@ ActiveRecord::Schema.define(version: 20170222083258) do
     t.boolean  "visible"
   end
 
+  add_foreign_key "opportunity_applications", "opportunity_application_statuses"
   add_foreign_key "opportunity_applications", "profiles"
 end
