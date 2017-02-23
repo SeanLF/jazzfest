@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223040909) do
+ActiveRecord::Schema.define(version: 20170223000006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170223040909) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "opportunity_application_statuses", force: :cascade do |t|
+  create_table "opportunity_application_status", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,11 +37,11 @@ ActiveRecord::Schema.define(version: 20170223040909) do
     t.text     "availability"
     t.string   "choices"
     t.boolean  "submitted"
+    t.integer  "opportunity_application_status_id"
+    t.text     "coordinator_notes"
+    t.integer  "accepted_volunteer_opportunity_id"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-    t.text     "coordinator_notes"
-    t.integer  "opportunity_application_status_id"
-    t.integer  "accepted_volunteer_opportunity_id"
     t.index ["accepted_volunteer_opportunity_id"], name: "index_applications_on_accepted_opportunity_id", using: :btree
     t.index ["opportunity_application_status_id"], name: "index_applications_on_application_status_id", using: :btree
     t.index ["profile_id"], name: "index_opportunity_applications_on_profile_id", using: :btree
@@ -93,12 +93,12 @@ ActiveRecord::Schema.define(version: 20170223040909) do
     t.text     "duties_and_responsibilities"
     t.text     "qualifications_and_requirements"
     t.text     "shifts"
+    t.boolean  "visible"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.boolean  "visible"
   end
 
-  add_foreign_key "opportunity_applications", "opportunity_application_statuses"
-  add_foreign_key "opportunity_applications", "opportunity_applications", column: "accepted_volunteer_opportunity_id"
+  add_foreign_key "opportunity_applications", "opportunity_application_status"
   add_foreign_key "opportunity_applications", "profiles"
+  add_foreign_key "opportunity_applications", "volunteer_opportunities", column: "accepted_volunteer_opportunity_id"
 end

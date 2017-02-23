@@ -6,6 +6,7 @@ class CreateVolunteerOpportunities < ActiveRecord::Migration[5.0]
       t.text :duties_and_responsibilities
       t.text :qualifications_and_requirements
       t.text :shifts
+      t.boolean :visible
 
       t.timestamps
     end
