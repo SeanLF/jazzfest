@@ -1,5 +1,5 @@
 class OpportunityApplicationsController < ApplicationController
-  before_action :set_opportunity_application, only: [:show, :edit, :update, :destroy]
+  before_action :set_opportunity_application, only: [:show, :edit, :update, :destroy, :change_status]
   before_action :authenticate_user!
   before_action except: [:index, :new, :create] { @opportunity_application.user = session[:userinfo] }
   before_action only: [:update] { authorize @opportunity_application }

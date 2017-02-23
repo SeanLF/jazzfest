@@ -2,6 +2,7 @@ class OpportunityApplication < ApplicationRecord
   attr_accessor :user
   belongs_to :profile
   belongs_to :opportunity_application_status
+  belongs_to :volunteer_opportunity, foreign_key: :accepted_volunteer_opportunity_id, optional: true
 
   validate :min_dates_in_range
   validate :choice_in_range

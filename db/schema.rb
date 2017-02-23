@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223011428) do
+ActiveRecord::Schema.define(version: 20170223031118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20170223011428) do
     t.datetime "updated_at",                        null: false
     t.text     "coordinator_notes"
     t.integer  "opportunity_application_status_id"
+    t.integer  "accepted_volunteer_opportunity_id"
+    t.index ["accepted_volunteer_opportunity_id"], name: "index_applications_on_accepted_opportunity_id", using: :btree
     t.index ["opportunity_application_status_id"], name: "index_applications_on_application_status_id", using: :btree
     t.index ["profile_id"], name: "index_opportunity_applications_on_profile_id", using: :btree
   end
@@ -87,5 +89,6 @@ ActiveRecord::Schema.define(version: 20170223011428) do
   end
 
   add_foreign_key "opportunity_applications", "opportunity_application_statuses"
+  add_foreign_key "opportunity_applications", "opportunity_applications", column: "accepted_volunteer_opportunity_id"
   add_foreign_key "opportunity_applications", "profiles"
 end

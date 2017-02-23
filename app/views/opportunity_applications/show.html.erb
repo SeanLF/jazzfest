@@ -18,7 +18,7 @@
   <%= @opportunity_application.opportunity_application_status.name %>
 </p>
 
-<% if policy(OpportunityApplication).accept? %>
+<% if policy(OpportunityApplication).elevated_action? %>
 <p>
   <strong>Coordinator notes:</strong>
   <%= @opportunity_application.coordinator_notes %>

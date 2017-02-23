@@ -35,6 +35,10 @@ class ApplicationPolicy
     scope.where(id: record.id).exists?
   end
 
+  def elevated_action?
+    role?('Coordinator') || role?('Admin')
+  end
+
   def scope
     Pundit.policy_scope!(user, record.class)
   end
