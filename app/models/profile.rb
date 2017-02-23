@@ -1,4 +1,5 @@
 class Profile < ApplicationRecord
+  has_paper_trail
   validates_presence_of :first_name, :last_name, :email, :t_shirt_size, :age_group
   validates :code_of_conduct, acceptance: true
 

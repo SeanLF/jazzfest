@@ -36,6 +36,9 @@ gem 'pundit'
 # error tracking
 gem 'rollbar'
 
+# versionining and history
+gem 'paper_trail'
+
 # for editing volunteer opportunities
 gem 'font-awesome-sass'
 gem 'wysiwyg-rails', github: 'froala/wysiwyg-rails'

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   before_action :user_signed_in?
+  before_action :set_paper_trail_whodunnit
   before_action do
     @active_event = policy_scope(Event).active
     @min_dates = Setting.min_dates.real_value
@@ -17,5 +18,9 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     Rollbar.warning('Tried to access unauthorized resource')
     redirect_to :back, notice: 'Please don\'t try to do things you aren\'t supposed to'
+  end
+
+  def user_for_paper_trail
+    logged_in? ? current_user_profile.id : 'Public user'
   end
 end

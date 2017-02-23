@@ -1,4 +1,5 @@
 class OpportunityApplication < ApplicationRecord
+  has_paper_trail
   attr_accessor :user
   belongs_to :profile
   belongs_to :opportunity_application_status
