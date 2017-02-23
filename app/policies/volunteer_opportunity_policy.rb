@@ -32,6 +32,10 @@ class VolunteerOpportunityPolicy < ApplicationPolicy
   end
 
   def destroy?
-    permission?('delete:volunteer-opportunity')
+    if permission?('delete:volunteer-opportunity')
+      !VolunteerOpportunity.applied_to_.pluck(:id).include?(record.id)
+    else
+      false
+    end
   end
 end

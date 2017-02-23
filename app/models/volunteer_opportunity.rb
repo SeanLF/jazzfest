@@ -1,6 +1,14 @@
 class VolunteerOpportunity < ApplicationRecord
+  def title=(val)
+    self[:title] = val.strip
+  end
+
   def self.visible
     where(visible: true)
+  end
+
+  def self.applied_to_
+    applied_to(OpportunityApplication.all)
   end
 
   def self.applied_to(opportunity_application_policy_scoped)
