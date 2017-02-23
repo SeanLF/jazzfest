@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170223000006) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "opportunity_application_status", force: :cascade do |t|
+  create_table "opportunity_application_statuses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20170223000006) do
     t.datetime "updated_at",                      null: false
   end
 
-  add_foreign_key "opportunity_applications", "opportunity_application_status"
+  add_foreign_key "opportunity_applications", "opportunity_application_statuses"
   add_foreign_key "opportunity_applications", "profiles"
   add_foreign_key "opportunity_applications", "volunteer_opportunities", column: "accepted_volunteer_opportunity_id"
 end
