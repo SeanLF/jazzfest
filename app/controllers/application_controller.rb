@@ -21,6 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   def user_for_paper_trail
-    user_signed_in? ? current_user_profile.id : 'Public user'
+    user_signed_in? ? current_user['uid'] : 'Public user'
   end
 end
