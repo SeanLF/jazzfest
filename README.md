@@ -1,24 +1,13 @@
-# README
+#Jazzify
+[![Build Status](https://travis-ci.org/SeanLF/jazzfest.svg?branch=master)](https://travis-ci.org/SeanLF/jazzfest)&nbsp;[![Code Climate](https://codeclimate.com/github/SeanLF/jazzfest/badges/gpa.svg)](https://codeclimate.com/github/SeanLF/jazzfest)&nbsp;[![Dependency Status](https://gemnasium.com/badges/github.com/SeanLF/jazzfest.svg)](https://gemnasium.com/github.com/SeanLF/jazzfest)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run this application, you need PostgreSQL. Get it from [here](http://www.postgresql.org/download/) or [here (Mac only)](http://postgresapp.com/).
+You should also have Ruby and Rails installed on your machine.
 
-Things you may want to cover:
+#####Once you have this repository cloned on your machine
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+bundle install
+rails db:setup
+bundle exec rails server
+```
