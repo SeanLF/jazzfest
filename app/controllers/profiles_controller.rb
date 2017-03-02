@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = policy_scope(Profile).order(:created_at)
+    @profiles = policy_scope(Profile).order(updated_at: :desc)
   end
 
   # GET /profiles/1

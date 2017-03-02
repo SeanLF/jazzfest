@@ -8,7 +8,7 @@ class OpportunityApplicationsController < ApplicationController
   # GET /opportunity_applications
   # GET /opportunity_applications.json
   def index
-    @opportunity_applications = policy_scope(OpportunityApplication).submitted.order(:created_at).eager_load(:profile, :opportunity_application_status)
+    @opportunity_applications = policy_scope(OpportunityApplication).submitted.order(created_at: :desc).eager_load(:profile, :opportunity_application_status)
   end
 
   # GET /opportunity_applications/1
