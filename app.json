@@ -1,0 +1,13 @@
+{
+  "name": "Jazzify",
+  "description": "Rails app for volunteer applications",
+  "keywords": [
+    "rails"
+  ],
+  "repository": "https://github.com/seanlf/jazzfest",
+  "scripts": {
+    "dokku": {
+      "postdeploy": "rails db:migrate"
+    }
+  }
+}
