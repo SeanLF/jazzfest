@@ -1,0 +1,23 @@
+<div class="mdl-card mdl-shadow--2dp review_application">
+  <div class="mdl-card__title mdl-color--grey-100">
+    <h3 class="mdl-card__title-text">Application</h3>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <h6>Availability</h6>
+    <%= hidden_field :opportunity_application, :availability %>
+    <div class="availability"></div>
+    <h6>Opportunity Choices</h6>
+    <%= hidden_field :opportunity_application, :choices %>
+    <div class="choices"></div>
+  </div>
+</div>
+
+<script type="application/json" id="volunteer_opportunities"><%= raw @volunteer_opportunities %></script>
+<script type="application/json" id="selected_dates_grouped_by_month">
+<% groups = Hash.new { |h, k| h[k] = [] }
+@opportunity_application.availability.split(',').reject(&:empty?).each do |str_date|
+  date = Date.parse(str_date)
+  groups[date.strftime("%B")] << date.day
+end %>
+<%= raw groups.to_json %>
+</script>

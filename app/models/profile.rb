@@ -24,4 +24,8 @@ class Profile < ApplicationRecord
   def postal_code=(val)
     self[:postal_code] = val.upcase
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

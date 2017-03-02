@@ -33,9 +33,9 @@ Setting.find_or_create_by(
   value: '4'
 )
 
-OpportunityApplicationStatus.find_or_create_by(name: 'Pending')
-OpportunityApplicationStatus.find_or_create_by(name: 'Accepted')
-OpportunityApplicationStatus.find_or_create_by(name: 'Denied')
+OpportunityApplicationStatus.find_or_create_by(name: 'Pending', action_name: 'Reset')
+OpportunityApplicationStatus.find_or_create_by(name: 'Accepted', action_name: 'Accept')
+OpportunityApplicationStatus.find_or_create_by(name: 'Denied', action_name: 'Deny')
 
 opportunities = [
   {

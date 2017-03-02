@@ -1,14 +1,14 @@
 class OpportunityApplicationsController < ApplicationController
-  before_action :set_opportunity_application, only: [:show, :edit, :update, :destroy, :change_status]
+  before_action :set_opportunity_application, only: [:show, :edit, :update, :destroy, :review]
   before_action :authenticate_user!
   before_action except: [:index, :new, :create] { @opportunity_application.user = session[:userinfo] }
-  before_action only: [:update] { authorize @opportunity_application }
-  before_action except: [:update] { authorize OpportunityApplication }
+  before_action only: [:update, :edit] { authorize @opportunity_application }
+  before_action except: [:update, :edit] { authorize OpportunityApplication }
 
   # GET /opportunity_applications
   # GET /opportunity_applications.json
   def index
-    @opportunity_applications = policy_scope(OpportunityApplication).order(:created_at)
+    @opportunity_applications = policy_scope(OpportunityApplication).submitted.order(:created_at).eager_load(:profile, :opportunity_application_status)
   end
 
   # GET /opportunity_applications/1
@@ -65,6 +65,15 @@ class OpportunityApplicationsController < ApplicationController
       format.html { redirect_to opportunity_applications_url, notice: 'Opportunity application was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def review
+    temp = {}
+    VolunteerOpportunity.select(:id, :title).each { |opportunity| temp[opportunity.id] = opportunity.title }
+    @volunteer_opportunities = temp.to_json
+    temp = {}
+    OpportunityApplicationStatus.all.each { |status| temp[status.id] = { name: status.name, action_name: status.action_name, action_color: status.action_color } }
+    @opportunity_application_statuses = temp.to_json
   end
 
   private

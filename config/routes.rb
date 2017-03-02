@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: 'home#landing'
 
-  resources :opportunity_applications
+  resources :opportunity_applications do
+    get :review, on: :member
+  end
   resources :volunteer_opportunities
   resources :profiles
   resources :settings

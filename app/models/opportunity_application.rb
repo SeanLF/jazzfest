@@ -8,6 +8,10 @@ class OpportunityApplication < ApplicationRecord
   validate :min_dates_in_range
   validate :choice_in_range
 
+  def self.submitted
+    where(submitted: true)
+  end
+
   def min_dates_in_range
     return if availability.nil?
     active_event = Event.all.active

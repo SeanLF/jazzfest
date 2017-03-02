@@ -1,33 +1,34 @@
-
-
 <h1>Opportunity Applications</h1>
 
-<table>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
     <tr>
-      <th>Profile</th>
-      <th>Availability</th>
-      <th>Choices</th>
-      <th>Submitted</th>
-      <th colspan="3"></th>
+      <th class="mdl-data-table__cell--non-numeric">Name</th>
+      <th class="mdl-data-table__cell--non-numeric">Status</th>
+      <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-descending">Applied</th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @opportunity_applications.each do |opportunity_application| %>
       <tr>
-        <td><%= opportunity_application.profile %></td>
-        <td><%= opportunity_application.availability %></td>
-        <td><%= opportunity_application.choices %></td>
-        <td><%= opportunity_application.submitted %></td>
-        <td><%= link_to 'Show', opportunity_application %></td>
-        <td><%= link_to 'Edit', edit_opportunity_application_path(opportunity_application) %></td>
-        <td><%= link_to 'Destroy', opportunity_application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= opportunity_application.profile.full_name %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= opportunity_application.opportunity_application_status.name %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= opportunity_application.created_at.strftime('%b %d') %></td>
+        <% if policy(opportunity_application).review? %>
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Review', review_opportunity_application_path(opportunity_application) %></td>
+        <% end %>
+        <% if policy(opportunity_application).show? %>
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Show', opportunity_application %></td>
+        <% end %>
+        <% if policy(opportunity_application).edit? %>
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Edit', edit_opportunity_application_path(opportunity_application) %></td>
+        <% end %>
+        <% if policy(opportunity_application).destroy? %>
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', opportunity_application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Opportunity Application', new_opportunity_application_path %>

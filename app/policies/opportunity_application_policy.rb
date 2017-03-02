@@ -28,6 +28,10 @@ class OpportunityApplicationPolicy < ApplicationPolicy
   end
 
   def update?
+    edit? || permission?('accept:volunteer-application') || permission?('decline:volunteer-application') || permission?('reset:volunteer-application')
+  end
+
+  def edit?
     if record.profile.auth0_id == user['uid']
       permission?('edit:own-volunteer-application')
     else
@@ -35,18 +39,19 @@ class OpportunityApplicationPolicy < ApplicationPolicy
     end
   end
 
-  def edit?
-    update?
-  end
-
   def destroy?
     permission?('delete:volunteer-application')
   end
 
+  def review?
+    role?('Coordinator') || role?('Admin')
+  end
+
   def permitted_attributes
-    attributes = [:availability, :choices, :submitted]
+    attributes = []
+    attributes << :availability << :choices << :submitted if edit?
     attributes << :profile_id if permission?('edit:volunteer-application')
-    attributes << :opportunity_application_status_id << :coordinator_notes << :accepted_volunteer_opportunity_id if role?('Coordinator') || role?('Admin')
+    attributes << :opportunity_application_status_id << :coordinator_notes << :accepted_volunteer_opportunity_id if permission?('accept:volunteer-application') || permission?('decline:volunteer-application') || permission?('reset:volunteer-application')
     attributes
   end
 end
