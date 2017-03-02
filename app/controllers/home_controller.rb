@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   after_action :skip_authorization
+
   def landing
     registration_start_date = @active_event.registration_start_date
     if Date.today < registration_start_date
