@@ -38,7 +38,7 @@
 			if (dow == 0 || dow == 6) {
 				classes.push('sys-datepicker-day-weekend');
 			}
-      if (thisDate < settings.minDate || settings.maxDate < thisDate) {
+      if (thisDate < settings.minDate || settings.maxDate < thisDate || settings.disabled) {
         classes.push('sys-datepicker-day-disabled')
       }
 			monthHtml = monthHtml + '<div class="' + classes.join(' ') + '" data-date="' + thisDate + '">' + d + '</div>';
@@ -186,7 +186,8 @@
 				convertDisplayDateToISO: false,
         minDate: null,
         maxDate: null,
-        selectedDates: []
+        selectedDates: [],
+        disabled: false,
 			}, options);
       if (!isDateInRange(settings.defaultDate, settings.minDate, settings.maxDate)){
         settings.defaultDate = settings.minDate;
@@ -206,7 +207,7 @@
 					settings.defaultDate = getTodayISO();
 				}
 
-				var dp = $('<div class="sys-datepicker"/>').appendTo($(this).closest('div')),
+				var dp = $('<div class="sys-datepicker mdl-color-text--accent"/>').appendTo($(this).closest('div')),
 					dpContent = $('<div class="sys-datepicker-content"/>').appendTo(dp),
 					// Note on the spaces between elements in the next line: this is required for text-align:justify to work
 					// See http://stackoverflow.com/questions/12822068/dom-equidistant-divs-with-inline-blocks-and-text-justify-wont-work-when-inserti#12822407
@@ -266,7 +267,7 @@
 						date = settings.convertISOToDisplayDate(date);
 					}
 
-          if (!isDateInRange(date, settings.minDate, settings.maxDate)){
+          if (!isDateInRange(date, settings.minDate, settings.maxDate) || settings.disabled){
             return null
           }
 
