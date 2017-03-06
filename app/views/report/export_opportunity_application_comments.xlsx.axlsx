@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: 'Application comments') do |sheet|
+  # headers
+  sheet.add_row(['Name', 'Choices', 'Comments'])
+
+  # data
+  @opportunity_applications.each do |app|
+    row = [app.profile.full_name]
+    row << JSON.parse(app.choices).map { |choice_id| @volunteer_opportunities[choice_id.to_i][:title] }.join(', ')
+    row << app.coordinator_notes
+    sheet.add_row(row)
+  end
+end

@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   get 'help' => 'home#help'
   get 'code_of_conduct' => 'home#code_of_conduct'
   get 'privacy_policy' => 'home#privacy_policy'
+
+  get 'reports/export_opportunity_applications' => 'report#export_opportunity_applications'
+  get 'reports/export_opportunity_application_comments' => 'report#export_opportunity_application_comments'
 end

@@ -41,6 +41,11 @@ gem 'rollbar'
 # versionining and history
 gem 'paper_trail'
 
+# reports
+gem 'rubyzip', '~> 1.1.0'
+gem 'axlsx', '2.1.0.pre'
+gem 'axlsx_rails'
+
 # for editing volunteer opportunities
 gem 'font-awesome-sass'
 gem 'wysiwyg-rails', github: 'froala/wysiwyg-rails'
