@@ -36,7 +36,7 @@
       }, languageDictionary: {
           title: 'Jazzify'
       }, theme: {
-        logo: 'http://www.jazzfestivalscanada.ca/wp-content/uploads/TD-Ottawa-Jazz-Festival-logo_2012-1024x683.jpg'
+        logo: '<%= image_path '/jazzfestlogo.png' %>'
       }
     });
     window.festival_start_date = "<%= @active_event.start_date.strftime('%Y-%m-%d') %>"
