@@ -46,6 +46,13 @@
     color: red;
   }
 
+  .review_profile_notes{
+    p{
+      white-space: pre-line;
+      margin: -1rem 0px 0px 0px;
+    }
+  }
+
   .review_status{
     flex-grow: 2;
     select{
