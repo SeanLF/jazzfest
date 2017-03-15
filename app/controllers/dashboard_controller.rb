@@ -4,6 +4,10 @@ class DashboardController < ApplicationController
 
   def apply
     authorize :dashboard
+    @active_event = policy_scope(Event).active
+    @min_dates = Setting.min_dates.real_value
+    @min_num_choices = Setting.min_num_choices.real_value
+    @max_num_choices = Setting.max_num_choices.real_value
     @profile = Profile.find_by(auth0_id: session[:userinfo]['uid'])
     authorize @profile, :update?
     @opportunity_application = OpportunityApplication.find_or_initialize_by(profile: @profile)

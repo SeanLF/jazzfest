@@ -39,11 +39,6 @@
         logo: '<%= image_path '/jazzfestlogo.png' %>'
       }
     });
-    window.festival_start_date = "<%= @active_event.start_date.strftime('%Y-%m-%d') %>"
-    window.festival_end_date = "<%= @active_event.end_date.strftime('%Y-%m-%d') %>"
-    window.min_dates = "<%= @min_dates %>"
-    window.min_num_choices = "<%= @min_num_choices %>"
-    window.max_num_choices = "<%= @max_num_choices %>"
   </script>
 
   <% if controller_name == 'dashboard' && action_name == 'apply' %>

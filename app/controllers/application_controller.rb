@@ -5,12 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_action :user_signed_in?
   before_action :set_paper_trail_whodunnit
-  before_action do
-    @active_event = policy_scope(Event).active
-    @min_dates = Setting.min_dates.real_value
-    @min_num_choices = Setting.min_num_choices.real_value
-    @max_num_choices = Setting.max_num_choices.real_value
-  end
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
