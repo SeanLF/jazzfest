@@ -1,9 +1,10 @@
-<h1>Opportunity Applications</h1>
+<h1>Profiles</h1>
 
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
     <tr>
       <th class="mdl-data-table__cell--non-numeric">Name</th>
+      <th class="mdl-data-table__cell--non-numeric">Email</th>
       <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-descending">Updated</th>
       <% if policy(Profile).show? %><th></th><% end %>
       <% if policy(Profile).edit? %><th></th><% end %>
@@ -15,11 +16,12 @@
     <% @profiles.each do |profile| %>
       <tr>
         <td class="mdl-data-table__cell--non-numeric"><%= profile.full_name %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= profile.email %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= profile.updated_at.strftime('%b %d') %></td>
         <% if policy(Profile).show? %>
         <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Show', profile %></td>
         <% end %>
-        <% if policy(Profile).edit? %>
+        <% if policy(profile).edit? %>
         <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Edit', edit_profile_path(profile) %></td>
         <% end %>
         <% if policy(Profile).destroy? %>

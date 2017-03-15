@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     Rollbar.warning('Tried to access unauthorized resource')
-    redirect_to :back, notice: 'Please don\'t try to do things you aren\'t supposed to'
+    redirect_back fallback_location: :root_path, notice: 'Please don\'t try to do things you aren\'t supposed to'
   end
 
   def user_for_paper_trail

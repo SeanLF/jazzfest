@@ -85,5 +85,7 @@
   <%= @profile.code_of_conduct %>
 </p>
 
+<% if policy(@profile).edit? %>
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
+<% end %>
 <%= link_to 'Back', profiles_path %>
