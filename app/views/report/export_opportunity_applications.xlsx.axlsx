@@ -1,7 +1,7 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: 'Volunteer Applications') do |sheet|
   # headers
-  sheet.add_row(['First Name', 'Last Name', 'Address', 'City',
+  sheet.add_row(['Last modified', 'First Name', 'Last Name', 'Address', 'City',
             'Province', 'Postal Code', 'Home Phone Number', 'Work Phone Number',
             'Cell Phone Number', 'Email', 'T Shirt Size', 'Age Group',
             'Emergency Contact Name', 'Emergency Contact Number', 'Notes', 'Availability',
@@ -10,17 +10,18 @@ wb.add_worksheet(name: 'Volunteer Applications') do |sheet|
   # data
   @opportunity_applications.each do |app|
     row = [
+      app.updated_at.strftime('%b %d'),
       app.profile.first_name,
       app.profile.last_name,
       app.profile.address,
       app.profile.city,
-      app.profile.province,
+      app.profile.province_for_export,
       app.profile.postal_code.gsub(/[- ]/, ''),
       app.profile.home_phone_number.gsub(/[()-. ]/, ''),
       app.profile.work_phone_number.gsub(/[()-. ]/, ''),
       app.profile.cell_phone_number.gsub(/[()-. ]/, ''),
       app.profile.email,
-      app.profile.t_shirt_size,
+      app.profile.t_shirt_size_for_export,
       app.profile.age_group,
       app.profile.emergency_contact_name,
       app.profile.emergency_contact_number.gsub(/[()-. ]/, ''),

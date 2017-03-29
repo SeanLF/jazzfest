@@ -5,7 +5,7 @@ class ReportPolicy < Struct.new(:user, :report)
     elevated_action?
   end
 
-  def export_opportunity_application_comments?
+  def export_opportunity_application_coordinator_comments?
     elevated_action?
   end
 

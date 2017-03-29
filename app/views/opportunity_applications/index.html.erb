@@ -4,8 +4,8 @@
   <% if policy(:report).export_opportunity_applications? %>
   <%= link_to 'Export', reports_export_opportunity_applications_path(format: :xlsx) %>
   <% end %>
-  <% if policy(:report).export_opportunity_application_comments? %>
-  <%= link_to 'Export comments', reports_export_opportunity_application_comments_path(format: :xlsx) %>
+  <% if policy(:report).export_opportunity_application_coordinator_comments? %>
+  <%= link_to 'Export coordinator comments', reports_export_opportunity_application_coordinator_comments_path(format: :xlsx) %>
   <% end %>
 </div>
 

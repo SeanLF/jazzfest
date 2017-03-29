@@ -28,4 +28,19 @@ class Profile < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def t_shirt_size_for_export
+    return case t_shirt_size
+      when '2XL' then 'XXL'
+      when '3XL' then 'XXXL'
+      else t_shirt_size
+    end
+  end
+
+  def province_for_export
+    return case province
+      when 'Ontario' then 'ON'
+      when 'Quebec' then 'QC'
+    end
+  end
 end

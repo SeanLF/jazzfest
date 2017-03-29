@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   get 'privacy_policy' => 'home#privacy_policy'
 
   get 'reports/export_opportunity_applications' => 'report#export_opportunity_applications'
-  get 'reports/export_opportunity_application_comments' => 'report#export_opportunity_application_comments'
+  get 'reports/export_opportunity_application_coordinator_comments' => 'report#export_opportunity_application_coordinator_comments'
 end
