@@ -4,8 +4,12 @@ class ReportController < ApplicationController
   def export_opportunity_applications
     authorize :report
 
-    accepted_status_id = OpportunityApplicationStatus.accepted.id
-    @opportunity_applications = policy_scope(OpportunityApplication).submitted.where(opportunity_application_status_id: accepted_status_id).eager_load(:profile, :opportunity_application_status).order(:updated_at)
+    @opportunity_applications = policy_scope(OpportunityApplication).submitted.eager_load(:profile, :opportunity_application_status).order(:updated_at)
+
+    if params[:accepted]
+      @opportunity_applications = @opportunity_applications.where(opportunity_application_status_id: OpportunityApplicationStatus.accepted.id)
+    end
+
     @volunteer_opportunities = VolunteerOpportunity.select(:id, :title).index_by(&:id)
 
     respond_to do |format|

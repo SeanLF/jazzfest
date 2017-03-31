@@ -2,7 +2,8 @@
 
 <div class="actions">
   <% if policy(:report).export_opportunity_applications? %>
-  <%= link_to 'Export', reports_export_opportunity_applications_path(format: :xlsx) %>
+  <%= link_to 'Export all', reports_export_opportunity_applications_path(format: :xlsx) %>
+  <%= link_to 'Export accepted', reports_export_opportunity_applications_path(format: :xlsx, accepted: true) %>
   <% end %>
   <% if policy(:report).export_opportunity_application_coordinator_comments? %>
   <%= link_to 'Export coordinator comments', reports_export_opportunity_application_coordinator_comments_path(format: :xlsx) %>

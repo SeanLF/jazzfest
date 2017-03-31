@@ -5,7 +5,7 @@ wb.add_worksheet(name: 'Volunteer Applications') do |sheet|
             'Province', 'Postal Code', 'Home Phone Number', 'Work Phone Number',
             'Cell Phone Number', 'Email', 'T Shirt Size', 'Age Group',
             'Emergency Contact Name', 'Emergency Contact Number', 'Notes', 'Availability',
-            'Choices', 'Classification'])
+            'Choices', 'Job', 'Classification'])
 
   # data
   @opportunity_applications.each do |app|
@@ -29,6 +29,11 @@ wb.add_worksheet(name: 'Volunteer Applications') do |sheet|
       app.availability
     ]
     row << JSON.parse(app.choices).map { |choice_id| @volunteer_opportunities[choice_id.to_i][:title] }.join(', ')
+    if app.accepted_volunteer_opportunity_id.nil?
+      row << ''
+    else
+      row << @volunteer_opportunities[app.accepted_volunteer_opportunity_id][:title]
+    end
     row << 'Volunteer'
     sheet.add_row(row)
   end
