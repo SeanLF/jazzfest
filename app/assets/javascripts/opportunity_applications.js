@@ -29,11 +29,17 @@ document.addEventListener('turbolinks:load', function() {
   }))
 
   $('#select_accepted_volunteer_opportunity_id').append(
-    opportunity_application_choices.map(function(volunteer_opportunity_id, index) {
-      option = $('<option>', { 'data-volunteer-opportunity-id': volunteer_opportunity_id, value: volunteer_opportunity_id, text: volunteer_opportunities[parseInt(volunteer_opportunity_id)]})
-      if (selected_accepted_volunteer_opportunity_id === volunteer_opportunity_id) $(option).attr('selected', 'selected')
-      return option
-  }))
+    $('<optgroup>', { 'label': 'Ranked Choices' }).append(
+      opportunity_application_choices.map(function(volunteer_opportunity_id) {
+        return createOptionSelectedChoice(volunteer_opportunity_id, volunteer_opportunities[parseInt(volunteer_opportunity_id)], selected_accepted_volunteer_opportunity_id === volunteer_opportunity_id)
+  }))).append(
+    $('<optgroup>', { 'label': 'Other' }).append(
+      Object.keys(volunteer_opportunities)
+        .filter(function(i){ return opportunity_application_choices.indexOf(i) < 0 })
+        .sort(function(a, b){ volunteer_opportunities[a] < volunteer_opportunities[b] ? -1 : 1 })
+        .map(function(volunteer_opportunity_id) {
+          return createOptionSelectedChoice(volunteer_opportunity_id, volunteer_opportunities[parseInt(volunteer_opportunity_id)], selected_accepted_volunteer_opportunity_id === volunteer_opportunity_id)
+  })))
 
   $('.review_status .mdl-card__actions').append(
     Object.keys(opportunity_application_statuses).map(function(status_id){
@@ -85,3 +91,9 @@ document.addEventListener('turbolinks:load', function() {
     })
   }
 })
+
+function createOptionSelectedChoice(volunteer_opportunity_id, text, isSelected){
+  option = $('<option>', { 'data-volunteer-opportunity-id': volunteer_opportunity_id, value: volunteer_opportunity_id, text: text})
+  if (isSelected) $(option).attr('selected', 'selected')
+  return option
+}
