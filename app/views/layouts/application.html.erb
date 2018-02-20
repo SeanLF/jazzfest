@@ -4,6 +4,7 @@
   <title>Jazzify</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
+  <%= state_meta_tag %>
 
   <% if user_signed_in? %>
   <script type="text/javascript">Rollbar.configure({payload: {person: <%= raw (current_user_profile_rollbar_js) %> }});</script>
@@ -32,6 +33,7 @@
         responseType: 'code',
         params: {
           scope: 'openid profile', // Learn about scopes: https://auth0.com/docs/scopes
+          state: $('meta[name="state"]').attr('content')
         }
       }, languageDictionary: {
           title: 'Jazzify'
