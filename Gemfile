@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.3'
+ruby '2.5.0'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -8,9 +8,9 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '< 5.1'
+gem 'rails'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.21.0'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
@@ -31,8 +31,8 @@ gem 'jbuilder'
 
 # authentication / authorization
 gem 'auth0'
-gem 'omniauth', '~> 1.3.1'
-gem 'omniauth-auth0', '~> 1.4.1'
+gem 'omniauth', '~> 1.6.1'
+gem 'omniauth-auth0', '~> 2.0.0'
 gem 'pundit'
 
 # error tracking
@@ -42,13 +42,13 @@ gem 'rollbar'
 gem 'paper_trail'
 
 # reports
-gem 'rubyzip', '~> 1.1.0'
+gem 'rubyzip'
 gem 'axlsx', '2.1.0.pre'
 gem 'axlsx_rails'
 
 # for editing volunteer opportunities
 gem 'font-awesome-sass'
-gem 'wysiwyg-rails', github: 'froala/wysiwyg-rails'
+gem 'wysiwyg-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

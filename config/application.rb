@@ -13,5 +13,6 @@ module Jazzfest
     # -- all .rb files in that directory are automatically loaded.
     config.action_view.embed_authenticity_token_in_remote_forms = true
     config.time_zone = 'Eastern Time (US & Canada)'
+    config.middleware.insert_after ActionDispatch::Static, Rack::Deflater    
   end
 end

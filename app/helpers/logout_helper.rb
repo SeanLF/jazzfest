@@ -1,12 +1,19 @@
+# frozen_string_literal: true
 module LogoutHelper
   def logout_url
-    creds = {
-      client_id: ENV['AUTH0_CLIENT_ID'],
-      client_secret: ENV['AUTH0_CLIENT_SECRET'],
-      api_version: 1,
-      domain: ENV['AUTH0_DOMAIN']
+    domain = ENV['AUTH0_DOMAIN']
+    client_id = ENV['AUTH0_CLIENT_ID'],
+    request_params = {
+      returnTo: root_url,
+      client_id: client_id
     }
-    auth0_client = Auth0Client.new(creds)
-    auth0_client.logout_url(root_url)
+
+    URI::HTTPS.build(host: domain, path: '/logout', query: to_query(request_params))
+  end
+
+  private
+
+  def to_query(hash)
+    hash.map { |k, v| "#{k}=#{URI.escape(v)}" unless v.nil? }.reject(&:nil?).join('&')
   end
 end

@@ -1,7 +1,7 @@
 class VolunteerOpportunitiesController < ApplicationController
   before_action :set_volunteer_opportunity, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action except: [:show, :destroy] { authorize VolunteerOpportunity }
+  before_action(except: [:show, :destroy]) { authorize VolunteerOpportunity }
 
   # GET /volunteer_opportunities
   # GET /volunteer_opportunities.json
