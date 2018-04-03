@@ -1,9 +1,17 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 document.addEventListener('turbolinks:load', function() {
+
+  if ($('.opportunity_applications.index').length > 0) {
+    id = location.href.substring(location.href.indexOf('#')+1)
+    if (!isNaN(parseInt(id))){
+      $("#" + id)[0].style = 'background-color: #eee;'
+    }
+  }
+
   if (!($(".opportunity_applications.review").length > 0)) {
     return;
-  }
+  } // all of the following is for the review page
 
   opportunity_application_availability = $('#opportunity_application_availability').val().split(',').filter(function(date) {return date !== ""}).sort()
   selected_dates_grouped_by_month = JSON.parse($('#selected_dates_grouped_by_month').text())
@@ -53,7 +61,7 @@ document.addEventListener('turbolinks:load', function() {
 
   $('form.edit_opportunity_application').on("ajax:success", function(e, data, status, xhr) {
     showToast('Application is now ' + data.opportunity_application_status.name.toLowerCase())
-    location = '/opportunity_applications'
+    location = "/opportunity_applications" + data.id
   }).on("ajax:error", function(e, data, status, xhr) {
     showToast('Something went wrong. Ask the admin to check the logs.')
   })

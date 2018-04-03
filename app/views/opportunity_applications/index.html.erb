@@ -22,7 +22,7 @@
 
   <tbody>
     <% @opportunity_applications.each do |opportunity_application| %>
-      <tr>
+      <tr id="<%= opportunity_application.id %>">
         <td class="mdl-data-table__cell--non-numeric"><%= opportunity_application.profile.full_name %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= opportunity_application.opportunity_application_status.name %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= opportunity_application.created_at.strftime('%b %d') %></td>
