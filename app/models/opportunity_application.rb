@@ -17,12 +17,12 @@ class OpportunityApplication < ApplicationRecord
     active_event = Event.all.active
     min_dates = Setting.min_dates.real_value
 
-    errors.add(:availability, 'You must select more dates') unless availability.split(',').reject(&:empty?).select { |str_date| Date.parse(str_date).between?(active_event.start_date, active_event.end_date) }.count >= min_dates
+    errors.add(:availability, 'You must select more dates') unless availability.split(',').reject(&:blank?).select { |str_date| Date.parse(str_date).between?(active_event.start_date, active_event.end_date) }.count >= min_dates
   end
 
   def choice_in_range
     return unless submitted
-    _choices = choices.nil? || choices.empty? ? [] : JSON.parse(choices).map(&:to_i)
+    _choices = choices.blank? ? [] : JSON.parse(choices).map(&:to_i)
     valid_volunteer_opportunity_ids = Pundit.policy_scope(user, VolunteerOpportunity).pluck(:id)
     errors.add(:choices, 'Invalid choice') unless (_choices | valid_volunteer_opportunity_ids).sort == valid_volunteer_opportunity_ids.sort
     min_num_choices = Setting.min_num_choices.real_value

@@ -15,7 +15,7 @@
 <script type="application/json" id="volunteer_opportunities"><%= raw @volunteer_opportunities %></script>
 <script type="application/json" id="selected_dates_grouped_by_month">
 <% groups = Hash.new { |h, k| h[k] = [] }
-@opportunity_application.availability.split(',').reject(&:empty?).each do |str_date|
+@opportunity_application.availability.split(',').reject(&:blank?).each do |str_date|
   date = Date.parse(str_date)
   groups[date.strftime("%B")] << date.day
 end %>

@@ -18,7 +18,7 @@
         <div class="mdl-tooltip" data-mdl-for="email">Send email</div>
       </div>
     </div>
-    <% unless @opportunity_application.profile.home_phone_number.empty? %>
+    <% unless @opportunity_application.profile.home_phone_number.blank? %>
       <div class="field mdl-grid mdl-grid--no-spacing">
         <div class="icon mdl-cell mdl-cell--2-col mdl-cell--1-col-phone"><div class="material-icons">phone</div></div>
         <div class="text mdl-cell mdl-cell--10-col mdl-cell--3-col-phone">
@@ -29,7 +29,7 @@
         </div>
       </div>
     <% end %>
-    <% unless @opportunity_application.profile.cell_phone_number.empty? %>
+    <% unless @opportunity_application.profile.cell_phone_number.blank? %>
       <div class="field mdl-grid mdl-grid--no-spacing">
         <div class="icon mdl-cell mdl-cell--2-col mdl-cell--1-col-phone"><div class="material-icons">phone</div></div>
         <div class="text mdl-cell mdl-cell--10-col mdl-cell--3-col-phone">
@@ -40,7 +40,7 @@
         </div>
       </div>
     <% end %>
-    <% unless @opportunity_application.profile.work_phone_number.empty? %>
+    <% unless @opportunity_application.profile.work_phone_number.blank? %>
       <div class="field mdl-grid mdl-grid--no-spacing">
         <div class="icon mdl-cell mdl-cell--2-col mdl-cell--1-col-phone"><div class="material-icons">phone</div></div>
         <div class="text mdl-cell mdl-cell--10-col mdl-cell--3-col-phone">

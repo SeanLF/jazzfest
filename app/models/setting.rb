@@ -37,7 +37,7 @@ class Setting < ApplicationRecord
 
   # convert something to a boolean
   def value_to_boolean(value)
-    if value.is_a?(String) && value.empty?
+    if value.is_a?(String) && value.blank?
       nil
     else
       TRUE_VALUES.include?(value)
