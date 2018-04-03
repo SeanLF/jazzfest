@@ -6,7 +6,7 @@ class VolunteerOpportunitiesController < ApplicationController
   # GET /volunteer_opportunities
   # GET /volunteer_opportunities.json
   def index
-    @volunteer_opportunities = policy_scope(VolunteerOpportunity).order(:title)
+    @volunteer_opportunities = policy_scope(VolunteerOpportunity).order(visible: :desc, title: :asc)
   end
 
   # GET /volunteer_opportunities/1
