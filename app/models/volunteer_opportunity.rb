@@ -1,5 +1,5 @@
 class VolunteerOpportunity < ApplicationRecord
-  has_many :accepted_applications, foreign_key: :accepted_volunteer_opportunity_id, class_name: OpportunityApplication
+  has_many :accepted_applications, foreign_key: :accepted_volunteer_opportunity_id, class_name: 'OpportunityApplication'
 
   def title=(val)
     self[:title] = val.strip
