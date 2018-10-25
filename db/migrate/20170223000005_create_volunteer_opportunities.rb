@@ -1,4 +1,4 @@
-class CreateVolunteerOpportunities < ActiveRecord::Migration[5.0]
+class CreateVolunteerOpportunities < ActiveRecord::Migration[4.2]
   def change
     create_table :volunteer_opportunities do |t|
       t.text :title

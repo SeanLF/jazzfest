@@ -1,4 +1,4 @@
-class CreateOpportunityApplications < ActiveRecord::Migration[5.0]
+class CreateOpportunityApplications < ActiveRecord::Migration[4.2]
   def change
     create_table :opportunity_applications do |t|
       t.references :profile, foreign_key: true
