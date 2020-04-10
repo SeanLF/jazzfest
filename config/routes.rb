@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  root to: 'home#landing'
+  if Time.current <= Date.parse('2020/07/01')
+    root to: 'home#covid19'
+  else
+    root to: 'home#landing'
+  end
+
+  get '/home' => 'home#landing'
+  get '/covid19' => 'home#covid19'
 
   get '/auth/callback' => 'auth0#callback'
   get '/auth/failure' => 'auth0#failure'

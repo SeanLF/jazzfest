@@ -22,4 +22,7 @@ class HomeController < ApplicationController
 
   def help
   end
+
+  def covid19
+  end
 end

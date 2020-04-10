@@ -1,0 +1,36 @@
+<% if @registration_text %>
+<section class="section-dates section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+  <div class="mdl-card mdl-cell mdl-cell--12-col">
+    <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+      <h3><%= @registration_text %></h3>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+  <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+    <div class="mdl-card__supporting-text">
+      <h4>40th anniversary edition of the TD Ottawa Jazz Festival is cancelled</h4>
+      <p>The City of Ottawa announced that it is extending its closures of City facilities, services, and public gatherings until June 30th (source: <a href="https://ottawa.ca/en/news/update-city-services-and-programs-impacted-covid-19">Ottawa.ca</a>). The ordinance forbids gatherings in groups until further notice. Given this new reality along with the cancellations of our many presenting partners, the Ottawa Jazz Festival has no choice but to cancel this year’s edition. Obviously, we deliver this news with a very heavy heart.   </p>
+      <p>Ticket and pass purchasers will be offered the following options:</p>
+      <ul>
+        <li>A full refund minus ticket processing fees</li>
+        <li>To convert their 2020 pass to a 2021 pass</li>
+        <li>To convert their order to a charitable donation to the festival.</li>
+      </ul>
+<p>The specifics of each of these options will be sent to patrons as an email, and will soon be posted on our website. Refunds will be issued automatically to patrons who have not chosen an alternative option after April 27th.</p>
+<p>Currently, the Festival’s programming team is exploring ideas to provide opportunities for artists and audiences to share in a rich and moving musical experience but no firm plans are in place as yet.</p>
+<p>Our hearts go out to the hundreds of musicians, contractors, our sponsor hotels and restaurants, businesses and everyone who has been affected by this pandemic. Please remember to follow the directions of our health officials: stay indoors until further notice. We will be there to welcome you when it’s time to gather again. </p>
+<p>If you have any questions or concerns, call the office to leave a message at <a href="tel:613-241-2633">613-241-2633</a> or email us at <a href="mailto:contact@ottawajazzfestival.com">contact@ottawajazzfestival.com</a>.</p>
+<p>The TD Ottawa Jazz Team</p>
+<p><small>Please note that the above text has been taken from the official website and has been slightly edited.</small></p>
+    </div>
+    <div class="mdl-card__actions">
+      <a href="http://ottawajazzfestival.com/" target="_BLANK">Official Website</a>
+      <a href="http://ottawajazzfestival.com/map" target="_BLANK">Map</a>
+      <a href="http://ottawajazzfestival.com/faqs" target="_BLANK">Jazz Festival FAQs</a>
+      <%= link_to 'Help', help_path %>
+    </div>
+  </div>
+</section>
