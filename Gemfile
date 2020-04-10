@@ -63,4 +63,5 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'web-console'
+  gem 'bundler', '2.1.4'
 end

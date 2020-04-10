@@ -233,6 +233,7 @@ DEPENDENCIES
   auth0
   axlsx (= 3.0.0.pre)
   axlsx_rails
+  bundler (= 2.1.4)
   byebug
   dotenv-rails
   font-awesome-sass
