@@ -19,18 +19,12 @@
 
         <div class="navbar-end">
             <!-- navbar items -->
-            <%= link_to change_language_path, class: 'navbar-item' do %>
-              <%= t('navigation.language') %>
-            <% end %>
+            <%= icon_link_to t('navigation.language'), change_language_path, '🌎', class: 'navbar-item', 'data-turbolinks': 'false' %>
             
             <% if user_signed_in? %>
-                <%= link_to logout_path, class: 'navbar-item' do %>
-                <%= t('navigation.logout') %>
-                <% end %>
+            <%= icon_link_to t('navigation.logout'), logout_path, '👤', class: 'navbar-item' %>
             <% else %>
-                <%= link_to '/auth/auth0', method: :post, class: 'navbar-item', 'data-turbolinks': 'false' do %>
-                <%= t('navigation.auth') %>
-                <% end %>
+            <%= icon_link_to t('navigation.login'), auth0_login_path, '👤', class: 'navbar-item', method: :post %>
             <% end %>
             
         </div>

@@ -40,12 +40,13 @@ fr:
     help: Aide
     code_of_conduct: Code de Conduite des Bénévoles
     privacy_policy: Politique de Confidentialité
+    source_code: Code Source
   help_page:
     contact_us: Contactez nous
     issue_text: Si vous nous contactez à propos d'un problème technique, veuillez SVP inclure des étapes détaillées afin que l'on puisse le reproduire.
     include_details_text: Si vous disposez d'un compte chez nous, veuillez aussi inclure votre nom et votre méthode de connection (Facebook, Twitter, Google, Microsoft ou email).
   misc:
-    made_by: crée par
+    made_by: créé par
     thank_you: Merci
   error:
     unauthenticated: Veuillez d'abord vous connectez SVP.

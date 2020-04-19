@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+main{
+  min-height: 50vh;
+}
+
+// For adding unicode characters as icons, instead of using font awesome
+[data-icon]:before { 
+  content: attr(data-icon);
+  margin-right: .5vw;
+  color: initial;
+}
