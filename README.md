@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Jazzify
 [![Code Climate](https://codeclimate.com/github/SeanLF/jazzfest/badges/gpa.svg)](https://codeclimate.com/github/SeanLF/jazzfest)
 
@@ -39,3 +40,29 @@ Check which environment variables need to be set. The list will be compiled and 
 ### Connecting to PostgreSQL with a RDB client
 
 If running macOS, I highly suggest [Postico](https://eggerapps.at/postico/). You shouldn't have much trouble connecting to localhost. You can also find the PostgreSQL login information from the connection string from your production or staging environments.
+=======
+# README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+>>>>>>> 25b5317c... Create a new rails 6 app
