@@ -1,0 +1,16 @@
+<footer class="footer">
+  <section>
+    <strong>Jazzify</strong> &copy; <%= Time.current.year %>
+  </section>
+  <section class="source-code">
+    <a href="https://github.com/SeanLF/jazzfest">GitHub</a>
+  </section>
+  <section class="author">
+    <%= link_to "#{t('misc.made_by')} Sean Floyd", 'https://seanfloyd.ca', class: 'navbar-item' %>
+  </section>
+  <nav class="navbar bottom-nav" role="navigation" aria-label="secondary navigation">
+    <%= link_to change_language_path, class: 'navbar-item', 'data-turbolinks': 'false' do %>
+      <%= t('navigation.language') %>
+    <% end %>
+  </nav>
+</footer>
