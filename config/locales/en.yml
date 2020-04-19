@@ -30,4 +30,42 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  navigation:
+    home: Home
+    volunteer_opportunities: 'Volunteer Opportunities'
+    apply: 'Apply'
+    login: 'Sign In / Up'
+    logout: 'Sign Out'
+    language: 'Français'
+    help: Help
+    code_of_conduct: Volunteer Code of Conduct
+    privacy_policy: Privacy Policy
+  help_page:
+    contact_us: Contact us
+    issue_text: If you are emailing us about an issue that you are experiencing, please include detailed steps to help us reproduce it.
+    include_details_text: If you have signed up, please also include your name and the sign up method (Facebook, Twitter, Google, Microsoft or email).
+  misc:
+    made_by: made by
+    thank_you: Thank you
+  error:
+    unauthenticated: 'Please log in or sign up first.'
+    unauthorized: 'You are not authorized to perform this action.'
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            postal_code:
+              invalid: 'has the wrong format: K1A1A1 or K1A 1A1'
+            age_group:
+              inclusion: '%{age_group} is not a valid age group'
+            t_shirt_size:
+              inclusion: '%{t_shirt_size} is not a valid size'
+          applicant:
+            volunteer_opportunity_id:
+              too_short: 'Please apply to at least %{count} opportunities'
+              too_long: 'Please apply to at most %{count} opportunities'
+              inclusion: 'Applying to invalid opportunity'
+            availability: 
+              too_short: 'Please select at least %{count} dates on which you are available'
+              inclusion: 'Please select dates within the recruitment dates'

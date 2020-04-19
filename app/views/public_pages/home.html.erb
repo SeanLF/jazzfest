@@ -1,6 +1,7 @@
+<%= link_to t('navigation.language'), change_language_path %>
 
 <% if user_signed_in? %>
-<%= link_to 'Logout', logout_path %>
+<%= link_to t('navigation.logout'), logout_path %>
 <% else %>
-<%= link_to 'Login', auth0_login_path, method: :post, id: 'login' %>
+<%= link_to t('navigation.login'), auth0_login_path, method: :post, id: 'login' %>
 <% end %>
