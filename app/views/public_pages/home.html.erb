@@ -1,0 +1,6 @@
+
+<% if user_signed_in? %>
+<%= link_to 'Logout', logout_path %>
+<% else %>
+<%= link_to 'Login', auth0_login_path, method: :post, id: 'login' %>
+<% end %>
