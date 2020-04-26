@@ -1,0 +1,12 @@
+<section class="actions">
+<%%= icon_link_to t('form.show'), @<%= singular_table_name %>, '👀' %> |
+<%%= icon_link_to t('form.back'), <%= index_helper %>_path, '👈' %>
+</section>
+
+<div class="card">
+  <header class="card-header">
+    <p class="card-header-title"><%%= t('form.editing') %> <%= singular_table_name.titleize %></p>
+    <%%= icon_link_to('', '#', 'v', {'aria-label': t('form.more_options'), class: 'card-header-icon' }, {'aria-hidden': 'true'}) %>
+  </header>
+  <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
+</div>

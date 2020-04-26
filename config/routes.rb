@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  root 'public_pages#home'
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
-    root 'public_pages#home'
 
     # Authentication
     get '/login', to: 'authentication#login', as: :login

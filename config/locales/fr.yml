@@ -34,9 +34,9 @@ fr:
     home: Page Principale
     volunteer_opportunities: 'Missions Bénévoles'
     apply: "Je m'engage"
-    login: 'Me Connecter'
-    logout: 'Me Déconnecter'
-    language: 'English'
+    login: Me Connecter
+    logout: Me Déconnecter
+    language: English
     help: Aide
     code_of_conduct: Code de Conduite des Bénévoles
     privacy_policy: Politique de Confidentialité
@@ -62,9 +62,27 @@ fr:
               inclusion: "%{value} n'est pas un groupe d'âge valide"
             t_shirt_size:
               inclusion: "%{value} n'est pas une taille valide"
-  applicant:
-    error:
-      availability: Vous devez selectioner plus de dates
+        applicant:
+          attributes:
+            volunteer_opportunity_id:
+              too_short: Veuillez selectionner au moins %{count} missions
+              too_long: Veuillez selectionner au plus %{count} missions
+              inclusion: Mission non-valide
+            availability: 
+              too_short: Vous devez selectioner au moins %{count} dates
+              inclusion: Dates ne sont pas dans la fenêtre de recrutement
       choice:
         invalid: Choix invalide
         insufficient: Choix insuffisant
+  form:
+    submit: Enregistrer
+    error: erreur
+    validation_errors: ont empêché la réussite de l'opération
+    back: Retour
+    new: Nouveau
+    show: Visionner
+    edit: Editer
+    editing: Edition
+    destroy: Supprimer
+    confirm_destroy: Veuillez confirmer
+    more_options: plus d'options

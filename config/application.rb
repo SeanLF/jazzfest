@@ -20,6 +20,15 @@ module Jazzfest
     config.time_zone = 'Eastern Time (US & Canada)'
     config.beginning_of_week = :monday
 
+    # Application Name Definition - called with Rails.application.appname or via Pages Helper Method
+    def appname
+      @appname = "Jazzify"
+    end
+
+    config.generators do |g|
+      g.scaffold_stylesheet false
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

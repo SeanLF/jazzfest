@@ -62,7 +62,8 @@ en:
               inclusion: '%{age_group} is not a valid age group'
             t_shirt_size:
               inclusion: '%{t_shirt_size} is not a valid size'
-          applicant:
+        applicant:
+          attributes:
             volunteer_opportunity_id:
               too_short: Please apply to at least %{count} opportunities
               too_long: Please apply to at most %{count} opportunities
@@ -70,3 +71,15 @@ en:
             availability: 
               too_short: Please select at least %{count} dates on which you are available
               inclusion: Please select dates within the recruitment dates
+  form:
+    submit: Submit
+    error: error
+    validation_errors: prevented the operation from completing successfully
+    back: Back
+    new: New
+    show: View
+    edit: Edit
+    editing: Editing
+    destroy: Delete
+    confirm_destroy: Are you sure?
+    more_options: more options

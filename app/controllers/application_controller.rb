@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   around_action :switch_locale
 
+  # Redirects to the same page, if possible, after changing locale
   def change_language
     path = Rails.application.routes.recognize_path root_path
     if request.referer.nil?
@@ -15,18 +16,16 @@ class ApplicationController < ActionController::Base
     redirect_to path
   end
 
+  # Changes the locale between English and French
   def switch_locale(&action)
-    logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
     parsed_locale = parse_locale
-    parsed_locale ||= current_user.try(:locale)
     locale = I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : default_url_options
-    logger.debug "* Locale set to '#{locale}'"
     I18n.with_locale(locale, &action)
   end
 
   private
   def parse_locale
-    params[:locale] || extract_locale_from_accept_language_header
+    params[:locale] || extract_locale_from_accept_language_header || current_user.try(:locale)
   end
 
   def extract_locale_from_accept_language_header
