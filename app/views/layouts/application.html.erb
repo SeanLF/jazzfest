@@ -20,6 +20,8 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script type="text/javascript">Rollbar.configure({payload: {person: <%= raw (current_user_for_rollbar_js) %> }});</script>
   </head>
 
   <body>

@@ -1,6 +1,6 @@
-require 'authentication'
 class ApplicationController < ActionController::Base
-  include ::Authentication
+  include ::Auth0::AuthenticationConcern
+  include ::Rollbar::AuthenticationConcern
 
   around_action :switch_locale
 

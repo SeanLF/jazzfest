@@ -181,6 +181,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rollbar (2.25.0)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.1)
@@ -232,6 +233,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2020.1)
+      tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
@@ -263,14 +266,15 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
-  jbuilder (~> 2.7)
+  jbuilder (~> 2)
   listen (>= 3.0.5, < 3.2)
   omniauth-auth0
   omniauth-rails_csrf_protection
   pg (>= 0.18, < 2.0)
-  puma (~> 4.1)
-  rails (~> 6.0.2, >= 6.0.2.2)
-  rspec-rails (~> 4.0.0)
+  puma (~> 4)
+  rails (~> 6)
+  rollbar
+  rspec-rails (~> 4)
   sass-rails (>= 6)
   selenium-webdriver
   spring
@@ -279,7 +283,7 @@ DEPENDENCIES
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers
-  webpacker (~> 4.0)
+  webpacker (~> 4)
 
 RUBY VERSION
    ruby 2.7.1p83

@@ -1,5 +1,6 @@
+require "active_support/concern"
 module Auth0
-  module UserManagement
+  module UserManagementConcern
     extend ActiveSupport::Concern
 
     included do

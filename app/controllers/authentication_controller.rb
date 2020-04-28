@@ -7,8 +7,7 @@ class AuthenticationController < ApplicationController
   # This stores all the user information that came from Auth0
   # and the IdP
   def callback
-    data = request.env['omniauth.auth']
-    session[:userinfo] = { uid: data.uid, credentials: data.credentials }
+    session[:userinfo] = request.env['omniauth.auth'].slice('uid', 'credentials')
 
     # TODO Redirect to requested resource or root path
     redirect_to root_path
