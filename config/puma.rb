@@ -19,6 +19,16 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # Specifies the `pidfile` that Puma will use.
 pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
+if ENV['RAILS_ENV'] == 'development'
+
+  # If you didn't place the cert and key under `local_certs` you should change this
+  localhost_key = "#{File.join('./config', 'local_certs', 'localhost-key.pem')}" 
+  localhost_crt = "#{File.join('./config', 'local_certs', 'localhost.pem')}"
+
+  ssl_bind "0.0.0.0", 9292, key: localhost_key, cert: localhost_crt, verify_mode: 'none'
+
+end
+
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.
