@@ -1,0 +1,8 @@
+<section class="notifications">
+  <% flash.each do |key, value| %>
+    <div class="notification <%= global_flash_class(key) %>">
+      <button class="delete"></button>
+      <%= value %>
+    </div>
+  <% end %>
+</section>

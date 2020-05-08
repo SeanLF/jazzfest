@@ -27,6 +27,7 @@
   <body>
     <%= render "layouts/navbar" %>
     <main>
+    <%= render "layouts/notifications" if !flash.empty? %>
     <%= yield %>
     </main>
     <%= render "layouts/footer" %>

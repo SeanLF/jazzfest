@@ -1,4 +1,5 @@
 class AuthenticationController < ApplicationController
+  after_action :skip_authorization
   # This redirects the user to the root path and highlights the login button
   def login
     redirect_to root_path(anchor: 'login')
@@ -7,7 +8,8 @@ class AuthenticationController < ApplicationController
   # This stores all the user information that came from Auth0
   # and the IdP
   def callback
-    session[:userinfo] = request.env['omniauth.auth'].slice('uid', 'credentials')
+    _data = request.env['omniauth.auth']
+    session[:userinfo] = _data.slice('uid').merge(roles: _data.extra.raw_info['https://jazzify.ca/roles'])
 
     # TODO Redirect to requested resource or root path
     redirect_to root_path

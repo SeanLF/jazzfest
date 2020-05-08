@@ -6,4 +6,15 @@ module ApplicationHelper
   def appname
     @appname = Rails.application.appname
   end
+
+  def global_flash_class(global_flash_key)
+    case global_flash_key
+    when 'global_alert'
+      'is-danger'
+    when 'global_notice'
+      'is-success'
+    else
+      'is-info'
+    end
+  end
 end

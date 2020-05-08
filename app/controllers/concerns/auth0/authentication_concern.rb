@@ -28,7 +28,45 @@ module Auth0
     # Gets the current user
     # @return [OpenStruct]
     def current_user
-      @current_user ||= OpenStruct.new(session[:userinfo])
+      @current_user ||= CurrentUser.new(session[:userinfo])
+    end
+
+    # Current User is mainly used for authorization by Pundit
+    class CurrentUser
+      attr_accessor :uid, :credentials, :roles
+
+      APPLICANT = 'Applicant'.freeze
+      COORDINATOR = 'Coordinator'.freeze
+      ADMINISTRATOR = 'Administrator'.freeze
+
+      # @return [CurrentUser]
+      def initialize(userinfo)
+        return if userinfo.nil?
+        @uid = userinfo['uid']
+        # @credentials = userinfo['credentials'] 
+        @roles = userinfo['roles']
+      end
+
+      # @return [Boolean]
+      def is_admin?
+        @roles.include? ADMINISTRATOR
+      end
+
+      # @return [Boolean]
+      def is_coordinator?
+        @roles.include? COORDINATOR
+      end
+
+      # @return [Boolean]
+      def is_applicant?
+        @roles.include? APPLICANT
+      end
+
+      # Equivalent to calling user_signed_in?
+      # @return [Boolean]
+      def is_unauthenticated?
+        @uid.nil?
+      end
     end
   end
 end

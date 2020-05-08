@@ -33,6 +33,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'omniauth-auth0'
 gem 'omniauth-rails_csrf_protection'
 gem 'auth0'
+# Authorization
+gem 'pundit'
 
 # Error tracking
 gem 'rollbar'
