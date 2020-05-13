@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - "2.7.0"
+  - "2.7.1"
 before_script:
   - psql -c 'create database jazzfest_test;' -U postgres
 # uncomment this line if your project needs to run something other than `rake`:
