@@ -31,7 +31,8 @@ class ApplicationController < ActionController::Base
   # Redirects the user to the root path with a warning
   def user_not_authorized
     Rollbar.warning('Tried to access unauthorized resource')
-    redirect_back fallback_location: root_path, global_alert: t('error.unauthorized')
+    error_message = current_user.is_unauthenticated? ? t('error.unauthenticated') : t('error.unauthorized')
+    redirect_back fallback_location: root_path, global_alert: error_message
   end
 
   private

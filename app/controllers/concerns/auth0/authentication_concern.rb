@@ -41,9 +41,9 @@ module Auth0
 
       # @return [CurrentUser]
       def initialize(userinfo)
+        @roles = []
         return if userinfo.nil?
         @uid = userinfo['uid']
-        # @credentials = userinfo['credentials'] 
         @roles = userinfo['roles']
       end
 
