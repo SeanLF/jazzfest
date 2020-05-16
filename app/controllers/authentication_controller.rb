@@ -1,5 +1,4 @@
 class AuthenticationController < ApplicationController
-  after_action :skip_authorization
   # This redirects the user to the root path and highlights the login button
   def login
     redirect_to root_path(anchor: 'login')

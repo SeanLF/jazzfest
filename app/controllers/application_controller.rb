@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   add_flash_types :global_alert, :global_notice
-  after_action :verify_authorized, except: [:user_not_authorized, :change_language, :switch_locale]
   around_action :switch_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
