@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Global application helper
 module ApplicationHelper
   # App Name Helper
   # Pull the application name set in config/application.rb

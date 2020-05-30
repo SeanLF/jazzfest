@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
+# Helper to create custom HTML tags
 module TagsHelper
   # Creates a link with a prepended icon
   # @returns [String]
-  def icon_link_to(text, path, icon, link_options={}, icon_options={})
+  def icon_link_to(text, path, icon, link_options = {}, icon_options = {})
     link_to(path, link_options) do
       to_add = icon_tag(icon, icon_options)
       to_add << content_tag(:span, text) unless text.empty?
@@ -11,9 +14,9 @@ module TagsHelper
 
   # Creates a span tag with an icon
   # returns [String]
-  def icon_tag(icon, icon_options={})
+  def icon_tag(icon, icon_options = {})
     text = ''
-    options = {class: 'icon', 'data-icon': icon}
+    options = { class: 'icon', 'data-icon': icon }
     content_tag(:span, text, options.merge(icon_options))
   end
 end
