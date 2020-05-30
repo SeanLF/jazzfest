@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Resource Policy Interface
 class ResourcePolicy < ApplicationPolicy
   def index?
     false
@@ -31,6 +34,7 @@ class ResourcePolicy < ApplicationPolicy
     Pundit.policy_scope!(user, record.class)
   end
 
+  # Resource Policy Scope Interface
   class Scope
     include ::Auth0::AuthenticationConcern
     attr_reader :user, :scope

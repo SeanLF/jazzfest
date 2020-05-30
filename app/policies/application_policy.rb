@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Application Policy interface
 class ApplicationPolicy
   include ::Auth0::AuthenticationConcern
   attr_reader :user, :record
