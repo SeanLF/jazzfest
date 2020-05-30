@@ -1,12 +1,13 @@
-require "active_support/concern"
+# frozen_string_literal: true
+
+require 'active_support/concern'
 module Auth0
+  # Module for managing authentication of Auth0 users
   module AuthenticationConcern
     extend ActiveSupport::Concern
 
     included do
-      if respond_to?(:helper_method)
-        helper_method :user_signed_in?, :authenticate_user!, :current_user
-      end
+      helper_method :user_signed_in?, :authenticate_user!, :current_user if respond_to?(:helper_method)
     end
 
     # Checks if a user is signed in
@@ -35,36 +36,37 @@ module Auth0
     class CurrentUser
       attr_accessor :uid, :credentials, :roles
 
-      APPLICANT = 'Applicant'.freeze
-      COORDINATOR = 'Coordinator'.freeze
-      ADMINISTRATOR = 'Administrator'.freeze
+      APPLICANT = 'Applicant'
+      COORDINATOR = 'Coordinator'
+      ADMINISTRATOR = 'Administrator'
 
       # @return [CurrentUser]
       def initialize(userinfo)
         @roles = []
         return if userinfo.nil?
+
         @uid = userinfo['uid']
         @roles = userinfo['roles']
       end
 
       # @return [Boolean]
-      def is_admin?
+      def admin?
         @roles.include? ADMINISTRATOR
       end
 
       # @return [Boolean]
-      def is_coordinator?
+      def coordinator?
         @roles.include? COORDINATOR
       end
 
       # @return [Boolean]
-      def is_applicant?
+      def applicant?
         @roles.include? APPLICANT
       end
 
       # Equivalent to calling user_signed_in?
       # @return [Boolean]
-      def is_unauthenticated?
+      def unauthenticated?
         @uid.nil?
       end
     end

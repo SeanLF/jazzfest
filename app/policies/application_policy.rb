@@ -8,6 +8,6 @@ class ApplicationPolicy
   end
 
   def elevated_action?
-    @user.is_coordinator? || @user.is_admin?
+    @user.coordinator? || @user.admin?
   end
 end

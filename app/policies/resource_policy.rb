@@ -41,11 +41,11 @@ class ResourcePolicy < ApplicationPolicy
     end
 
     def resolve
-      if user.is_admin?
+      if user.admin?
         admin_scope
-      elsif user.is_coordinator?
+      elsif user.coordinator?
         coordinator_scope
-      elsif user.is_applicant?
+      elsif user.applicant?
         applicant_scope
       else
         anonymous_scope

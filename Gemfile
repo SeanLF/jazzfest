@@ -30,9 +30,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 ### Gems added by developer
 # Authentication
+gem 'auth0'
 gem 'omniauth-auth0'
 gem 'omniauth-rails_csrf_protection'
-gem 'auth0'
 # Authorization
 gem 'pundit'
 
@@ -46,16 +46,18 @@ group :development, :test do
 end
 
 group :development do
+  # Security audits
+  gem 'brakeman'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  # Security audits
-  gem "brakeman"
   # check the consistency of the database constraints with the application validations
   gem 'database_consistency', require: false
+  # Ensure good code style
+  gem 'rubocop'
 end
 
 group :test do
