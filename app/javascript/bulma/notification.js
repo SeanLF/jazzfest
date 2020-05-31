@@ -3,8 +3,7 @@
  * --------------
  * url: https://bulma.io/documentation/elements/notification/#javascript-example
  */
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
     $notification = $delete.parentNode;
 

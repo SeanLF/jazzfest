@@ -21,6 +21,10 @@ main{
   margin: 2rem;
 }
 
+.notifications{
+  margin-bottom: 1rem;
+}
+
 // For adding unicode characters as icons, instead of using font awesome
 [data-icon]:before { 
   content: attr(data-icon);
