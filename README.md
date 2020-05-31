@@ -1,5 +1,7 @@
 # Jazzify
 
+**Note**: Project being redeveloped in Rails 6. Check the [production branch](https://github.com/SeanLF/jazzfest/tree/production) for the code currently running [jazzify.ca](https://jazzify.ca).
+
 ## Getting Started
 
 * Ruby version
