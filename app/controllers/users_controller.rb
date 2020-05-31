@@ -3,15 +3,8 @@
 # Controller for users
 class UsersController < ResourcesController
   include ::Auth0::UserManagementConcern
+
   # Delete user data stored in DB, auth0, and clear session
-
-  # def index; end
-  # def new; raise Pundit::NotAuthorizedError; end
-  # def create; raise Pundit::NotAuthorizedError; end
-  # def show; raise Pundit::NotAuthorizedError; end
-  # def edit; raise Pundit::NotAuthorizedError; end
-  # def update; raise Pundit::NotAuthorizedError; end
-
   def destroy
     @user.destroy
     delete_auth0_user(@user.auth0_id)
@@ -25,7 +18,7 @@ class UsersController < ResourcesController
   end
 
   def index_attributes
-    [:id]
+    [:auth0_id]
   end
 
   def show_attributes
