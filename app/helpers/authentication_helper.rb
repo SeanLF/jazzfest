@@ -16,7 +16,7 @@ module AuthenticationHelper
   # Current User to JSON, only includes the user's auth0 UID
   # @return [String]
   def current_user_for_rollbar_js
-    current_user_for_rollbar = current_user_for_rollbar
+    current_user_for_rollbar = current_user_for_rollbar()
     { id: current_user_for_rollbar.id }.to_json
   end
 end
