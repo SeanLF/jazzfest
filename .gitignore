@@ -16,5 +16,9 @@
 !/log/.keep
 !/tmp/.keep
 
+master.key
 # Ignore Byebug command history file.
 .byebug_history
+node_modules/
+public/packs/
+config/local_certs/
