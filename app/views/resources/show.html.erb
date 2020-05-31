@@ -1,0 +1,27 @@
+<% if notice.present? %>
+<div class="notification">
+  <button class="delete"></button>
+  <p id="notice"><%= notice %></p>
+</div>
+<% end %>
+  
+<div class="card">
+  <header class="card-header">
+    <p class="card-header-title"><%= record.model_name.human %></p>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      <% show_attributes.each do |attribute| %>
+      <p>
+        <strong><%= record_class.human_attribute_name attribute %>:</strong>
+        <%= record.send(attribute) %>
+      </p>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= icon_link_to t('form.back'), route_for(controller_name), '👈', class: 'card-footer-item' %>
+    <%= icon_link_to t('form.edit'), edit_polymorphic_path(record), '✏️', class: 'card-footer-item' %>
+    <%= icon_link_to t('form.destroy'), record, '🗑', method: :delete, class: 'card-footer-item' %>
+  </div>
+</div>

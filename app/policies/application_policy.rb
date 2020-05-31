@@ -2,7 +2,6 @@
 
 # Application Policy interface
 class ApplicationPolicy
-  include ::Auth0::AuthenticationConcern
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -12,5 +11,19 @@ class ApplicationPolicy
 
   def elevated_action?
     @user.coordinator? || @user.admin?
+  end
+
+  # Policy Scope Interface
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      scope
+    end
   end
 end

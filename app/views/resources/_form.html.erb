@@ -1,0 +1,72 @@
+<%= form_for(record) do |form| %>
+  <div class="card-content">
+    <div class="content">
+      <% if record.errors.any? %>
+        <div class="notification" id="error_explanation">
+          <button class="delete"></button>
+          <h2 class="is-size-2"><%= pluralize(record.errors.count, t('form.error')) %> <%= t('form.validation_errors') %></h2>
+        </div>
+      <% end %>
+
+      <% attributes(record).each do |attribute| %>
+        <% if attribute.password_digest? %>
+          <div class="field">
+            <%= form.label :password, class: 'label' %>
+            <div class="control">
+              <%= form.password_field :password, class: 'input' %>
+            </div>
+            <% if @user.errors.any? %>
+              <p class="help is-danger">
+                <%= record.errors[attribute.column_name.to_sym].join('<br/>') %>
+              </p>
+            <% end %>
+          </div>
+          <div class="field">
+            <%= form.label :password_confirmation, class: 'label' %>
+            <div class="control">
+              <%= form.password_field :password_confirmation, class: 'input' %>
+            </div>
+            <% if @user.errors.any? %>
+              <p class="help is-danger">
+                <%= record.errors[attribute.column_name.to_sym].join('<br/>') %>
+              </p>
+            <% end %>
+        <% elsif attribute.attachments? %>
+          <div class="field">
+            <%= form.label attribute.column_name.to_sym, class: 'label' %>
+            <div class="control">
+              <% klass = get_class_for_form_field attribute.field_type %>
+              <%= form.send(attribute.field_type, attribute.column_name.to_sym, multiple: true, class: klass) %>
+            </div>
+          </div>
+          <% if @user.errors.any? %>
+            <p class="help is-danger">
+              <%= record.errors[attribute.column_name.to_sym].join('<br/>') %>
+            </p>
+          <% end %>
+        <% else %>
+          <div class="field">
+            <%= form.label attribute.column_name.to_sym, class: 'label' %>
+            <div class="control">
+              <% klass = get_class_for_form_field attribute.field_type %>
+              <%= form.send(attribute.field_type, attribute.column_name.to_sym, class: klass) %>
+            </div>
+            <% if @user.errors.any? %>
+              <p class="help is-danger">
+                <%= record.errors[attribute.column_name.to_sym].join('<br/>') %>
+              </p>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <%= form.submit t('form.submit'), class: 'card-footer-item' %>
+    <%= icon_link_to t('form.back'), route_for(controller_name), '👈', class: 'card-footer-item' %>
+    <% if action_name == 'edit' %>
+      <%= icon_link_to t('form.show'), record, '👀', class: 'card-footer-item' %>
+      <%%= icon_link_to t('form.destroy'), <%= model_resource_name %>, '🗑', method: :delete, class: 'card-footer-item' %>
+    <% end %>
+  </footer>
+<% end %>

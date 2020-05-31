@@ -27,14 +27,14 @@ module Auth0
     end
 
     # Gets the current user
-    # @return [OpenStruct]
+    # @return [CurrentUser]
     def current_user
       @current_user ||= CurrentUser.new(session[:userinfo])
     end
 
     # Current User is mainly used for authorization by Pundit
     class CurrentUser
-      attr_accessor :uid, :credentials, :roles
+      attr_accessor :uid, :roles
 
       APPLICANT = 'Applicant'
       COORDINATOR = 'Coordinator'

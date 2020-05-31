@@ -2,28 +2,32 @@
 
 # Resource Policy Interface
 class ResourcePolicy < ApplicationPolicy
+  def permitted_attributes
+    []
+  end
+
   def index?
-    false
-  end
-
-  def show?
-    scope.where(id: record.id).exists?
-  end
-
-  def create?
-    false
+    user.admin?
   end
 
   def new?
     create?
   end
 
-  def update?
+  def create?
+    user.admin? or !permitted_attributes.empty?
+  end
+
+  def show?
     scope.where(id: record.id).exists?
   end
 
   def edit?
     update?
+  end
+
+  def update?
+    scope.where(id: record.id).exists? or !permitted_attributes.empty?
   end
 
   def destroy?
@@ -35,15 +39,7 @@ class ResourcePolicy < ApplicationPolicy
   end
 
   # Resource Policy Scope Interface
-  class Scope
-    include ::Auth0::AuthenticationConcern
-    attr_reader :user, :scope
-
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
+  class Scope < ApplicationPolicy::Scope
     def resolve
       if user.admin?
         admin_scope
