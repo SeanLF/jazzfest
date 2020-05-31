@@ -29,22 +29,20 @@ describe ResourcePolicy do
   end
 
   let(:resource) { Resource.new }
+  let(:resolved_scope) do
+    described_class::Scope.new(user, Resource.all).resolve
+  end
 
   context 'being a visitor' do
     let(:user) { Auth0::AuthenticationConcern::CurrentUser.new(nil) }
-    let(:resolved_scope) do
-      described_class::Scope.new(user, Resource.all).resolve
-    end
 
     it { is_expected.to forbid_actions(%i[index new create show edit update destroy]) }
   end
 
   context 'being an administrator' do
     let(:user) { Auth0::AuthenticationConcern::CurrentUser.new({ 'uid' => 'github|1', 'roles' => ['Administrator'] }) }
-    let(:resolved_scope) do
-      described_class::Scope.new(user, Resource.all).resolve
-    end
 
-    it { is_expected.to permit_actions(%i[index new create show edit update destroy]) }
+    it { is_expected.to permit_actions(%i[index show destroy]) }
+    it { is_expected.to forbid_actions(%i[new create edit update]) }
   end
 end

@@ -52,6 +52,11 @@ en:
     unauthenticated: Please log in or sign up first.
     unauthorized: You are not authorized to perform this action.
   activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        auth0_id: Auth0 ID
     errors:
       models:
         user:
@@ -83,3 +88,8 @@ en:
     destroy: Delete
     confirm_destroy: Are you sure?
     more_options: more options
+  controller:
+    success:
+      create: '%{model} was successfully created'
+      update: '%{model} was successfully updated'
+      destroy: '%{model} was successfully deleted'

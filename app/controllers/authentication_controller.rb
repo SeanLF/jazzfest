@@ -12,6 +12,7 @@ class AuthenticationController < ApplicationController
   def callback
     data = request.env['omniauth.auth']
     session[:userinfo] = _data.slice('uid').merge(roles: data.extra.raw_info['https://jazzify.ca/roles'])
+    User.find_or_create_by(auth0_id: current_user.uid)
 
     # TODO: Redirect to requested resource or root path
     redirect_to root_path

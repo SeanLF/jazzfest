@@ -1,0 +1,6 @@
+<div class="container is-widescreen">
+  <h1 class="is-size-1">Welcome to Jazzify</h1>
+  <% if user_signed_in? %>
+    <%= link_to "Delete my account", user_path('me'), method: :delete %>
+  <% end %>
+</div>

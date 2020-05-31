@@ -12,4 +12,7 @@ Rails.application.routes.draw do
     # locale
     get '/change_language', to: 'application#change_language'
   end
+
+# No views, so no locale
+  resources :users
 end
