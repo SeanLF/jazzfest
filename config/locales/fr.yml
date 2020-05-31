@@ -1,0 +1,88 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+fr:
+  navigation:
+    home: Page Principale
+    volunteer_opportunities: 'Missions Bénévoles'
+    apply: "Je m'engage"
+    login: Me Connecter
+    logout: Me Déconnecter
+    language: English
+    help: Aide
+    code_of_conduct: Code de Conduite des Bénévoles
+    privacy_policy: Politique de Confidentialité
+    source_code: Code Source
+  help_page:
+    contact_us: Contactez nous
+    issue_text: Si vous nous contactez à propos d'un problème technique, veuillez SVP inclure des étapes détaillées afin que l'on puisse le reproduire.
+    include_details_text: Si vous disposez d'un compte chez nous, veuillez aussi inclure votre nom et votre méthode de connection (Facebook, Twitter, Google, Microsoft ou email).
+  misc:
+    made_by: créé par
+    thank_you: Merci
+  error:
+    unauthenticated: Veuillez d'abord vous connectez SVP.
+    unauthorized: Vous n'êtes pas autorisé à éxecuter cette opération.
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            postal_code:
+              invalid: 'est du mauvais format: K1A1A1 ou K1A 1A1'
+            age_group:
+              inclusion: "%{value} n'est pas un groupe d'âge valide"
+            t_shirt_size:
+              inclusion: "%{value} n'est pas une taille valide"
+        applicant:
+          attributes:
+            volunteer_opportunity_id:
+              too_short: Veuillez selectionner au moins %{count} missions
+              too_long: Veuillez selectionner au plus %{count} missions
+              inclusion: Mission non-valide
+            availability: 
+              too_short: Vous devez selectioner au moins %{count} dates
+              inclusion: Dates ne sont pas dans la fenêtre de recrutement
+      choice:
+        invalid: Choix invalide
+        insufficient: Choix insuffisant
+  form:
+    submit: Enregistrer
+    error: erreur
+    validation_errors: ont empêché la réussite de l'opération
+    back: Retour
+    new: Nouveau
+    show: Visionner
+    edit: Editer
+    editing: Edition
+    destroy: Supprimer
+    confirm_destroy: Veuillez confirmer
+    more_options: plus d'options

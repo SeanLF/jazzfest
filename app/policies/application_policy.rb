@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
+# Application Policy interface
 class ApplicationPolicy
-  include Auth0Helper
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -7,44 +9,12 @@ class ApplicationPolicy
     @record = record
   end
 
-  def index?
-    false
-  end
-
-  def show?
-    scope.where(id: record.id).exists?
-  end
-
-  def create?
-    false
-  end
-
-  def new?
-    create?
-  end
-
-  def update?
-    scope.where(id: record.id).exists?
-  end
-
-  def edit?
-    update?
-  end
-
-  def destroy?
-    scope.where(id: record.id).exists?
-  end
-
   def elevated_action?
-    role?('Coordinator') || role?('Admin')
+    @user.coordinator? || @user.admin?
   end
 
-  def scope
-    Pundit.policy_scope!(user, record.class)
-  end
-
+  # Policy Scope Interface
   class Scope
-    include Auth0Helper
     attr_reader :user, :scope
 
     def initialize(user, scope)

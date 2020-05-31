@@ -1,39 +1,65 @@
 # Jazzify
-[![Code Climate](https://codeclimate.com/github/SeanLF/jazzfest/badges/gpa.svg)](https://codeclimate.com/github/SeanLF/jazzfest)
 
-**Note**: Jazzify is being redeveloped in Rails 6 over [here](https://github.com/SeanLF/jazzfest/tree/rails-6-upgrade).
+## Getting Started
 
-## Getting started
+* Ruby version
+  * `cat .ruby-version`
 
-Clone this repository, then ensure that you have the necessary dependencies, and that your local PostgreSQL server is running.
+* System dependencies for macOS 10.15
+  * Postgres.app
+  * homebrew
+    * rbenv
+      * `brew install rbenv`
+      * `rbenv init`
+      * `echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.zshrc`
+      * `rbenv install 2.7.1`
+      * `rbenv global 2.7.1`
+      * `gem install bundler`
+      * `gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config`
+      * `bundle install`
+      * `rbenv rehash`
+    * yarn
+      * `brew install yarn`
+    * mkcerts
+      * `brew install mkcerts nss`
+      * `mkcert -install`
 
-### Dependencies
+* Configuration
+  * Obtain `./config/master.key`
+  * `rake yarn:install`
+  * `mkdir ./config/local_certs/`
+  * `mkcert localhost localhost.jazzify.ca 127.0.0.1 ::1`
+  * `mv localhost* ./config/local_certs/`
 
-- [Ruby](https://www.ruby-lang.org/en/)
-  - bundler
-- [PostgreSQL](http://www.postgresql.org/download/) (macOS apps: [Server](http://postgresapp.com/))
+* Database creation
+  * `rails db:create`
 
-```bash
-bundle install
-rails db:setup
-bundle exec rails server
-```
+* Database initialization
+  * `rails db:migrate`
+  * `rails db:seed`
+
+* How to run the test suite
+  * `rake spec`
+
+* Services (job queues, cache servers, search engines, etc.)
+  * `brakeman`
+  * `bundle exec database_consistency`
 
 ### Running Jazzify
 
-Start your Rails server.
-```bash
-rails s
-```
-Then head over to [https://localhost.jazzify.ca:9292/](https://localhost.jazzify.ca:9292/).
+* Running Jazzify
+  * `rails s`
+  * Head over to [https://localhost.jazzify.ca:9292/](https://localhost.jazzify.ca:9292/).
 
-### Deployment
+## Deployment
 
-#### Provider
+### Provider
+
 I suggest using [Heroku](https://www.heroku.com) or [Dokku](http://dokku.viewdocs.io/dokku/).
 I use Digital Ocean + Dokku.
 
 #### Environment variables
+
 Check which environment variables need to be set. The list will be compiled and included here soon.
 
 ### Connecting to PostgreSQL with a RDB client

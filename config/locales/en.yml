@@ -16,8 +16,80 @@
 #
 # This would use the information in config/locales/es.yml.
 #
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
 # To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
+# available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  navigation:
+    home: Home Page
+    volunteer_opportunities: Volunteer Opportunities
+    apply: Apply
+    login: Sign In / Up
+    logout: Sign Out
+    language: Français
+    help: Help
+    code_of_conduct: Volunteer Code of Conduct
+    privacy_policy: Privacy Policy
+    source_code: Source Code
+  help_page:
+    contact_us: Contact us
+    issue_text: If you are emailing us about an issue that you are experiencing, please include detailed steps to help us reproduce it.
+    include_details_text: If you have signed up, please also include your name and the sign up method (Facebook, Twitter, Google, Microsoft or email).
+  misc:
+    made_by: created by
+    thank_you: Thank you
+  error:
+    unauthenticated: Please log in or sign up first.
+    unauthorized: You are not authorized to perform this action.
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        auth0_id: Auth0 ID
+    errors:
+      models:
+        user:
+          attributes:
+            postal_code:
+              invalid: 'has the wrong format: K1A1A1 or K1A 1A1'
+            age_group:
+              inclusion: '%{age_group} is not a valid age group'
+            t_shirt_size:
+              inclusion: '%{t_shirt_size} is not a valid size'
+        applicant:
+          attributes:
+            volunteer_opportunity_id:
+              too_short: Please apply to at least %{count} opportunities
+              too_long: Please apply to at most %{count} opportunities
+              inclusion: Applying to invalid opportunity
+            availability: 
+              too_short: Please select at least %{count} dates on which you are available
+              inclusion: Please select dates within the recruitment dates
+  form:
+    submit: Submit
+    error: error
+    validation_errors: prevented the operation from completing successfully
+    back: Back
+    new: New
+    show: View
+    edit: Edit
+    editing: Editing
+    destroy: Delete
+    confirm_destroy: Are you sure?
+    more_options: more options
+  controller:
+    success:
+      create: '%{model} was successfully created'
+      update: '%{model} was successfully updated'
+      destroy: '%{model} was successfully deleted'

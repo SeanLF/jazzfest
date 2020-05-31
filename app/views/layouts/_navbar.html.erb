@@ -1,0 +1,32 @@
+<header>
+  <nav class="navbar is-dark top-nav" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="<%= root_path %>">
+        <strong><%= appname %></strong>
+      </a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="top-navbar-menu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div class="navbar-menu" id="top-navbar-menu">
+      <div class="navbar-start">
+        <%= link_to t('navigation.volunteer_opportunities'), 'volunteer_opportunities_path', class: 'navbar-item' %>
+        <%= link_to t('navigation.apply'), 'dashboard_path', class: 'navbar-item' %>
+      </div>
+
+      <div class="navbar-end">
+        <%= icon_link_to t('navigation.language'), change_language_path, '🌎', class: 'navbar-item', 'data-turbolinks': 'false' %>
+        
+        <% if user_signed_in? %>
+          <%= icon_link_to t('navigation.logout'), logout_path, '👤', class: 'navbar-item' %>
+        <% else %>
+          <%= icon_link_to t('navigation.login'), auth0_login_path, '👤', class: 'navbar-item', method: :post %>
+        <% end %>
+        
+      </div>
+    </div>
+  </nav>
+</header>

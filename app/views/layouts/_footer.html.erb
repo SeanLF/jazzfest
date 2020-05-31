@@ -1,0 +1,22 @@
+<footer class="footer">
+  <div class="container">
+    <section class="about-the-app columns">
+      <div class="app-name column has-text-centered">
+        <strong><%= appname %></strong> &copy; <%= Time.current.year %>
+      </div>
+      <div class="author column has-text-centered">
+        <%= icon_link_to "#{t('misc.made_by')} Sean Floyd", 'https://seanfloyd.ca', '👨‍💻', class: '' %>
+      </div>
+      <div class="source-code column has-text-centered">
+        <%= icon_link_to t('navigation.source_code'), "https://github.com/SeanLF/jazzfest", '</>', {}, {class: 'has-text-dark'} %>
+      </div>
+    </section>
+    <nav>
+      <%= icon_link_to t('navigation.home'), root_path, '🏠', class: 'navbar-item' %>
+      <%= icon_link_to t('navigation.code_of_conduct'), 'code_of_conduct_path', '✅', class: 'navbar-item' %>
+      <%= icon_link_to t('navigation.privacy_policy'), 'privacy_policy_path', '🕵️‍♂️', class: 'navbar-item' %>
+      <%= icon_link_to t('navigation.help'), 'help_path', '❓', class: 'navbar-item' %>
+      <%= icon_link_to t('navigation.language'), change_language_path, '🌎', class: 'navbar-item', 'data-turbolinks': 'false' %>
+    </nav>
+  </div>
+</footer>

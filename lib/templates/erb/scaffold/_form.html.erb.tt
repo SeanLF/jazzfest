@@ -1,0 +1,72 @@
+<% require "helpers/generator_helper.rb" %>
+
+<%%= form_with(model: <%= model_resource_name %>, local: true) do |form| %>
+  <div class="card-content">
+    <div class="content">
+      <%% if <%= singular_table_name %>.errors.any? %>
+        <div class="notification" id="error_explanation">
+          <button class="delete"></button>
+          <h2 class="is-size-2"><%%= "#{pluralize(<%= singular_table_name %>.errors.count, t('form.error'))} #{t('form.validation_errors')}" %></h2>
+        </div>
+      <%% end %>
+
+      <% attributes.each do |attribute| -%>
+        <% if attribute.password_digest? -%>
+          <div class="field">
+            <%%= form.label :password, class: 'label' %>
+            <div class="control">
+              <%%= form.password_field :password, class: 'input' %>
+            </div>
+            <%% if @user.errors.any? %>
+              <p class="help is-danger">
+                <%%= <%= singular_table_name %>.errors[<%= attribute.column_name.to_sym %>].join('<br/>') %>
+              </p>
+            <%% end %>
+          </div>
+          <div class="field">
+            <%%= form.label :password_confirmation, class: 'label' %>
+            <div class="control">
+              <%%= form.password_field :password_confirmation, class: 'input' %>
+            </div>
+            <%% if @user.errors.any? %>
+              <p class="help is-danger">
+                <%%= <%= singular_table_name %>.errors[<%= attribute.column_name.to_sym %>].join('<br/>') %>
+              </p>
+            <%% end %>
+        <% elsif attribute.attachments? -%>
+          <div class="field">
+            <%%= form.label :<%= attribute.column_name %>, class: 'label' %>
+            <div class="control">
+              <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, multiple: true, class: '<%= GeneratorHelper.get_class_for_form_field attribute.field_type %>' %>
+            </div>
+          </div>
+          <%% if @user.errors.any? %>
+            <p class="help is-danger">
+              <%%= <%= singular_table_name %>.errors[<%= attribute.column_name.to_sym %>].join('<br/>') %>
+            </p>
+          <%% end %>
+        <% else -%>
+          <div class="field">
+            <%%= form.label :<%= attribute.column_name %>, class: 'label' %>
+            <div class="control">
+              <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: '<%= GeneratorHelper.get_class_for_form_field attribute.field_type %>' %>
+            </div>
+            <%% if @user.errors.any? %>
+              <p class="help is-danger">
+                <%%= <%= singular_table_name %>.errors[<%= attribute.column_name.to_sym %>].join('<br/>') %>
+              </p>
+            <%% end %>
+          </div>
+        <% end -%>
+      <% end -%>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <%%= form.submit t('form.submit'), class: 'card-footer-item' %>
+    <%%= icon_link_to t('form.back'), <%= index_helper %>_path, '👈', class: 'card-footer-item' %>
+    <%% if action_name == 'edit' %>
+      <%%= icon_link_to t('form.show'), <%= model_resource_name %>, '👀', class: 'card-footer-item' %>
+      <%%= icon_link_to t('form.destroy'), record, '🗑', method: :delete, class: 'card-footer-item' %>
+    <%% end %>
+  </footer>
+<%% end %>

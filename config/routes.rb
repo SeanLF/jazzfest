@@ -1,31 +1,18 @@
 Rails.application.routes.draw do
-  unless Time.current <= Date.parse('2020/09/01')
-    # root '/covid19.html'
-    root to: 'home#landing'
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    get '/:locale' , to: 'public_pages#home'
+    root to: 'public_pages#home'
+
+    # Authentication
+    get '/login', to: 'authentication#login', as: :login
+    get '/authentication/callback' => 'authentication#callback', as: :authentication_callback
+    get '/authentication/failure' => 'authentication#failure', as: :authentication_failure
+    get '/logout', to: 'authentication#logout', as: :logout
+
+    # locale
+    get '/change_language', to: 'application#change_language'
   end
 
-  get '/home' => 'home#landing'
-
-  get '/auth/callback' => 'auth0#callback'
-  get '/auth/failure' => 'auth0#failure'
-  get '/logout' => 'logout#logout'
-
-  resources :opportunity_applications do
-    get :review, on: :member
-  end
-  resources :volunteer_opportunities
-  resources :profiles
-  resources :settings
-  resources :events
-
-  get '/apply' => 'dashboard#apply'
-  get '/apply/success' => 'dashboard#success'
-  get '/dashboard' => 'dashboard#elevated_user_dashboard'
-
-  get 'help' => 'home#help'
-  get 'code_of_conduct' => 'home#code_of_conduct'
-  get 'privacy_policy' => 'home#privacy_policy'
-
-  get 'reports/export_opportunity_applications' => 'report#export_opportunity_applications'
-  get 'reports/export_opportunity_application_coordinator_comments' => 'report#export_opportunity_application_coordinator_comments'
+# No views, so no locale
+  resources :users
 end

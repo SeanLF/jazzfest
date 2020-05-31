@@ -1,0 +1,40 @@
+<% if notice.present? %>
+  <div class="notification">
+    <button class="delete"></button>
+    <p id="notice"><%= notice %></p>
+  </div>
+<% end %>
+
+<header>
+  <h1 class="is-size-1"><%= record_class.model_name.human.pluralize %></h1>
+</header>
+
+<section class="actions">
+  <%= icon_link_to "#{t('form.new')} #{record.model_name.human}", new_polymorphic_path(record_class), '➕' %>
+</section>
+
+<section class="table-container">
+  <table class="table is-hoverable is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <% index_attributes.each do |attribute| %>
+          <th><%= record_class.human_attribute_name attribute %></th>
+        <% end %>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% record.each do |rec| %>
+        <tr>
+          <% index_attributes.each do |attribute| %>
+            <td><%= rec.send(attribute) %></td>
+          <% end %>
+          <td><%= icon_link_to t('form.show'), rec, '👀' %></td>
+          <td><%= icon_link_to t('form.edit'), edit_polymorphic_path(rec), '✏️' %></td>
+          <td><%= icon_link_to t('form.destroy'), rec, '🗑', method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

@@ -1,67 +1,73 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
-  "https://github.com/#{repo_name}.git"
-end
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails'
+gem 'rails', '~> 6'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma'
+gem 'puma', '~> 4'
 # Use SCSS for stylesheets
-gem 'sass-rails'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'sass-rails', '>= 6'
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker', '~> 4'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder'
+gem 'jbuilder', '~> 2'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+# gem 'redis', '~> 4.0'
+# Use Active Model has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
 
-# authentication / authorization
+# Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.2', require: false
+
+### Gems added by developer
+# Authentication
 gem 'auth0'
-gem 'omniauth', '~> 1.6.1'
-gem 'omniauth-auth0', '~> 2.0.0'
+gem 'omniauth-auth0'
+gem 'omniauth-rails_csrf_protection'
+# Authorization
 gem 'pundit'
 
-# error tracking
+# Error tracking
 gem 'rollbar'
-
-# versionining and history
-gem 'paper_trail'
-
-# reports
-gem 'rubyzip'
-gem 'axlsx', '3.0.0.pre'
-gem 'axlsx_rails'
-
-# for editing volunteer opportunities
-gem 'font-awesome-sass'
-gem 'wysiwyg-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-  gem 'dotenv-rails'
+  gem 'byebug', platforms: [:mri]
+  gem 'rspec-rails', '~> 4'
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'listen'
+  # Security audits
+  gem 'brakeman'
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen'
-  gem 'web-console'
-  gem 'bundler', '2.1.4'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  # check the consistency of the database constraints with the application validations
+  gem 'database_consistency', require: false
+  # Ensure good code style
+  gem 'rubocop'
 end
+
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 2.15'
+  gem 'pundit-matchers'
+  gem 'selenium-webdriver'
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'webdrivers'
+end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mri]
