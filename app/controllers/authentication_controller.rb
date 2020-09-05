@@ -4,7 +4,7 @@
 class AuthenticationController < ApplicationController
   # This redirects the user to the root path and highlights the login button
   def login
-    redirect_to root_path(anchor: 'login')
+    redirect_to(root_path(anchor: 'login'))
   end
 
   # This stores all the user information that came from Auth0
@@ -15,7 +15,7 @@ class AuthenticationController < ApplicationController
     User.find_or_create_by(auth0_id: current_user.uid)
 
     # TODO: Redirect to requested resource or root path
-    redirect_to root_path
+    redirect_to(root_path)
   end
 
   # This handles authentication failures
@@ -28,7 +28,7 @@ class AuthenticationController < ApplicationController
   # This clears the sesion then logs out user of their oauth provider
   def logout
     reset_session
-    redirect_to logout_url.to_s
+    redirect_to(logout_url.to_s)
   end
 
   private
@@ -39,7 +39,7 @@ class AuthenticationController < ApplicationController
     client_id = Rails.application.credentials[:auth0][:client_id]
     request_params = {
       returnTo: root_url,
-      client_id: client_id
+      client_id: client_id,
     }
 
     URI::HTTPS.build(host: domain, path: '/v2/logout', query: to_query(request_params))

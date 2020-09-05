@@ -49,6 +49,7 @@ group :development, :test do
   gem 'database_consistency', require: false
   # Ensure good code style
   gem 'rubocop'
+  gem 'rubocop-shopify', require: false
   # Security audits
   gem 'brakeman'
 end

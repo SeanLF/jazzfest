@@ -10,7 +10,7 @@ class UsersController < ResourcesController
     delete_auth0_user(@user.auth0_id)
 
     # clear session
-    redirect_to logout_path
+    redirect_to(logout_path)
   end
 
   def lookup_params

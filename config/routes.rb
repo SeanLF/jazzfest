@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
-    get '/:locale' , to: 'public_pages#home'
+    get '/:locale', to: 'public_pages#home'
     root to: 'public_pages#home'
 
     # Authentication
@@ -13,6 +13,6 @@ Rails.application.routes.draw do
     get '/change_language', to: 'application#change_language'
   end
 
-# No views, so no locale
+  # No views, so no locale
   resources :users
 end

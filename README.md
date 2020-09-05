@@ -16,10 +16,7 @@
       * `echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.zshrc`
       * `rbenv install 2.7.1`
       * `rbenv global 2.7.1`
-      * `gem install bundler`
-      * `gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config`
-      * `bundle install`
-      * `rbenv rehash`
+      * `gem install rubocop-shopify`
     * yarn
       * `brew install yarn`
     * mkcerts

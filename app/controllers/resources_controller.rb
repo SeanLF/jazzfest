@@ -123,16 +123,16 @@ class ResourcesController < ApplicationController
 
   def record
     name = action_name == 'index' ? records_name : record_name
-    instance_variable_get name
+    instance_variable_get(name)
   end
 
   def record=(value)
     name = action_name == 'index' ? records_name : record_name
-    instance_variable_set name, value
+    instance_variable_set(name, value)
   end
 
   def authorize_record
-    authorize record
+    authorize(record)
   end
 
   # helper methods

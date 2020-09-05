@@ -13,10 +13,10 @@ describe UserPolicy do
       described_class::Scope.new(current_user, User.all).resolve
     end
 
-    it { is_expected.to forbid_actions(%i[index new create show edit update destroy]) }
+    it { is_expected.to(forbid_actions(%i[index new create show edit update destroy])) }
 
     it 'excludes users from resolved scope' do
-      expect(resolved_scope).not_to include(user)
+      expect(resolved_scope).not_to(include(user))
     end
   end
 
@@ -27,11 +27,11 @@ describe UserPolicy do
       described_class::Scope.new(current_user, User.all).resolve
     end
 
-    it { is_expected.to forbid_actions(%i[index new create edit update]) }
-    it { is_expected.to permit_actions(%i[show destroy]) }
+    it { is_expected.to(forbid_actions(%i[index new create edit update])) }
+    it { is_expected.to(permit_actions(%i[show destroy])) }
 
     it 'includes users from resolved scope' do
-      expect(resolved_scope).to include(user)
+      expect(resolved_scope).to(include(user))
     end
   end
 
@@ -42,10 +42,10 @@ describe UserPolicy do
       described_class::Scope.new(current_user, User.all).resolve
     end
 
-    it { is_expected.to forbid_actions(%i[index new create show edit update destroy]) }
+    it { is_expected.to(forbid_actions(%i[index new create show edit update destroy])) }
 
     it 'includes users from resolved scope' do
-      expect(resolved_scope).to_not include(user)
+      expect(resolved_scope).to_not(include(user))
     end
   end
 
@@ -56,11 +56,11 @@ describe UserPolicy do
       described_class::Scope.new(current_user, User.all).resolve
     end
 
-    it { is_expected.to permit_actions(%i[index show destroy]) }
-    it { is_expected.to forbid_actions(%i[new create edit update]) }
+    it { is_expected.to(permit_actions(%i[index show destroy])) }
+    it { is_expected.to(forbid_actions(%i[new create edit update])) }
 
     it 'includes users from resolved scope' do
-      expect(resolved_scope).to include(user)
+      expect(resolved_scope).to(include(user))
     end
   end
 end

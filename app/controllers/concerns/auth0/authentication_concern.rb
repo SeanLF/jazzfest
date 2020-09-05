@@ -22,7 +22,7 @@ module Auth0
       if user_signed_in?
         current_user
       else
-        redirect_to login_path
+        redirect_to(login_path)
       end
     end
 
@@ -51,17 +51,17 @@ module Auth0
 
       # @return [Boolean]
       def admin?
-        @roles.include? ADMINISTRATOR
+        @roles.include?(ADMINISTRATOR)
       end
 
       # @return [Boolean]
       def coordinator?
-        @roles.include? COORDINATOR
+        @roles.include?(COORDINATOR)
       end
 
       # @return [Boolean]
       def applicant?
-        @roles.include? APPLICANT
+        @roles.include?(APPLICANT)
       end
 
       # Equivalent to calling user_signed_in?
