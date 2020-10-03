@@ -11,6 +11,7 @@ environment:
 compose:
   files:
     - docker-compose.yml
+    - docker-compose.$COMPOSE_EXT.yml
   project_name: jazzify
 
 interaction:
@@ -20,6 +21,11 @@ interaction:
     command: bash
     compose:
       run_options: [no-deps]
+
+  sh:
+    description: Open the Bash shell in rails container
+    service: app
+    command: bash
 
   bundle:
     description: Run Bundler commands
@@ -32,7 +38,7 @@ interaction:
     command: bundle exec rake
 
   rspec:
-    description: Run Rspec commands
+    description: Run RSpec commands
     service: app
     environment:
       RAILS_ENV: test
@@ -50,6 +56,12 @@ interaction:
           method: logs
           run_options: [follow, tail='200']
 
+  web:
+    description: Run a rails server
+    service: rails
+    compose:
+      run_options: [service-ports, use-aliases]
+
   webpacker:
     description: Run commands towards Webpacker service
     service: webpacker
@@ -63,7 +75,7 @@ interaction:
   psql:
     description: Run Postgres psql console
     service: app
-    default_args: db_development
+    default_args: ${DATABASE_NAME:-jazzify_development}
     command: psql -h postgres -U postgres
 
 provision:
@@ -73,4 +85,4 @@ provision:
   - dip bundle install
   - dip up -d
   - dip rails db:prepare
-  - dip bundle exec rspec
+  - dip rails db:test:prepare

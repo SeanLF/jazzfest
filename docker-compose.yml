@@ -3,13 +3,13 @@ version: "3.8"
 services:
   app: &app
     build:
-      context: .
+      context: .dockerdev
       dockerfile: Dockerfile
       args:
         RUBY_VERSION: "2.7.1"
-        PG_MAJOR: "12"
+        PG_MAJOR: "13"
         NODE_MAJOR: "14"
-        YARN_VERSION: "1.22.4"
+        YARN_VERSION: "1.22.5"
         BUNDLER_VERSION: "2.1.4"
     image: jazzify:1.0.0
     tmpfs:
@@ -22,11 +22,11 @@ services:
       - rails_cache:/app/tmp/cache
       - node_modules:/app/node_modules
       - packs:/app/public/packs
-      - .psqlrc:/root/.psqlrc:ro
+      - .dockerdev/.psqlrc:/root/.psqlrc:ro
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=${RAILS_ENV:-development}
       - RAILS_ENV=${RAILS_ENV:-development}
-      - DATABASE_URL=postgres://postgres:postgres@postgres:5432
+      - DATABASE_URL=${DATABASE_URL:-postgres://postgres:postgres@postgres:5432}
       - BOOTSNAP_CACHE_DIR=/usr/local/bundle/_bootsnap
       - WEBPACKER_DEV_SERVER_HOST=webpacker
       - WEB_CONCURRENCY=1
@@ -36,27 +36,24 @@ services:
     depends_on:
       - postgres
 
-  runner:
-    <<: *app
-    command: /bin/bash
-    ports:
-      - "9292:3000"
-      - "3002:3002"
-
   rails:
     <<: *app
-    command: bundle exec rails server -b 0.0.0.0
+    command: bundle exec rails server
     ports:
-      - "3000:3000"
+      - "9292:9292"
+    depends_on:
+      - webpacker
 
   postgres:
-    image: postgres:12.3-alpine
+    image: postgres:13-alpine
     volumes:
-      - .psqlrc:/root/.psqlrc:ro
+      - .dockerdev/.psqlrc:/root/.psqlrc:ro
       - postgres:/var/lib/postgresql/data
       - ./log:/root/log:cached
     environment:
       - PSQL_HISTFILE=/root/log/.psql_history
+      - POSTGRES_USER="${JAZZIFY_DATABASE_USER:-postgres}"
+      - POSTGRES_PASSWORD="${JAZZIFY_DATABASE_PASSWORD:-postgres}"
     ports:
       - 5432
     healthcheck:
@@ -69,7 +66,7 @@ services:
     ports:
       - "3035:3035"
     volumes:
-      - .:/app:cached
+      - .:/jazzify:cached
       - bundle:/usr/local/bundle
       - node_modules:/app/node_modules
       - packs:/app/public/packs
