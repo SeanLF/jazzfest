@@ -19,11 +19,11 @@ environment(ENV.fetch("RAILS_ENV") { :development })
 # Specifies the `pidfile` that Puma will use.
 pidfile(ENV.fetch("PIDFILE") { "tmp/pids/server.pid" })
 
-if Rails.env == 'development'
+if Rails.env.development?
 
   # If you didn't place the cert and key under `local_certs` you should change this
-  localhost_key = File.join('./config', 'local_certs', 'localhost.jazzify.ca.key').to_s
-  localhost_crt = File.join('./config', 'local_certs', 'localhost.jazzify.ca.crt').to_s
+  localhost_key = File.join('./config', 'local_certs', 'localhost.jazzify.ca-key.pem').to_s
+  localhost_crt = File.join('./config', 'local_certs', 'localhost.jazzify.ca.pem').to_s
 
   ssl_bind("0.0.0.0", 9292, key: localhost_key, cert: localhost_crt, verify_mode: 'none')
 
