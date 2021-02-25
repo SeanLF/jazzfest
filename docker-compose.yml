@@ -57,7 +57,7 @@ services:
     ports:
       - 5432
     healthcheck:
-      test: pg_isready -U postgres -h 127.0.0.1
+      test: pg_isready -U postgres
       interval: 5s
 
   webpacker:
