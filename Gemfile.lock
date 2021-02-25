@@ -87,6 +87,8 @@ GEM
     crass (1.0.6)
     database_consistency (0.8.13)
       activerecord (>= 3.2)
+    ddtrace (0.45.0)
+      msgpack
     diff-lcs (1.4.4)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -309,6 +311,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   database_consistency
+  ddtrace
   jbuilder (>= 2)
   listen (>= 3.0.5)
   omniauth-auth0
