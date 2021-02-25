@@ -52,8 +52,8 @@ services:
       - ./log:/root/log:cached
     environment:
       - PSQL_HISTFILE=/root/log/.psql_history
-      - POSTGRES_USER="${JAZZIFY_DATABASE_USER:-postgres}"
-      - POSTGRES_PASSWORD="${JAZZIFY_DATABASE_PASSWORD:-postgres}"
+      - POSTGRES_USER=${JAZZIFY_DATABASE_USER:-postgres}
+      - POSTGRES_PASSWORD=${JAZZIFY_DATABASE_PASSWORD:-postgres}
     ports:
       - 5432
     healthcheck:
