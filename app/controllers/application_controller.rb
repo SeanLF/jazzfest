@@ -4,7 +4,6 @@
 # This class will include common functionality
 class ApplicationController < ActionController::Base
   include ::Auth0::AuthenticationConcern
-  include ::Rollbar::AuthenticationConcern
   include Pundit
 
   add_flash_types :global_alert, :global_notice
@@ -34,7 +33,6 @@ class ApplicationController < ActionController::Base
 
   # Redirects the user to the root path with a warning
   def user_not_authorized
-    Rollbar.warning('Tried to access unauthorized resource')
     error_message = current_user.unauthenticated? ? t('error.unauthenticated') : t('error.unauthorized')
     redirect_back(fallback_location: root_path, global_alert: error_message)
   end
