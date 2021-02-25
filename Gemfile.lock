@@ -107,10 +107,9 @@ GEM
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jwt (2.2.2)
-    listen (3.1.5)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-      ruby_dep (~> 1.2)
+    listen (3.4.1)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.9.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -124,7 +123,6 @@ GEM
     mime-types-data (3.2021.0212)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
-    mini_portile2 (2.5.0)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_json (1.15.0)
@@ -132,8 +130,7 @@ GEM
     multipart-post (2.1.1)
     netrc (0.11.0)
     nio4r (2.5.5)
-    nokogiri (1.11.1)
-      mini_portile2 (~> 2.5.0)
+    nokogiri (1.11.1-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
@@ -242,7 +239,6 @@ GEM
       rubocop (~> 1.4)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.4)
-    ruby_dep (1.5.0)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -305,7 +301,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   auth0
@@ -315,7 +311,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   database_consistency
   jbuilder (>= 2)
-  listen (>= 3.0.5, < 3.2)
+  listen (>= 3.0.5)
   omniauth-auth0
   omniauth-rails_csrf_protection
   pg (>= 0.18, < 2.0)
@@ -338,7 +334,7 @@ DEPENDENCIES
   webpacker (>= 4)
 
 RUBY VERSION
-   ruby 2.7.1p83
+   ruby 3.0.0p0
 
 BUNDLED WITH
-   2.1.4
+   2.2.11
