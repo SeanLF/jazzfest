@@ -14,11 +14,11 @@ gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '>= 4'
+gem 'webpacker', '>= 5'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '>= 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '>= 2'
+gem 'jbuilder', '>= 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '>= 4.0'
 # Use Active Model has_secure_password
@@ -28,7 +28,7 @@ gem 'jbuilder', '>= 2'
 # gem 'image_processing', '>= 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootsnap', '>= 1.4.4', require: false
 
 ### Gems added by developer
 # Authentication
@@ -65,11 +65,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
   gem 'pundit-matchers'
-  gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
