@@ -29,7 +29,7 @@ class OpportunityApplication < ApplicationRecord
 
     min_dates = Setting.min_dates.real_value
 
-    return if dates_available.count { date_in_range?(_1) } > min_dates
+    return if dates_available.count { date_in_range?(_1) } >= min_dates
 
     errors.add(:availability, 'You must select more dates')
   end
