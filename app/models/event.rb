@@ -1,5 +1,11 @@
 class Event < ApplicationRecord
-  def self.active
-    where(active: true)
+  class << self
+    def active
+      where(active: true)
+    end
+
+    def first_active
+      active.first
+    end
   end
 end

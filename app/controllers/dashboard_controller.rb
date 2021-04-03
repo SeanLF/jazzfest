@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
 
   def apply
     authorize :dashboard
-    @active_event = policy_scope(Event).active
+    @active_event = policy_scope(Event).first_active
     @min_dates = Setting.min_dates.real_value
     @min_num_choices = Setting.min_num_choices.real_value
     @max_num_choices = Setting.max_num_choices.real_value

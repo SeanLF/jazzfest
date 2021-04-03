@@ -27,12 +27,11 @@ class OpportunityApplication < ApplicationRecord
   def min_dates_in_range
     return if availability.nil?
 
-    active_event = Event.all.active
     min_dates = Setting.min_dates.real_value
 
-    unless availability.split(',').reject(&:blank?).select { |str_date| Date.parse(str_date).between?(active_event.start_date, active_event.end_date) }.count >= min_dates
-      errors.add(:availability, 'You must select more dates')
-    end
+    return if dates_available.count { date_in_range?(_1) } > min_dates
+
+    errors.add(:availability, 'You must select more dates')
   end
 
   def choice_in_range
@@ -48,5 +47,18 @@ class OpportunityApplication < ApplicationRecord
     unless _choices.length.between?(min_num_choices, max_num_choices)
       errors.add(:choices, 'You must select more choices')
     end
+  end
+
+  def dates_available
+    availability.split(',').reject(&:blank?).map { Date.parse(_1) }
+  end
+
+  def date_in_range?(date)
+    active_event = Event.active.first
+    date.between?(active_event.start_date, active_event.end_date)
+  end
+
+  def active_event
+    @active_event ||= policy_scope(Event).first_active
   end
 end

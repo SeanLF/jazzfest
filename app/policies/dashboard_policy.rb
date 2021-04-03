@@ -4,7 +4,8 @@ DashboardPolicy = Struct.new(:user, :dashboard) do
   def apply?
     return true if at_least_coordinator?
 
-    active_event = Pundit.policy_scope(user, Event).active
+    return false if (active_event = Pundit.policy_scope(user, Event).first_active).nil?
+
     Date.today.between?(active_event.registration_start_date, active_event.registration_end_date)
   end
 
