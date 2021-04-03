@@ -3,6 +3,9 @@ class HomeController < ApplicationController
 
   def landing
     @active_event = policy_scope(Event).first_active
+
+    return unless @active_event
+
     registration_start_date = @active_event.registration_start_date
     if Date.today < registration_start_date
       registration_start_date = registration_start_date.strftime("%A, %B #{registration_start_date.day.ordinalize}")

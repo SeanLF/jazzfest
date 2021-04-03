@@ -33,8 +33,12 @@
   <div class="mdl-card mdl-cell mdl-cell--12-col">
     <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
       <h4 class="mdl-cell mdl-cell--12-col">
-        Volunteers are needed between <%= @festival_start_date %>
-        and <%= @festival_end_date %>.
+        <% if @festival_start_date %>
+          Volunteers are needed between <%= @festival_start_date %>
+          and <%= @festival_end_date %>.
+        <% else %>
+          We are not actively recruiting right now. Please check again later.
+        <% end %>
       </h4>
     </div>
   </div>
