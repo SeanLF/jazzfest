@@ -1,9 +1,9 @@
 class OpportunityApplicationsController < ApplicationController
-  before_action :set_opportunity_application, only: [:show, :edit, :update, :destroy, :review]
+  before_action :set_opportunity_application, only: %i[show edit update destroy review]
   before_action :authenticate_user!
-  before_action(except: [:index, :new, :create]) { @opportunity_application.user = session[:userinfo] }
-  before_action(only: [:update, :edit]) { authorize @opportunity_application }
-  before_action(except: [:update, :edit]) { authorize OpportunityApplication }
+  before_action(except: %i[index new create]) { @opportunity_application.user = session[:userinfo] }
+  before_action(only: %i[update edit]) { authorize @opportunity_application }
+  before_action(except: %i[update edit]) { authorize OpportunityApplication }
 
   # GET /opportunity_applications
   # GET /opportunity_applications.json
@@ -13,8 +13,7 @@ class OpportunityApplicationsController < ApplicationController
 
   # GET /opportunity_applications/1
   # GET /opportunity_applications/1.json
-  def show
-  end
+  def show; end
 
   # GET /opportunity_applications/new
   def new
@@ -23,8 +22,7 @@ class OpportunityApplicationsController < ApplicationController
   end
 
   # GET /opportunity_applications/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /opportunity_applications
   # POST /opportunity_applications.json
@@ -77,13 +75,14 @@ class OpportunityApplicationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_opportunity_application
-      @opportunity_application = OpportunityApplication.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def opportunity_application_params
-      params.require(:opportunity_application).permit(policy(@opportunity_application).permitted_attributes)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_opportunity_application
+    @opportunity_application = OpportunityApplication.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def opportunity_application_params
+    params.require(:opportunity_application).permit(policy(@opportunity_application).permitted_attributes)
+  end
 end
