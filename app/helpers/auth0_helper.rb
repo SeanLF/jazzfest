@@ -31,6 +31,22 @@ module Auth0Helper
   end
 
   def role?(role)
-    user&.extra&.raw_info&.roles&.include?(role)
+    (current_user || user)&.extra&.raw_info&.roles&.include?(role)
+  end
+
+  def applicant?
+    role?('Applicant')
+  end
+
+  def coordinator?
+    role?('Coordinator')
+  end
+
+  def admin?
+    role?('Administrator')
+  end
+
+  def at_least_coordinator?
+    coordinator? || admin?
   end
 end

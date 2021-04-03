@@ -1,8 +1,10 @@
 class OpportunityApplicationPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if role?('Coordinator') || role?('Administrator')
+      if admin?
         scope.all
+      elsif coordinator?
+        scope.submitted
       elsif role?('Applicant')
         scope.where(profile_id: Profile.find_by(auth0_id: user['uid']).id)
       else
@@ -12,31 +14,23 @@ class OpportunityApplicationPolicy < ApplicationPolicy
   end
 
   def index?
-    show?
+    at_least_coordinator?
   end
 
   def show?
-    user.exists?
+    return true if at_least_coordinator?
+
+    super
   end
 
   def create?
     role?('Applicant')
   end
 
-  def new?
-    create?
-  end
-
   def update?
-    edit? || role?('Coordinator')
-  end
+    return true if record.profile.auth0_id == user['uid']
 
-  def edit?
-    if record.profile.auth0_id == user['uid']
-      true
-    else
-      role?('Administrator')
-    end
+    at_least_coordinator?
   end
 
   def destroy?
@@ -44,14 +38,13 @@ class OpportunityApplicationPolicy < ApplicationPolicy
   end
 
   def review?
-    role?('Coordinator') || role?('Administrator')
+    at_least_coordinator?
   end
 
   def permitted_attributes
     attributes = []
-    attributes << :availability << :choices << :submitted if edit?
-    attributes << :profile_id if role?('Administrator')
-    if role?('Coordinator') || role?('Administrator')
+    attributes << :availability << :choices << :submitted if applicant? || admin?
+    if at_least_coordinator?
       attributes << :opportunity_application_status_id << :coordinator_notes << :accepted_volunteer_opportunity_id
     end
     attributes

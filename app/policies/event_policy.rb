@@ -1,7 +1,11 @@
 class EventPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      if at_least_coordinator?
+        scope.all
+      else
+        scope.active
+      end
     end
   end
 
@@ -9,27 +13,15 @@ class EventPolicy < ApplicationPolicy
     true
   end
 
-  def show?
-    true
-  end
-
   def create?
-    elevated_action?
-  end
-
-  def new?
-    create?
+    at_least_coordinator?
   end
 
   def update?
-    elevated_action?
-  end
-
-  def edit?
-    update?
+    at_least_coordinator?
   end
 
   def destroy?
-    elevated_action?
+    at_least_coordinator?
   end
 end

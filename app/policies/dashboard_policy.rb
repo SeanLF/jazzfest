@@ -2,7 +2,7 @@ DashboardPolicy = Struct.new(:user, :dashboard) do
   include Auth0Helper
 
   def apply?
-    return true if role?('Coordinator') || role?('Administrator')
+    return true if at_least_coordinator?
 
     active_event = Pundit.policy_scope(user, Event).active
     Date.today.between?(active_event.registration_start_date, active_event.registration_end_date)
@@ -13,6 +13,6 @@ DashboardPolicy = Struct.new(:user, :dashboard) do
   end
 
   def elevated_user_dashboard?
-    role?('Coordinator') || role?('Administrator')
+    at_least_coordinator?
   end
 end

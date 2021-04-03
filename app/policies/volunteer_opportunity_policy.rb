@@ -1,7 +1,7 @@
 class VolunteerOpportunityPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if role?('Coordinator') || role?('Admin')
+      if at_least_coordinator?
         scope.all
       else
         scope.visible_or_applied_to(Pundit.policy_scope(user, OpportunityApplication))
@@ -16,23 +16,15 @@ class VolunteerOpportunityPolicy < ApplicationPolicy
   # show if in scope
 
   def create?
-    elevated_action?
-  end
-
-  def new?
-    create?
+    at_least_coordinator?
   end
 
   def update?
-    elevated_action?
-  end
-
-  def edit?
-    update?
+    at_least_coordinator?
   end
 
   def destroy?
-    if elevated_action?
+    if at_least_coordinator?
       !VolunteerOpportunity.applied_to_.pluck(:id).include?(record.id)
     else
       false

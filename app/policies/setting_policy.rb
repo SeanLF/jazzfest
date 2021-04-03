@@ -6,15 +6,11 @@ class SettingPolicy < ApplicationPolicy
   end
 
   def index?
-    elevated_action?
-  end
-
-  def show?
-    false
+    at_least_coordinator?
   end
 
   def update?
-    elevated_action?
+    at_least_coordinator?
   end
 
   def destroy?

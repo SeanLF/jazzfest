@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
   def self.active
-    where(active: true).first
+    where(active: true)
   end
 end

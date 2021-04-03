@@ -1,46 +1,41 @@
 class ProfilePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      if admin?
+        scope.all
+      elsif coordinator?
+        scope.with_published_opportunity_applications
+      elsif applicant?
+        scope.where(auth0_id: user['uid'])
+      else
+        scope.none
+      end
     end
   end
 
   def index?
-    show?
-  end
-
-  def show?
-    elevated_action?
+    at_least_coordinator?
   end
 
   def create?
-    role?('Applicant')
-  end
-
-  def new?
-    create?
+    applicant?
   end
 
   def update?
     return true if record.auth0_id == user['uid']
 
-    role?('Administrator')
-  end
-
-  def edit?
-    role?('Applicant') || role?('Administrator')
+    admin?
   end
 
   def destroy?
-    role?('Administrator')
+    admin?
   end
 
   def permitted_attributes
     attributes = []
-    if role?('Applicant') || role?('Administrator')
+    if applicant? || admin?
       attributes << %i[email first_name last_name address city province postal_code home_phone_number cell_phone_number work_phone_number t_shirt_size age_group emergency_contact_name emergency_contact_number notes code_of_conduct]
     end
-    attributes << :auth0_id if role?('Administrator')
     attributes
   end
 end
