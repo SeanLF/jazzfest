@@ -23,7 +23,7 @@ class Auth0Controller < ApplicationController
       ).save(validate: false)
     end
 
-    if raw_info['roles'].include?('Coordinator') || raw_info['roles'].include?('Admin')
+    if raw_info['roles']&.include?('Coordinator') || raw_info['roles']&.include?('Admin')
       redirect_to dashboard_path
     else
       redirect_to apply_path
