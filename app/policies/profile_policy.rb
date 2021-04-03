@@ -10,11 +10,11 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def show?
-    permission?('read:profile')
+    elevated_action?
   end
 
   def create?
-    permission?('create:profile')
+    role?('Applicant')
   end
 
   def new?
@@ -22,24 +22,25 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def update?
-    if record.auth0_id == user['uid']
-      permission?('edit:own-profile')
-    else
-      permission?('edit:profile')
-    end
+    return true if record.auth0_id == user['uid']
+
+    role?('Administrator')
   end
 
   def edit?
-    permission?('edit:profile')
+    role?('Applicant') || role?('Administrator')
   end
 
   def destroy?
-    permission?('delete:profile')
+    role?('Administrator')
   end
 
   def permitted_attributes
-    attributes = [:email, :first_name, :last_name, :address, :city, :province, :postal_code, :home_phone_number, :cell_phone_number, :work_phone_number, :t_shirt_size, :age_group, :emergency_contact_name, :emergency_contact_number, :notes, :code_of_conduct]
-    attributes << :auth0_id if permission?('create:profile') || permission?('edit:profile')
+    attributes = []
+    if role?('Applicant') || role?('Administrator')
+      attributes << %i[email first_name last_name address city province postal_code home_phone_number cell_phone_number work_phone_number t_shirt_size age_group emergency_contact_name emergency_contact_number notes code_of_conduct]
+    end
+    attributes << :auth0_id if role?('Administrator')
     attributes
   end
 end

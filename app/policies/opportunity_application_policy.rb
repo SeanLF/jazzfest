@@ -1,9 +1,9 @@
 class OpportunityApplicationPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if permission?('read:volunteer-application')
+      if role?('Coordinator') || role?('Administrator')
         scope.all
-      elsif permission?('edit:own-volunteer-application')
+      elsif role?('Applicant')
         scope.where(profile_id: Profile.find_by(auth0_id: user['uid']).id)
       else
         scope.none
@@ -16,11 +16,11 @@ class OpportunityApplicationPolicy < ApplicationPolicy
   end
 
   def show?
-    permission?('read:volunteer-application')
+    user.exists?
   end
 
   def create?
-    permission?('create:volunteer-application')
+    role?('Applicant')
   end
 
   def new?
@@ -28,30 +28,32 @@ class OpportunityApplicationPolicy < ApplicationPolicy
   end
 
   def update?
-    edit? || permission?('accept:volunteer-application') || permission?('decline:volunteer-application') || permission?('reset:volunteer-application')
+    edit? || role?('Coordinator')
   end
 
   def edit?
     if record.profile.auth0_id == user['uid']
-      permission?('edit:own-volunteer-application')
+      true
     else
-      permission?('edit:volunteer-application')
+      role?('Administrator')
     end
   end
 
   def destroy?
-    permission?('delete:volunteer-application')
+    role?('Administrator')
   end
 
   def review?
-    role?('Coordinator') || role?('Admin')
+    role?('Coordinator') || role?('Administrator')
   end
 
   def permitted_attributes
     attributes = []
     attributes << :availability << :choices << :submitted if edit?
-    attributes << :profile_id if permission?('edit:volunteer-application')
-    attributes << :opportunity_application_status_id << :coordinator_notes << :accepted_volunteer_opportunity_id if permission?('accept:volunteer-application') || permission?('decline:volunteer-application') || permission?('reset:volunteer-application')
+    attributes << :profile_id if role?('Administrator')
+    if role?('Coordinator') || role?('Administrator')
+      attributes << :opportunity_application_status_id << :coordinator_notes << :accepted_volunteer_opportunity_id
+    end
     attributes
   end
 end

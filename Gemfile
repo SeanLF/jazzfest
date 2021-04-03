@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails'
+gem 'rails', '~> 5.2.5'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
@@ -42,9 +42,9 @@ gem 'rollbar'
 gem 'paper_trail'
 
 # reports
+gem 'caxlsx'
+gem 'caxlsx_rails'
 gem 'rubyzip'
-gem 'axlsx', '3.0.0.pre'
-gem 'axlsx_rails'
 
 # for editing volunteer opportunities
 gem 'font-awesome-sass'
@@ -60,8 +60,9 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'awesome_print'
+  gem 'bundler', '2.1.4'
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'web-console'
-  gem 'bundler', '2.1.4'
 end

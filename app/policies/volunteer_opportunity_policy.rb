@@ -1,9 +1,9 @@
 class VolunteerOpportunityPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if permission?('read:volunteer-opportunity')
+      if role?('Coordinator') || role?('Admin')
         scope.all
-      elsif permission?('read:visible-volunteer-opportunity')
+      else
         scope.visible_or_applied_to(Pundit.policy_scope(user, OpportunityApplication))
       end
     end
@@ -16,7 +16,7 @@ class VolunteerOpportunityPolicy < ApplicationPolicy
   # show if in scope
 
   def create?
-    permission?('create:volunteer-opportunity')
+    elevated_action?
   end
 
   def new?
@@ -24,7 +24,7 @@ class VolunteerOpportunityPolicy < ApplicationPolicy
   end
 
   def update?
-    permission?('edit:volunteer-opportunity')
+    elevated_action?
   end
 
   def edit?
@@ -32,7 +32,7 @@ class VolunteerOpportunityPolicy < ApplicationPolicy
   end
 
   def destroy?
-    if permission?('delete:volunteer-opportunity')
+    if elevated_action?
       !VolunteerOpportunity.applied_to_.pluck(:id).include?(record.id)
     else
       false

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get '/home' => 'home#landing'
 
+  get '/auth/auth0', as: 'login'
   get '/auth/callback' => 'auth0#callback'
   get '/auth/failure' => 'auth0#failure'
   get '/logout' => 'logout#logout'

@@ -14,12 +14,9 @@ class HomeController < ApplicationController
     @festival_end_date = end_date.strftime("%B #{end_date.day.ordinalize}")
   end
 
-  def code_of_conduct
-  end
+  def code_of_conduct; end
 
-  def about
-  end
+  def about; end
 
-  def help
-  end
+  def help; end
 end

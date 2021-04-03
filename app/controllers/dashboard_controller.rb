@@ -11,8 +11,12 @@ class DashboardController < ApplicationController
     @profile = Profile.find_by(auth0_id: session[:userinfo]['uid'])
     authorize @profile, :update?
     @opportunity_application = OpportunityApplication.find_or_initialize_by(profile: @profile)
-    @opportunity_application.choices = session[:volunteer_opportunity_id] if session[:volunteer_opportunity_id] && (@opportunity_application.choices.nil? || @opportunity_application.choices.blank?)
-    @opportunity_application.opportunity_application_status_id = OpportunityApplicationStatus.pending.id if @opportunity_application.new_record?
+    if session[:volunteer_opportunity_id] && (@opportunity_application.choices.nil? || @opportunity_application.choices.blank?)
+      @opportunity_application.choices = session[:volunteer_opportunity_id]
+    end
+    if @opportunity_application.new_record?
+      @opportunity_application.opportunity_application_status_id = OpportunityApplicationStatus.pending.id
+    end
     @opportunity_application.save(validate: false)
     authorize @opportunity_application, :update?
     @volunteer_opportunities = policy_scope(VolunteerOpportunity).order(:title)
@@ -22,7 +26,9 @@ class DashboardController < ApplicationController
   def success
     authorize :dashboard
     profile = Profile.find_by(auth0_id: session[:userinfo]['uid'])
-    redirect_to apply_path, notice: 'Opportunity application was successfully created.' unless OpportunityApplication.find_by(profile: profile).submitted
+    unless OpportunityApplication.find_by(profile: profile).submitted
+      redirect_to apply_path, notice: 'Opportunity application was successfully created.'
+    end
 
     @update = params['update'] == 'true' || false
   end
@@ -35,6 +41,8 @@ class DashboardController < ApplicationController
 
   def store_opportunity_id_if_not_authorized_yet
     session[:volunteer_opportunity_id] = nil
-    session[:volunteer_opportunity_id] = [params['volunteer_opportunity_id']].to_json if params['volunteer_opportunity_id'].present?
+    if params['volunteer_opportunity_id'].present?
+      session[:volunteer_opportunity_id] = [params['volunteer_opportunity_id']].to_json
+    end
   end
 end

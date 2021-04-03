@@ -6,7 +6,7 @@ class SettingPolicy < ApplicationPolicy
   end
 
   def index?
-    permission?('read:setting')
+    elevated_action?
   end
 
   def show?
@@ -14,7 +14,7 @@ class SettingPolicy < ApplicationPolicy
   end
 
   def update?
-    permission?('edit:setting')
+    elevated_action?
   end
 
   def destroy?

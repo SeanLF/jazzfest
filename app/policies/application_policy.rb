@@ -36,7 +36,7 @@ class ApplicationPolicy
   end
 
   def elevated_action?
-    role?('Coordinator') || role?('Admin')
+    role?('Coordinator') || role?('Administrator')
   end
 
   def scope

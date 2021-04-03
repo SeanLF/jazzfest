@@ -1,4 +1,4 @@
-class ReportPolicy < Struct.new(:user, :report)
+ReportPolicy = Struct.new(:user, :report) do
   include Auth0Helper
 
   def export_opportunity_applications?
@@ -10,6 +10,6 @@ class ReportPolicy < Struct.new(:user, :report)
   end
 
   def elevated_action?
-    role?('Coordinator') || role?('Admin')
+    role?('Coordinator') || role?('Administrator')
   end
 end

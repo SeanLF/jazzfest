@@ -14,7 +14,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def create?
-    permission?('create:event')
+    elevated_action?
   end
 
   def new?
@@ -22,7 +22,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def update?
-    permission?('edit:event')
+    elevated_action?
   end
 
   def edit?
@@ -30,6 +30,6 @@ class EventPolicy < ApplicationPolicy
   end
 
   def destroy?
-    permission?('delete:event')
+    elevated_action?
   end
 end

@@ -9,5 +9,5 @@
 <%= link_to 'Logout', logout_path, class: 'mdl-navigation__link' %>
 <% else %>
 <%= link_to 'Apply', apply_path, class: 'mdl-navigation__link' %>
-<a class="mdl-navigation__link force_cursor_pointer" onclick="lock.show()">Login / Sign up</a>
+<%= link_to 'Login / Sign up', login_path, class: 'mdl-navigation__link' %>
 <% end %>

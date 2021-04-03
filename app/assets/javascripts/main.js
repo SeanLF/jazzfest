@@ -7,9 +7,6 @@ window.addEventListener( 'touchmove', function() {})
 
 
 document.addEventListener('turbolinks:load', function() {
-  if (window.location.hash.substr(1) == 'authenticate_user'){
-    lock.show()
-  }
   componentHandler.upgradeDom();
 
   // Material ripple button for form submit buttons

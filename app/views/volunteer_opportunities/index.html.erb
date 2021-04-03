@@ -7,14 +7,14 @@
 <div class="volunteer_opportunity-cards">
   <% if @volunteer_opportunities.blank? %>
     <h2>There are no opportunities to display yet.</h2>
-    <h3><span class="fab fa-frown-o">&nbsp;</span></h3>
+    <h3><span class="fa fa-frown-o">&nbsp;</span></h3>
   <% else %>
     <% @volunteer_opportunities.each do |volunteer_opportunity| %>
       <div class="volunteer_opportunity-card mdl-card mdl-shadow--2dp">
         <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
           <div class="mdl-card__title-text">
             <% if policy(VolunteerOpportunity).edit? %>
-              <span class="fab fa-<%= volunteer_opportunity.visible ? 'eye' : 'eye-slash' %>">&nbsp;</span>
+              <span class="fa fa-<%= volunteer_opportunity.visible ? 'eye' : 'eye-slash' %>">&nbsp;</span>
             <% end %>
             <span><%= volunteer_opportunity.title %></span>
           </div>
