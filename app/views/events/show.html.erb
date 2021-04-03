@@ -28,7 +28,7 @@
   <%= @event.active %>
 </p>
 
-<% if policy(Event).edit? %>
+<% if policy(@event).edit? %>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <% end %>
 <%= link_to 'Back', events_path %>
