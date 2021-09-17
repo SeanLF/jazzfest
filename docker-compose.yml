@@ -6,11 +6,11 @@ services:
       context: .dockerdev
       dockerfile: Dockerfile
       args:
-        RUBY_VERSION: "3.0.0"
+        RUBY_VERSION: "3.0.2"
         PG_MAJOR: "13"
-        NODE_MAJOR: "15"
+        NODE_MAJOR: "16"
         YARN_VERSION: "1.22.5"
-        BUNDLER_VERSION: "2.2.11"
+        BUNDLER_VERSION: "2.2.27"
     image: jazzify:1.0.0
     tmpfs:
       - /tmp

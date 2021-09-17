@@ -3,10 +3,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '3.0.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 6'
+gem 'rails', '~> 7.0.0.alpha2'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -39,11 +39,10 @@ gem 'omniauth-rails_csrf_protection'
 gem 'pundit'
 
 # Log/Tracing/Error
-gem 'ddtrace', require: 'ddtrace/auto_instrument'
+# gem 'lograge'
+# gem 'ddtrace', require: 'ddtrace/auto_instrument'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri]
   gem 'rspec-rails', '>= 4'
   # check the consistency of the database constraints with the application validations
   gem 'database_consistency', require: false
@@ -58,9 +57,7 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '>= 3.0.5'
   gem 'web-console', '>= 3.3.0'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '>= 2.0.0'
+  gem 'debug'
 end
 
 group :test do

@@ -1,6 +1,6 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -9,29 +9,14 @@ Bundler.require(*Rails.groups)
 module Jazzfest
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults(6.0)
+    config.load_defaults 7.0
 
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
-    I18n.available_locales = [:en, :fr]
-    config.i18n.default_locale = :en
-    config.active_model.i18n_customize_full_message = true
-    config.active_record.default_timezone = :local
-
-    config.time_zone = 'America/Toronto'
-    config.beginning_of_week = :monday
-
-    # Application Name Definition - called with Rails.application.appname or via Pages Helper Method
-    def appname
-      @appname = "Jazzify"
-    end
-
-    config.generators do |g|
-      g.scaffold_stylesheet(false)
-    end
-
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
   end
 end
