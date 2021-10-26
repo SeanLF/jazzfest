@@ -7,10 +7,8 @@ services:
       dockerfile: Dockerfile
       args:
         RUBY_VERSION: "3.0.2"
-        PG_MAJOR: "13"
-        NODE_MAJOR: "16"
-        YARN_VERSION: "1.22.5"
-        BUNDLER_VERSION: "2.2.27"
+        PG_MAJOR: "14"
+        BUNDLER_VERSION: "2.2.29"
     image: jazzify:1.0.0
     tmpfs:
       - /tmp
@@ -20,29 +18,33 @@ services:
       - .:/jazzify:cached
       - bundle:/usr/local/bundle
       - rails_cache:/app/tmp/cache
-      - node_modules:/app/node_modules
       - packs:/app/public/packs
       - .dockerdev/.psqlrc:/root/.psqlrc:ro
     environment:
-      - NODE_ENV=${RAILS_ENV:-development}
       - RAILS_ENV=${RAILS_ENV:-development}
       - DATABASE_URL=${DATABASE_URL:-postgres://postgres:postgres@postgres:5432}
       - BOOTSNAP_CACHE_DIR=/usr/local/bundle/_bootsnap
-      - WEBPACKER_DEV_SERVER_HOST=webpacker
       - WEB_CONCURRENCY=1
       - HISTFILE=/app/log/.bash_history
       - PSQL_HISTFILE=/app/log/.psql_history
       - EDITOR=nano
     depends_on:
       - postgres
+      - yarn_css
 
   rails:
     <<: *app
     command: bundle exec rails server
     ports:
-      - "9292:9292"
-    depends_on:
-      - webpacker
+      - "443:9292"
+
+  yarn_css:
+    image: node:17-alpine
+    command: yarn build:css --watch
+    working_dir: /jazzify
+    volumes:
+      - .:/jazzify:cached
+      - node_modules:/app/node_modules
 
   postgres:
     image: postgres:13-alpine
@@ -59,21 +61,6 @@ services:
     healthcheck:
       test: pg_isready -U postgres
       interval: 5s
-
-  webpacker:
-    <<: *app
-    command: ./bin/webpack-dev-server
-    ports:
-      - "3035:3035"
-    volumes:
-      - .:/jazzify:cached
-      - bundle:/usr/local/bundle
-      - node_modules:/app/node_modules
-      - packs:/app/public/packs
-    environment:
-      - NODE_ENV=${NODE_ENV:-development}
-      - RAILS_ENV=${RAILS_ENV:-development}
-      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
 
 volumes:
   postgres:

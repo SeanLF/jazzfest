@@ -33,9 +33,9 @@ interaction:
     command: bundle
 
   rake:
-    description: Run Rake commands
+    description: Run rails commands
     service: app
-    command: bundle exec rake
+    command: bundle exec rails
 
   rspec:
     description: Run RSpec commands
@@ -61,16 +61,6 @@ interaction:
     service: rails
     compose:
       run_options: [service-ports, use-aliases]
-
-  webpacker:
-    description: Run commands towards Webpacker service
-    service: webpacker
-    subcommands:
-      logs:
-        description: Display last 200 lines of Webpacker logs and follow
-        compose:
-          method: logs
-          run_options: [follow, tail='200']
 
   psql:
     description: Run Postgres psql console

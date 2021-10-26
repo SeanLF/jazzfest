@@ -18,8 +18,13 @@
     <meta name="description" content="<%= yield(:page_description) %>"/>
     <% end %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="esms-options">
+    {
+      "polyfillEnable": ["css-modules", "json-modules"]
+    }
+    </script>
+    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
   <body>

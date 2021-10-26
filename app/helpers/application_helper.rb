@@ -7,7 +7,7 @@ module ApplicationHelper
   # Call with appname in page layouts like <%= appname %>
   # @return [String]
   def appname
-    @appname = Rails.application.appname
+    @appname = "Jazzify"
   end
 
   def global_flash_class(global_flash_key)
