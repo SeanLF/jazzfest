@@ -13,20 +13,16 @@
  *= require_tree .
  *= require_self
  */
- @import "bulma";
- @import "./actiontext.scss";
 
-main{
-  min-height: 50vh;
-  margin: 2rem;
-}
+@import "bulma";
+@import "./actiontext.scss";
 
-.notifications{
+.notifications {
   margin-bottom: 1rem;
 }
 
 // For adding unicode characters as icons, instead of using font awesome
-[data-icon]:before { 
+[data-icon]:before {
   content: attr(data-icon);
-  margin-right: .5vw;
+  margin-right: 0.5vw;
 }

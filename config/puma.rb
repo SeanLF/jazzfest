@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
@@ -7,6 +9,11 @@
 max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
 min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
 threads min_threads_count, max_threads_count
+
+# Specifies the `worker_timeout` threshold that Puma will use to wait before
+# terminating a worker in development environments.
+#
+worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
@@ -19,14 +26,13 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # Specifies the `pidfile` that Puma will use.
 pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
-if ENV['RAILS_ENV'] == 'development'
+if ENV["RAILS_ENV"] == "development"
 
   # If you didn't place the cert and key under `local_certs` you should change this
-  localhost_key = "#{File.join('./config', 'local_certs', 'localhost-key.pem')}" 
-  localhost_crt = "#{File.join('./config', 'local_certs', 'localhost.pem')}"
+  localhost_key = File.join("./config", "local_certs", "localhost-key.pem").to_s
+  localhost_crt = File.join("./config", "local_certs", "localhost.pem").to_s
 
-  ssl_bind "0.0.0.0", 9292, key: localhost_key, cert: localhost_crt, verify_mode: 'none'
-
+  ssl_bind "0.0.0.0", 443, key: localhost_key, cert: localhost_crt, verify_mode: "none"
 end
 
 # Specifies the number of `workers` to boot in clustered mode.

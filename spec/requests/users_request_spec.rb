@@ -1,5 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
-RSpec.describe "Users", type: :request do
+require "rails_helper"
 
+RSpec.describe("Users", type: :request) do
 end

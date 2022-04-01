@@ -34,3 +34,6 @@ yarn-debug.log*
 
 # Ignore macOS hidden files
 .DS_Store
+
+/config/credentials/development.key
+.yarn/cache

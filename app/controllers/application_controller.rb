@@ -15,15 +15,15 @@ class ApplicationController < ActionController::Base
   # Assumes the app will only be in english or french
   def change_language
     # detect path from referer, or use root
-    path = Rails.application.routes.recognize_path URI(request.referer || root_path).path
+    path = Rails.application.routes.recognize_path(URI(request.referer || root_path).path)
     # ignore the locale detected from request referer, else can cause bugs
-    path.delete :locale
+    path.delete(:locale)
 
     # flip the locale
     locale = I18n.available_locales.without(I18n.locale).first
 
     # redirect
-    action = proc { redirect_to path }
+    action = proc { redirect_to(path) }
     I18n.with_locale(locale, &action)
   end
 
@@ -34,9 +34,9 @@ class ApplicationController < ActionController::Base
 
   # Redirects the user to the root path with a warning
   def user_not_authorized
-    Rollbar.warning('Tried to access unauthorized resource')
-    error_message = current_user.unauthenticated? ? t('error.unauthenticated') : t('error.unauthorized')
-    redirect_back fallback_location: root_path, global_alert: error_message
+    Rollbar.warning("Tried to access unauthorized resource")
+    error_message = current_user.unauthenticated? ? t("error.unauthenticated") : t("error.unauthorized")
+    redirect_back(fallback_location: root_path, global_alert: error_message)
   end
 
   private
@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
   end
 
   def extract_locale_from_accept_language_header
-    request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+    request.env["HTTP_ACCEPT_LANGUAGE"].scan(/^[a-z]{2}/).first
   end
 
   def localized(locale = I18n.locale)

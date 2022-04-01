@@ -15,8 +15,8 @@ module TagsHelper
   # Creates a span tag with an icon
   # returns [String]
   def icon_tag(icon, icon_options = {})
-    text = ''
-    options = { class: 'icon', 'data-icon': icon }
+    text = ""
+    options = { class: "icon", "data-icon": icon }
     content_tag(:span, text, options.merge(icon_options))
   end
 end

@@ -14,8 +14,8 @@
       * `brew install rbenv`
       * `rbenv init`
       * `echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.zshrc`
-      * `rbenv install 2.7.1`
-      * `rbenv global 2.7.1`
+      * `rbenv install 3.1.1`
+      * `rbenv global 3.1.1`
       * `gem install bundler`
       * `gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config`
       * `bundle install`
@@ -51,7 +51,7 @@
 
 * Running Jazzify
   * `rails s`
-  * Head over to [https://localhost.jazzify.ca:9292/](https://localhost.jazzify.ca:9292/).
+  * Head over to [https://localhost.jazzify.ca:443/](https://localhost.jazzify.ca:443/).
 
 ## Deployment
 

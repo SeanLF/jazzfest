@@ -15,7 +15,7 @@ class ResourcePolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin? and !permitted_attributes.empty?
+    user.admin? && !permitted_attributes.empty?
   end
 
   def show?
@@ -27,7 +27,7 @@ class ResourcePolicy < ApplicationPolicy
   end
 
   def update?
-    scope.where(id: record.id).exists? and !permitted_attributes.empty?
+    scope.where(id: record.id).exists? && !permitted_attributes.empty?
   end
 
   def destroy?

@@ -3,6 +3,7 @@
 # Controller for users
 class UsersController < ResourcesController
   include ::Auth0::UserManagementConcern
+  # skip_around_action :switch_locale
 
   # Delete user data stored in DB, auth0, and clear session
   def destroy
@@ -10,7 +11,7 @@ class UsersController < ResourcesController
     delete_auth0_user(@user.auth0_id)
 
     # clear session
-    redirect_to logout_path
+    redirect_to(logout_path)
   end
 
   def lookup_params

@@ -2,15 +2,15 @@
 
 # Resource Controller interface
 class ResourcesController < ApplicationController
-  before_action :set_scope, only: %i[index show edit update destroy]
-  before_action :set_record, only: %i[index new show edit update destroy]
+  before_action :set_scope, only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_record, only: [:index, :new, :show, :edit, :update, :destroy]
 
   # To do: remove after actions, as they're only for development
-  after_action :verify_authorized, only: %i[index new create show edit update destroy], unless: :dev?
-  after_action :verify_policy_scoped, only: %i[index new create show edit update destroy], unless: :dev?
+  after_action :verify_authorized, only: [:index, :new, :create, :show, :edit, :update, :destroy], unless: -> { dev? }
+  after_action :verify_policy_scoped, only: [:index, :new, :create, :show, :edit, :update, :destroy], unless: -> { dev? }
 
   helper_method :record, :record_class_name, :record_class, :index_attributes, :show_attributes,
-                :json_attributes, :permitted_attributes
+    :json_attributes, :permitted_attributes
 
   def index
     authorize_record
@@ -21,15 +21,15 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    record = record.update(permitted_attributes(record))
+    record.update(permitted_attributes(record))
     authorize_record
     respond_to do |format|
       if record.save
-        format.html { redirect_to record, notice: t('controller.success.create', model: record_class.human_name) }
-        format.json { render :show, status: :created, location: record }
+        format.html { redirect_to(record, notice: t("controller.success.create", model: record_class.human_name)) }
+        format.json { render(:show, status: :created, location: record) }
       else
-        format.html { render :new }
-        format.json { render json: record.errors, status: :unprocessable_entity }
+        format.html { render(:new) }
+        format.json { render(json: record.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -43,15 +43,15 @@ class ResourcesController < ApplicationController
   end
 
   def update
-    record = record.update(permitted_attributes(record))
+    record.update(permitted_attributes(record))
     authorize_record
     respond_to do |format|
       if record.save
-        format.html { redirect_to record, notice: t('controller.success.update', model: record_class.human_name) }
-        format.json { render :show, status: :ok, location: record }
+        format.html { redirect_to(record, notice: t("controller.success.update", model: record_class.human_name)) }
+        format.json { render(:show, status: :ok, location: record) }
       else
-        format.html { render :edit }
-        format.json { render json: record.errors, status: :unprocessable_entity }
+        format.html { render(:edit) }
+        format.json { render(json: record.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -60,10 +60,10 @@ class ResourcesController < ApplicationController
     authorize_record
     respond_to do |format|
       format.html do
-        redirect_to opportunity_applications_url,
-                    { notice: t('controller.success.update', model: record_class.human_name) }
+        redirect_to(opportunity_applications_url,
+          { notice: t("controller.success.update", model: record_class.human_name) })
       end
-      format.json { head :no_content }
+      format.json { head(:no_content) }
     end
   end
 
@@ -98,9 +98,10 @@ class ResourcesController < ApplicationController
   end
 
   def set_record
-    if action_name == 'index'
+    case action_name
+    when "index"
       instance_variable_set(records_name, @scope)
-    elsif (action_name == 'new') || (action_name == 'create')
+    when "new", "create"
       instance_variable_set(record_name, record_class.send(:new))
     else
       raise Pundit::NotAuthorizedError if @scope.empty?
@@ -122,17 +123,17 @@ class ResourcesController < ApplicationController
   # helper methods for the controller
 
   def record
-    name = action_name == 'index' ? records_name : record_name
-    instance_variable_get name
+    name = action_name == "index" ? records_name : record_name
+    instance_variable_get(name)
   end
 
   def record=(value)
-    name = action_name == 'index' ? records_name : record_name
-    instance_variable_set name, value
+    name = action_name == "index" ? records_name : record_name
+    instance_variable_set(name, value)
   end
 
   def authorize_record
-    authorize record
+    authorize(record)
   end
 
   # helper methods

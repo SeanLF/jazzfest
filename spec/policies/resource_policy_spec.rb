@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe ResourcePolicy do
   subject { described_class.new(user, resource) }
@@ -33,16 +33,16 @@ describe ResourcePolicy do
     described_class::Scope.new(user, Resource.all).resolve
   end
 
-  context 'being a visitor' do
+  context "being a visitor" do
     let(:user) { Auth0::AuthenticationConcern::CurrentUser.new(nil) }
 
-    it { is_expected.to forbid_actions(%i[index new create show edit update destroy]) }
+    it { is_expected.to(forbid_actions([:index, :new, :create, :show, :edit, :update, :destroy])) }
   end
 
-  context 'being an administrator' do
-    let(:user) { Auth0::AuthenticationConcern::CurrentUser.new({ 'uid' => 'github|1', 'roles' => ['Administrator'] }) }
+  context "being an administrator" do
+    let(:user) { Auth0::AuthenticationConcern::CurrentUser.new({ "uid" => "github|1", "roles" => ["Administrator"] }) }
 
-    it { is_expected.to permit_actions(%i[index show destroy]) }
-    it { is_expected.to forbid_actions(%i[new create edit update]) }
+    it { is_expected.to(permit_actions([:index, :show, :destroy])) }
+    it { is_expected.to(forbid_actions([:new, :create, :edit, :update])) }
   end
 end

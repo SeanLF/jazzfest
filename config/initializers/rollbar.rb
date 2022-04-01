@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rollbar.configure do |config|
   # Without configuration, Rollbar is enabled in all environments.
   # To disable in specific environments, set config.enabled=false.
@@ -12,8 +14,8 @@ Rollbar.configure do |config|
     accessToken: Rails.application.credentials[:rollbar][:post_client_item_access_token],
     captureUncaught: true,
     payload: {
-      environment: Rails.application.credentials[:rollbar][:environment] || Rails.env
-    }
+      environment: Rails.application.credentials[:rollbar][:environment] || Rails.env,
+    },
   }
 
   config.environment = Rails.application.credentials[:rollbar][:environment].presence || Rails.env

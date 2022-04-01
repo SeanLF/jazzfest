@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_support/concern'
+require "active_support/concern"
 module Auth0
   # Module for managing authentication of Auth0 users
   module AuthenticationConcern
@@ -22,7 +22,7 @@ module Auth0
       if user_signed_in?
         current_user
       else
-        redirect_to login_path
+        redirect_to(login_path)
       end
     end
 
@@ -36,32 +36,32 @@ module Auth0
     class CurrentUser
       attr_accessor :uid, :roles
 
-      APPLICANT = 'Applicant'
-      COORDINATOR = 'Coordinator'
-      ADMINISTRATOR = 'Administrator'
+      APPLICANT = "Applicant"
+      COORDINATOR = "Coordinator"
+      ADMINISTRATOR = "Administrator"
 
       # @return [CurrentUser]
       def initialize(userinfo)
         @roles = []
         return if userinfo.nil?
 
-        @uid = userinfo['uid']
-        @roles = userinfo['roles']
+        @uid = userinfo["uid"]
+        @roles = userinfo["roles"]
       end
 
       # @return [Boolean]
       def admin?
-        @roles.include? ADMINISTRATOR
+        @roles&.include?(ADMINISTRATOR)
       end
 
       # @return [Boolean]
       def coordinator?
-        @roles.include? COORDINATOR
+        @roles&.include?(COORDINATOR)
       end
 
       # @return [Boolean]
       def applicant?
-        @roles.include? APPLICANT
+        @roles&.include?(APPLICANT)
       end
 
       # Equivalent to calling user_signed_in?

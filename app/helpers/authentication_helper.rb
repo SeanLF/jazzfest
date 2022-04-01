@@ -6,7 +6,7 @@ module AuthenticationHelper
   include ::Rollbar::AuthenticationConcern
 
   # define login path as an immutable constant
-  AUTH0_LOGIN_PATH = '/auth/auth0'
+  AUTH0_LOGIN_PATH = "/auth/auth0"
 
   # @returns [String]
   def auth0_login_path

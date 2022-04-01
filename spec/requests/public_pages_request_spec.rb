@@ -1,5 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
-RSpec.describe "PublicPages", type: :request do
+require "rails_helper"
 
+RSpec.describe("PublicPages", type: :request) do
 end

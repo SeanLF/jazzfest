@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_support/concern'
+require "active_support/concern"
 module Auth0
   # Module to manage Auth0 users' accounts.
   module UserManagementConcern
