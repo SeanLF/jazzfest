@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 DashboardPolicy = Struct.new(:user, :dashboard) do
   include Auth0Helper
 

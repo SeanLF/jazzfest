@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /events
   # GET /events.json
   def index
-    authorize Event
+    authorize(Event)
     @events = policy_scope(Event).order(:name)
   end
 
@@ -30,11 +32,11 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        format.html { redirect_to(@event, notice: "Event was successfully created.") }
+        format.json { render(:show, status: :created, location: @event) }
       else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.html { render(:new) }
+        format.json { render(json: @event.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -44,11 +46,11 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
+        format.html { redirect_to(@event, notice: "Event was successfully updated.") }
+        format.json { render(:show, status: :ok, location: @event) }
       else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.html { render(:edit) }
+        format.json { render(json: @event.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -58,8 +60,8 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to(events_url, notice: "Event was successfully destroyed.") }
+      format.json { head(:no_content) }
     end
   end
 
@@ -68,10 +70,10 @@ class EventsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find(params[:id])
-    authorize @event
+    authorize(@event)
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the allowlist through.
   def event_params
     params.require(:event).permit(:name, :start_date, :end_date, :registration_start_date, :registration_end_date, :active)
   end

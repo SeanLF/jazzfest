@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationPolicy
   include Auth0Helper
   attr_reader :user, :record

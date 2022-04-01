@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class OpportunityApplicationStatus < ApplicationRecord
   has_many :opportunity_applications
 
   def self.pending
-    find_by(name: 'Pending')
+    find_by(name: "Pending")
   end
 
   def self.accepted
-    find_by(name: 'Accepted')
+    find_by(name: "Accepted")
   end
 
   def self.denied
-    find_by(name: 'Denied')
+    find_by(name: "Denied")
   end
 end

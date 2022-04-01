@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class OpportunityApplicationsController < ApplicationController
-  before_action :set_opportunity_application, only: %i[show edit update destroy review]
+  before_action :set_opportunity_application, only: [:show, :edit, :update, :destroy, :review]
   before_action :authenticate_user!
-  before_action(except: %i[index new create]) { @opportunity_application.user = session[:userinfo] }
-  before_action(only: %i[update edit]) { authorize @opportunity_application }
-  before_action(except: %i[update edit]) { authorize OpportunityApplication }
+  before_action(except: [:index, :new, :create]) { @opportunity_application.user = session[:userinfo] }
+  before_action(only: [:update, :edit]) { authorize @opportunity_application }
+  before_action(except: [:update, :edit]) { authorize OpportunityApplication }
 
   # GET /opportunity_applications
   # GET /opportunity_applications.json
@@ -32,11 +34,11 @@ class OpportunityApplicationsController < ApplicationController
 
     respond_to do |format|
       if @opportunity_application.save
-        format.html { redirect_to @opportunity_application, notice: 'Opportunity application was successfully created.' }
-        format.json { render :show, status: :created, location: @opportunity_application }
+        format.html { redirect_to(@opportunity_application, notice: "Opportunity application was successfully created.") }
+        format.json { render(:show, status: :created, location: @opportunity_application) }
       else
-        format.html { render :new }
-        format.json { render json: @opportunity_application.errors, status: :unprocessable_entity }
+        format.html { render(:new) }
+        format.json { render(json: @opportunity_application.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -46,11 +48,11 @@ class OpportunityApplicationsController < ApplicationController
   def update
     respond_to do |format|
       if @opportunity_application.update(opportunity_application_params)
-        format.html { redirect_to @opportunity_application, notice: 'Opportunity application was successfully updated.' }
-        format.json { render :show, status: :ok, location: @opportunity_application }
+        format.html { redirect_to(@opportunity_application, notice: "Opportunity application was successfully updated.") }
+        format.json { render(:show, status: :ok, location: @opportunity_application) }
       else
-        format.html { render :edit }
-        format.json { render json: @opportunity_application.errors, status: :unprocessable_entity }
+        format.html { render(:edit) }
+        format.json { render(json: @opportunity_application.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -60,8 +62,8 @@ class OpportunityApplicationsController < ApplicationController
   def destroy
     @opportunity_application.destroy
     respond_to do |format|
-      format.html { redirect_to opportunity_applications_url, notice: 'Opportunity application was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to(opportunity_applications_url, notice: "Opportunity application was successfully destroyed.") }
+      format.json { head(:no_content) }
     end
   end
 
@@ -81,7 +83,7 @@ class OpportunityApplicationsController < ApplicationController
     @opportunity_application = OpportunityApplication.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the allowlist through.
   def opportunity_application_params
     params.require(:opportunity_application).permit(policy(@opportunity_application).permitted_attributes)
   end

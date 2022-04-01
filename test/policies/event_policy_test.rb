@@ -1,7 +1,8 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class EventPolicyTest < ActiveSupport::TestCase
-
   def test_scope
   end
 

@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 module SessionHelper
-  def get_state
+  def state
     state = SecureRandom.hex(24)
-    session['omniauth.state'] = state
+    session["omniauth.state"] = state
 
     state
   end
 
   def state_meta_tag
     state = SecureRandom.hex(24)
-    session['omniauth.state'] = state
+    session["omniauth.state"] = state
 
-    tag('meta', name: 'state', content: state)
+    tag("meta", name: "state", content: state)
   end
 end

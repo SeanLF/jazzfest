@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class OpportunityApplicationsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +18,7 @@ class OpportunityApplicationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create opportunity_application" do
-    assert_difference('OpportunityApplication.count') do
+    assert_difference("OpportunityApplication.count") do
       post opportunity_applications_url, params: { opportunity_application: { availability: @opportunity_application.availability, choices: @opportunity_application.choices, profile_id: @opportunity_application.profile_id, submitted: @opportunity_application.submitted } }
     end
 
@@ -39,7 +41,7 @@ class OpportunityApplicationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy opportunity_application" do
-    assert_difference('OpportunityApplication.count', -1) do
+    assert_difference("OpportunityApplication.count", -1) do
       delete opportunity_application_url(@opportunity_application)
     end
 

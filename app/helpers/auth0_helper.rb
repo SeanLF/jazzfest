@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Auth0Helper
   private
 
@@ -12,7 +14,7 @@ module Auth0Helper
   # Set the @current_user or redirect to public page
   def authenticate_user!
     # Redirect to page that has the login here
-    redirect_to login_path, notice: 'Please log in or sign up first' unless user_signed_in?
+    redirect_to(login_path, notice: "Please log in or sign up first") unless user_signed_in?
   end
 
   # What's the current_user?
@@ -22,7 +24,7 @@ module Auth0Helper
   end
 
   def current_user_profile
-    Profile.find_by(auth0_id: current_user['uid'])
+    Profile.find_by(auth0_id: current_user["uid"])
   end
 
   def current_user_profile_rollbar_js
@@ -35,15 +37,15 @@ module Auth0Helper
   end
 
   def applicant?
-    role?('Applicant')
+    role?("Applicant")
   end
 
   def coordinator?
-    role?('Coordinator')
+    role?("Coordinator")
   end
 
   def admin?
-    role?('Administrator')
+    role?("Administrator")
   end
 
   def at_least_coordinator?

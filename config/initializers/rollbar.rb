@@ -1,27 +1,29 @@
+# frozen_string_literal: true
+
 Rollbar.configure do |config|
   # Without configuration, Rollbar is enabled in all environments.
   # To disable in specific environments, set config.enabled=false.
 
-  config.access_token = ENV['ROLLBAR_TOKEN']
+  config.access_token = ENV["ROLLBAR_TOKEN"]
 
   # Here we'll disable in 'test':
   config.enabled = false if Rails.env.test?
 
   config.js_enabled = true
   config.js_options = {
-    accessToken: ENV['ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN'],
+    accessToken: ENV["ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN"],
     captureUncaught: true,
     payload: {
-      environment: ENV['ROLLBAR_ENV'] || Rails.env
-    }
+      environment: ENV["ROLLBAR_ENV"] || Rails.env,
+    },
   }
 
   # By default, Rollbar will try to call the `current_user` controller method
   # to fetch the logged-in user object, and then call that object's `id`,
   # `username`, and `email` methods to fetch those properties. To customize:
-  config.person_method = 'current_user_profile'
+  config.person_method = "current_user_profile"
   # config.person_id_method = "my_id"
-  config.person_username_method = 'auth0_id'
+  config.person_username_method = "auth0_id"
   # config.person_email_method = "my_email"
 
   # If you want to attach custom data to all exception and message reports,
@@ -60,5 +62,5 @@ Rollbar.configure do |config|
   # environment variable like this: `ROLLBAR_ENV=staging`. This is a recommended
   # setup for Heroku. See:
   # https://devcenter.heroku.com/articles/deploying-to-a-custom-rails-environment
-  config.environment = ENV['ROLLBAR_ENV'] || Rails.env
+  config.environment = ENV["ROLLBAR_ENV"] || Rails.env
 end

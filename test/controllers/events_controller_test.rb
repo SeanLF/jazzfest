@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +18,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create event" do
-    assert_difference('Event.count') do
+    assert_difference("Event.count") do
       post events_url, params: { event: { active: @event.active, end_date: @event.end_date, name: @event.name, registration_end_date: @event.registration_end_date, registration_start_date: @event.registration_start_date, start_date: @event.start_date } }
     end
 
@@ -39,7 +41,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy event" do
-    assert_difference('Event.count', -1) do
+    assert_difference("Event.count", -1) do
       delete event_url(@event)
     end
 

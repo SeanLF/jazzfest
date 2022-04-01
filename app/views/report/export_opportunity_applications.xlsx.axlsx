@@ -1,40 +1,42 @@
+# frozen_string_literal: true
+
 wb = xlsx_package.workbook
-wb.add_worksheet(name: 'Volunteer Applications') do |sheet|
+wb.add_worksheet(name: "Volunteer Applications") do |sheet|
   # headers
-  sheet.add_row(['Last modified', 'First Name', 'Last Name', 'Address', 'City',
-            'Province', 'Postal Code', 'Home Phone Number', 'Work Phone Number',
-            'Cell Phone Number', 'Email', 'T Shirt Size', 'Age Group',
-            'Emergency Contact Name', 'Emergency Contact Number', 'Notes', 'Availability',
-            'Choices', 'Job', 'Classification'])
+  sheet.add_row(["Last modified", "First Name", "Last Name", "Address", "City",
+                 "Province", "Postal Code", "Home Phone Number", "Work Phone Number",
+                 "Cell Phone Number", "Email", "T Shirt Size", "Age Group",
+                 "Emergency Contact Name", "Emergency Contact Number", "Notes", "Availability",
+                 "Choices", "Job", "Classification",])
 
   # data
   @opportunity_applications.each do |app|
     row = [
-      app.updated_at.strftime('%b %d'),
+      app.updated_at.strftime("%b %d"),
       app.profile.first_name,
       app.profile.last_name,
       app.profile.address,
       app.profile.city,
       app.profile.province_for_export,
-      app.profile.postal_code.gsub(/[- ]/, ''),
-      app.profile.home_phone_number.gsub(/[()-. ]/, ''),
-      app.profile.work_phone_number.gsub(/[()-. ]/, ''),
-      app.profile.cell_phone_number.gsub(/[()-. ]/, ''),
+      app.profile.postal_code.gsub(/[- ]/, ""),
+      app.profile.home_phone_number.gsub(/[()-. ]/, ""),
+      app.profile.work_phone_number.gsub(/[()-. ]/, ""),
+      app.profile.cell_phone_number.gsub(/[()-. ]/, ""),
       app.profile.email,
       app.profile.t_shirt_size_for_export,
       app.profile.age_group,
       app.profile.emergency_contact_name,
-      app.profile.emergency_contact_number.gsub(/[()-. ]/, ''),
+      app.profile.emergency_contact_number.gsub(/[()-. ]/, ""),
       app.profile.notes,
-      app.availability
+      app.availability,
     ]
-    row << JSON.parse(app.choices).map { |choice_id| @volunteer_opportunities[choice_id.to_i][:title] }.join(', ')
-    if app.accepted_volunteer_opportunity_id.nil?
-      row << ''
+    row << JSON.parse(app.choices).map { |choice_id| @volunteer_opportunities[choice_id.to_i][:title] }.join(", ")
+    row << if app.accepted_volunteer_opportunity_id.nil?
+      ""
     else
-      row << @volunteer_opportunities[app.accepted_volunteer_opportunity_id][:title]
+      @volunteer_opportunities[app.accepted_volunteer_opportunity_id][:title]
     end
-    row << 'Volunteer'
+    row << "Volunteer"
     sheet.add_row(row)
   end
 end

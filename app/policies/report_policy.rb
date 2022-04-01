@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ReportPolicy = Struct.new(:user, :report) do
   include Auth0Helper
 

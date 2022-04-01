@@ -1,7 +1,8 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class OpportunityApplicationPolicyTest < ActiveSupport::TestCase
-
   def test_scope
   end
 

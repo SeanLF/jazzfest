@@ -1,15 +1,11 @@
-Rails.application.config.middleware.use OmniAuth::Builder do
-  if ENV['AUTH0_AUDIENCE'].blank?
-    audience = URI::HTTPS.build(host: ENV['AUTH0_DOMAIN'], path: '/userinfo').to_s
-  else
-    audience = ENV['AUTH0_AUDIENCE']
-  end
+# frozen_string_literal: true
 
+Rails.application.config.middleware.use(OmniAuth::Builder) do
   provider(
     :auth0,
-    ENV['AUTH0_CLIENT_ID'],
-    ENV['AUTH0_CLIENT_SECRET'],
-    ENV['AUTH0_DOMAIN'],
-    callback_path: '/auth/callback'
+    ENV["AUTH0_CLIENT_ID"],
+    ENV["AUTH0_CLIENT_SECRET"],
+    ENV["AUTH0_DOMAIN"],
+    callback_path: "/auth/callback"
   )
 end

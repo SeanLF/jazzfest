@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration creates the `versions` table, the only schema PT requires.
 # All other migrations PT provides are optional.
 class CreateVersions < ActiveRecord::Migration[4.2]
@@ -6,7 +8,7 @@ class CreateVersions < ActiveRecord::Migration[4.2]
   # - `Mysql2Adapter` - Used by `mysql2` gem.
   MYSQL_ADAPTERS = [
     "ActiveRecord::ConnectionAdapters::MysqlAdapter",
-    "ActiveRecord::ConnectionAdapters::Mysql2Adapter"
+    "ActiveRecord::ConnectionAdapters::Mysql2Adapter",
   ].freeze
 
   # The largest text column available in all supported RDBMS is
@@ -16,12 +18,12 @@ class CreateVersions < ActiveRecord::Migration[4.2]
   TEXT_BYTES = 1_073_741_823
 
   def change
-    create_table :versions, versions_table_options do |t|
-      t.string   :item_type, item_type_options
-      t.integer  :item_id,   null: false
-      t.string   :event,     null: false
-      t.string   :whodunnit
-      t.text     :object, limit: TEXT_BYTES
+    create_table(:versions, versions_table_options) do |t|
+      t.string(:item_type, item_type_options)
+      t.integer(:item_id, null: false)
+      t.string(:event, null: false)
+      t.string(:whodunnit)
+      t.text(:object, limit: TEXT_BYTES)
 
       # Known issue in MySQL: fractional second precision
       # -------------------------------------------------
@@ -36,9 +38,9 @@ class CreateVersions < ActiveRecord::Migration[4.2]
       # version of ActiveRecord with support for fractional seconds in MySQL.
       # (https://github.com/rails/rails/pull/14359)
       #
-      t.datetime :created_at
+      t.datetime(:created_at)
     end
-    add_index :versions, [:item_type, :item_id]
+    add_index(:versions, [:item_type, :item_id])
   end
 
   private

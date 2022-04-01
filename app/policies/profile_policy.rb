@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProfilePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
@@ -6,7 +8,7 @@ class ProfilePolicy < ApplicationPolicy
       elsif coordinator?
         scope.with_published_opportunity_applications
       elsif applicant?
-        scope.where(auth0_id: user['uid'])
+        scope.where(auth0_id: user["uid"])
       else
         scope.none
       end
@@ -22,7 +24,7 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def update?
-    return true if record.auth0_id == user['uid']
+    return true if record.auth0_id == user["uid"]
 
     admin?
   end
@@ -34,7 +36,7 @@ class ProfilePolicy < ApplicationPolicy
   def permitted_attributes
     attributes = []
     if applicant? || admin?
-      attributes << %i[email first_name last_name address city province postal_code home_phone_number cell_phone_number work_phone_number t_shirt_size age_group emergency_contact_name emergency_contact_number notes code_of_conduct]
+      attributes << [:email, :first_name, :last_name, :address, :city, :province, :postal_code, :home_phone_number, :cell_phone_number, :work_phone_number, :t_shirt_size, :age_group, :emergency_contact_name, :emergency_contact_number, :notes, :code_of_conduct]
     end
     attributes
   end

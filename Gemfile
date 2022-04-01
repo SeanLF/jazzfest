@@ -1,68 +1,70 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
-ruby '2.7.1'
+source "https://rubygems.org"
+
+ruby "3.1.1"
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.5'
+gem "rails", "< 6"
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem "pg"
 # Use Puma as the app server
-gem 'puma'
+gem "puma"
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem "sass-rails"
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
+gem "uglifier"
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem "jquery-rails"
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks'
+gem "turbolinks"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder'
+gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
 # authentication / authorization
-gem 'auth0'
-gem 'omniauth', '~> 1.6.1'
-gem 'omniauth-auth0', '~> 2.0.0'
-gem 'pundit'
+gem "auth0"
+gem "omniauth"
+gem "omniauth-auth0"
+gem "pundit"
 
 # error tracking
-gem 'rollbar'
+gem "rollbar"
 
 # versionining and history
-gem 'paper_trail'
+gem "paper_trail"
 
 # reports
-gem 'caxlsx'
-gem 'caxlsx_rails'
-gem 'rubyzip'
+gem "caxlsx"
+gem "caxlsx_rails"
+gem "rubyzip"
 
 # for editing volunteer opportunities
-gem 'font-awesome-sass'
-gem 'wysiwyg-rails'
+gem "font-awesome-sass"
+gem "wysiwyg-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-  gem 'dotenv-rails'
+  gem "debug"
+  gem "dotenv-rails"
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'listen'
+  gem "listen"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'awesome_print'
-  gem 'bundler', '2.1.4'
-  gem 'spring'
-  gem 'spring-watcher-listen'
-  gem 'web-console'
+  gem "awesome_print"
+  gem "rubocop-shopify"
+  gem "spring"
+  gem "spring-watcher-listen"
+  gem "web-console"
 end

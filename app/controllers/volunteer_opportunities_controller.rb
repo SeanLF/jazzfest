@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VolunteerOpportunitiesController < ApplicationController
   before_action :set_volunteer_opportunity, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
@@ -12,7 +14,7 @@ class VolunteerOpportunitiesController < ApplicationController
   # GET /volunteer_opportunities/1
   # GET /volunteer_opportunities/1.json
   def show
-    authorize @volunteer_opportunity
+    authorize(@volunteer_opportunity)
   end
 
   # GET /volunteer_opportunities/new
@@ -31,11 +33,11 @@ class VolunteerOpportunitiesController < ApplicationController
 
     respond_to do |format|
       if @volunteer_opportunity.save
-        format.html { redirect_to @volunteer_opportunity, notice: 'Volunteer opportunity was successfully created.' }
-        format.json { render :show, status: :created, location: @volunteer_opportunity }
+        format.html { redirect_to(@volunteer_opportunity, notice: "Volunteer opportunity was successfully created.") }
+        format.json { render(:show, status: :created, location: @volunteer_opportunity) }
       else
-        format.html { render :new }
-        format.json { render json: @volunteer_opportunity.errors, status: :unprocessable_entity }
+        format.html { render(:new) }
+        format.json { render(json: @volunteer_opportunity.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -45,11 +47,11 @@ class VolunteerOpportunitiesController < ApplicationController
   def update
     respond_to do |format|
       if @volunteer_opportunity.update(volunteer_opportunity_params)
-        format.html { redirect_to @volunteer_opportunity, notice: 'Volunteer opportunity was successfully updated.' }
-        format.json { render :show, status: :ok, location: @volunteer_opportunity }
+        format.html { redirect_to(@volunteer_opportunity, notice: "Volunteer opportunity was successfully updated.") }
+        format.json { render(:show, status: :ok, location: @volunteer_opportunity) }
       else
-        format.html { render :edit }
-        format.json { render json: @volunteer_opportunity.errors, status: :unprocessable_entity }
+        format.html { render(:edit) }
+        format.json { render(json: @volunteer_opportunity.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -57,22 +59,23 @@ class VolunteerOpportunitiesController < ApplicationController
   # DELETE /volunteer_opportunities/1
   # DELETE /volunteer_opportunities/1.json
   def destroy
-    authorize @volunteer_opportunity
+    authorize(@volunteer_opportunity)
     @volunteer_opportunity.destroy
     respond_to do |format|
-      format.html { redirect_to volunteer_opportunities_url, notice: 'Volunteer opportunity was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to(volunteer_opportunities_url, notice: "Volunteer opportunity was successfully destroyed.") }
+      format.json { head(:no_content) }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_volunteer_opportunity
-      @volunteer_opportunity = VolunteerOpportunity.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def volunteer_opportunity_params
-      params.require(:volunteer_opportunity).permit(:title, :objective, :duties_and_responsibilities, :qualifications_and_requirements, :shifts, :visible)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_volunteer_opportunity
+    @volunteer_opportunity = VolunteerOpportunity.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the allowlist through.
+  def volunteer_opportunity_params
+    params.require(:volunteer_opportunity).permit(:title, :objective, :duties_and_responsibilities, :qualifications_and_requirements, :shifts, :visible)
+  end
 end

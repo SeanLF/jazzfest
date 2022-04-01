@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OpportunityApplicationPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
@@ -5,8 +7,8 @@ class OpportunityApplicationPolicy < ApplicationPolicy
         scope.all
       elsif coordinator?
         scope.submitted
-      elsif role?('Applicant')
-        scope.where(profile_id: Profile.find_by(auth0_id: user['uid']).id)
+      elsif role?("Applicant")
+        scope.where(profile_id: Profile.find_by(auth0_id: user["uid"]).id)
       else
         scope.none
       end
@@ -24,17 +26,17 @@ class OpportunityApplicationPolicy < ApplicationPolicy
   end
 
   def create?
-    role?('Applicant')
+    role?("Applicant")
   end
 
   def update?
-    return true if record.profile.auth0_id == user['uid']
+    return true if record.profile.auth0_id == user["uid"]
 
     at_least_coordinator?
   end
 
   def destroy?
-    role?('Administrator')
+    role?("Administrator")
   end
 
   def review?

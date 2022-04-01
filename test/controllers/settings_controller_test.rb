@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class SettingsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +18,7 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create setting" do
-    assert_difference('Setting.count') do
+    assert_difference("Setting.count") do
       post settings_url, params: { setting: { name: @setting.name, value: @setting.value, value_type: @setting.value_type } }
     end
 
@@ -39,7 +41,7 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy setting" do
-    assert_difference('Setting.count', -1) do
+    assert_difference("Setting.count", -1) do
       delete setting_url(@setting)
     end
 

@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 class OpportunityApplication < ApplicationRecord
   has_paper_trail
   attr_accessor :user
+
   belongs_to :profile
   belongs_to :opportunity_application_status
-  belongs_to :accepted_volunteer_opportunity, foreign_key: :accepted_volunteer_opportunity_id, optional: true, inverse_of: :accepted_applications, class_name: 'VolunteerOpportunity'
+  belongs_to :accepted_volunteer_opportunity, foreign_key: :accepted_volunteer_opportunity_id, optional: true, inverse_of: :accepted_applications, class_name: "VolunteerOpportunity"
 
   validate :min_dates_in_range
   validate :choice_in_range
@@ -31,26 +34,26 @@ class OpportunityApplication < ApplicationRecord
 
     return if dates_available.count { date_in_range?(_1) } >= min_dates
 
-    errors.add(:availability, 'You must select more dates')
+    errors.add(:availability, "You must select more dates")
   end
 
   def choice_in_range
     return unless submitted
 
-    _choices = choices.blank? ? [] : JSON.parse(choices).map(&:to_i)
+    choices = choices.blank? ? [] : JSON.parse(choices).map(&:to_i)
     valid_volunteer_opportunity_ids = Pundit.policy_scope(user, VolunteerOpportunity).pluck(:id)
-    unless (_choices | valid_volunteer_opportunity_ids).sort == valid_volunteer_opportunity_ids.sort
-      errors.add(:choices, 'Invalid choice')
+    unless (choices | valid_volunteer_opportunity_ids).sort == valid_volunteer_opportunity_ids.sort
+      errors.add(:choices, "Invalid choice")
     end
     min_num_choices = Setting.min_num_choices.real_value
     max_num_choices = Setting.max_num_choices.real_value
     unless _choices.length.between?(min_num_choices, max_num_choices)
-      errors.add(:choices, 'You must select more choices')
+      errors.add(:choices, "You must select more choices")
     end
   end
 
   def dates_available
-    availability.split(',').reject(&:blank?).map { Date.parse(_1) }
+    availability.split(",").reject(&:blank?).map { Date.parse(_1) }
   end
 
   def date_in_range?(date)
