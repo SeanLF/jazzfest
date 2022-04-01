@@ -5,12 +5,6 @@ Rails.application.routes.draw do
     get "/:locale", to: "public_pages#home"
     root to: "public_pages#home"
 
-    # Authentication
-    get "/login", to: "authentication#login", as: :login
-    get "/authentication/callback" => "authentication#callback", as: :authentication_callback
-    get "/authentication/failure" => "authentication#failure", as: :authentication_failure
-    get "/logout", to: "authentication#logout", as: :logout
-
     # No views, so no locale
     resources :users
 
@@ -18,6 +12,11 @@ Rails.application.routes.draw do
     get "/change_language", to: "application#change_language"
   end
 
+  # Authentication
+  get "/authentication/callback" => "authentication#callback", as: :authentication_callback
+  get "/authentication/failure" => "authentication#failure", as: :authentication_failure
+  get "/login", to: "authentication#login", as: :login
+  get "/logout", to: "authentication#logout", as: :logout
   get "/auth/callback" => "authentication#callback"
   get "/auth/failure" => "authentication#failure"
   get "/auth/logout" => "authentication#logout"
