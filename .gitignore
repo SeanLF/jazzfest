@@ -22,3 +22,5 @@ master.key
 node_modules/
 public/packs/
 config/local_certs/
+.yarn/cache
+config/credentials/development.key
