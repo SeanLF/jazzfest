@@ -58,7 +58,8 @@ class OpportunityApplication < ApplicationRecord
   end
 
   def date_in_range?(date)
-    active_event = Event.active.first
+    return false if (active_event = Event.active.first).nil?
+
     date.between?(active_event.start_date, active_event.end_date)
   end
 

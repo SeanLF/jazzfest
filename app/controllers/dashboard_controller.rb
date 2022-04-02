@@ -2,11 +2,12 @@
 
 class DashboardController < ApplicationController
   before_action :store_opportunity_id_if_not_authorized_yet, only: [:apply]
+  before_action :set_active_event, only: [:apply]
+  before_action :ensure_within_registration_range!, only: [:apply]
   before_action :authenticate_user!
 
   def apply
     authorize(:dashboard)
-    @active_event = policy_scope(Event).first_active
     @min_dates = Setting.min_dates.real_value
     @min_num_choices = Setting.min_num_choices.real_value
     @max_num_choices = Setting.max_num_choices.real_value
@@ -40,6 +41,16 @@ class DashboardController < ApplicationController
   end
 
   private
+
+  def set_active_event
+    @active_event = policy_scope(Event).first_active
+  end
+
+  def ensure_within_registration_range!
+    return if @active_event.present? && Time.now.between?(@active_event.registration_start_date, @active_event.registration_end_date)
+
+    redirect_back(fallback_location: root_path, notice: "You can not apply at this time.")
+  end
 
   def store_opportunity_id_if_not_authorized_yet
     session[:volunteer_opportunity_id] = nil
