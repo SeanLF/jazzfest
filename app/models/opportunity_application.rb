@@ -47,7 +47,7 @@ class OpportunityApplication < ApplicationRecord
     end
     min_num_choices = Setting.min_num_choices.real_value
     max_num_choices = Setting.max_num_choices.real_value
-    unless _choices.length.between?(min_num_choices, max_num_choices)
+    unless choices.length.between?(min_num_choices, max_num_choices)
       errors.add(:choices, "You must select more choices")
     end
   end
