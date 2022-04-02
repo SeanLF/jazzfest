@@ -40,14 +40,15 @@ class OpportunityApplication < ApplicationRecord
   def choice_in_range
     return unless submitted
 
-    choices = choices.blank? ? [] : JSON.parse(choices).map(&:to_i)
+    choices_ = choices.blank? ? [] : JSON.parse(choices).map(&:to_i)
     valid_volunteer_opportunity_ids = Pundit.policy_scope(user, VolunteerOpportunity).pluck(:id)
-    unless (choices | valid_volunteer_opportunity_ids).sort == valid_volunteer_opportunity_ids.sort
+    unless (choices_ | valid_volunteer_opportunity_ids).sort == valid_volunteer_opportunity_ids.sort
       errors.add(:choices, "Invalid choice")
     end
+
     min_num_choices = Setting.min_num_choices.real_value
     max_num_choices = Setting.max_num_choices.real_value
-    unless choices.length.between?(min_num_choices, max_num_choices)
+    unless choices_.length.between?(min_num_choices, max_num_choices)
       errors.add(:choices, "You must select more choices")
     end
   end
