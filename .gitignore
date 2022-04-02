@@ -24,3 +24,5 @@ public/packs/
 config/local_certs/
 .yarn/cache
 config/credentials/development.key
+
+/config/credentials/production.key
