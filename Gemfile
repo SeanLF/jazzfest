@@ -38,10 +38,10 @@ gem "omniauth-auth0"
 gem "omniauth-rails_csrf_protection"
 gem "pundit"
 
-gem "bootsnap"
+gem "bootsnap", require: false
 
 # error tracking
-# gem "rollbar"
+gem "rollbar"
 
 # versionining and history
 gem "paper_trail"
