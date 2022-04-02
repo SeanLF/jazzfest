@@ -5,6 +5,7 @@ document.addEventListener('turbolinks:load', function() {
     return;
   }
 
-  $.FroalaEditor.DEFAULTS.key = 'HHMDUGENKACTMXQL==';
-  $('textarea:not(#volunteer_opportunity_title)').froalaEditor();
+  tinymce.init({
+    selector: 'textarea:not(#volunteer_opportunity_title)'
+  });
 })
