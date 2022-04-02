@@ -3,7 +3,7 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  after_action(except: [:update]) { authorize Profile }
+  after_action(except: [:show, :update]) { authorize Profile }
   before_action(only: [:show, :update]) { authorize @profile }
 
   # GET /profiles
