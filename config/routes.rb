@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  unless Time.current <= Date.parse("2020/09/01")
-    # root '/covid19.html'
-    root to: "home#landing"
-  end
+  root to: "home#landing"
 
   get "/home" => "home#landing"
 
-  get "/auth/auth0", as: "login"
+  post "/auth/auth0", as: "login"
   get "/auth/callback" => "auth0#callback"
   get "/auth/failure" => "auth0#failure"
   get "/logout" => "logout#logout"

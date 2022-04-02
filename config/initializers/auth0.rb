@@ -3,9 +3,12 @@
 Rails.application.config.middleware.use(OmniAuth::Builder) do
   provider(
     :auth0,
-    ENV["AUTH0_CLIENT_ID"],
-    ENV["AUTH0_CLIENT_SECRET"],
-    ENV["AUTH0_DOMAIN"],
-    callback_path: "/auth/callback"
+    Rails.application.credentials[:auth0][:client_id],
+    Rails.application.credentials[:auth0][:client_secret],
+    Rails.application.credentials[:auth0][:domain],
+    callback_path: Rails.application.credentials[:auth0][:callback_path],
+    authorize_params: {
+      scope: "openid email profile",
+    }
   )
 end

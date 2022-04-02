@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateVolunteerOpportunities < ActiveRecord::Migration[4.2]
+class CreateVolunteerOpportunities < ActiveRecord::Migration[6.1]
   def change
     create_table(:volunteer_opportunities) do |t|
       t.text(:title)

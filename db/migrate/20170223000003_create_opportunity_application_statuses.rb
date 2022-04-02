@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateOpportunityApplicationStatuses < ActiveRecord::Migration[4.2]
+class CreateOpportunityApplicationStatuses < ActiveRecord::Migration[6.1]
   def change
     create_table(:opportunity_application_statuses) do |t|
       t.string(:name)

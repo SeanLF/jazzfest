@@ -9,5 +9,5 @@
 <%= link_to 'Logout', logout_path, class: 'mdl-navigation__link' %>
 <% else %>
 <%= link_to 'Apply', apply_path, class: 'mdl-navigation__link' %>
-<%= link_to 'Login / Sign up', login_path, class: 'mdl-navigation__link' %>
+<%= link_to 'Login / Sign up', '/auth/auth0', method: :post, class: 'mdl-navigation__link', id: 'login' %>
 <% end %>

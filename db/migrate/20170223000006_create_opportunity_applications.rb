@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateOpportunityApplications < ActiveRecord::Migration[4.2]
+class CreateOpportunityApplications < ActiveRecord::Migration[6.1]
   def change
     create_table(:opportunity_applications) do |t|
       t.references(:profile, foreign_key: true)

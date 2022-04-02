@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateProfiles < ActiveRecord::Migration[4.2]
+class CreateProfiles < ActiveRecord::Migration[6.1]
   def change
     create_table(:profiles) do |t|
       t.text(:auth0_id)

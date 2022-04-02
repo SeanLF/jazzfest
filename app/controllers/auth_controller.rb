@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Auth0Controller < ApplicationController
+class AuthController < ApplicationController
   after_action :skip_authorization
 
   def callback
@@ -14,10 +14,7 @@ class Auth0Controller < ApplicationController
     raw_info = request.env["omniauth.auth"]["extra"]["raw_info"]
     auth0_id = request.env["omniauth.auth"]["uid"]
 
-    profile = Profile.find_by(auth0_id: auth0_id)
-
-    binding.break
-    if profile.nil?
+    if Profile.find_by(auth0_id: auth0_id).nil?
       Profile.new(
         auth0_id: auth0_id,
         email: raw_info["email"],
@@ -26,7 +23,7 @@ class Auth0Controller < ApplicationController
       ).save(validate: false)
     end
 
-    role = raw_info.dig("https://jazzify.ca/roles")
+    role = raw_info.dig("roles")
     if role&.include?("Coordinator") || role&.include?("Admin")
       redirect_to(dashboard_path)
     else

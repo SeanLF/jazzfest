@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def user_not_authorized
-    Rollbar.warning("Tried to access unauthorized resource")
-    redirect_back(fallback_location: :root_path, notice: "Please don't try to do things you aren't supposed to")
+    # Rollbar.warning("Tried to access unauthorized resource")
+    redirect_back(fallback_location: :root, notice: "Please don't try to do things you aren't supposed to")
   end
 
   def user_for_paper_trail

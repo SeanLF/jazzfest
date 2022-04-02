@@ -2,7 +2,7 @@
 
 # This migration creates the `versions` table, the only schema PT requires.
 # All other migrations PT provides are optional.
-class CreateVersions < ActiveRecord::Migration[4.2]
+class CreateVersions < ActiveRecord::Migration[6.1]
   # Class names of MySQL adapters.
   # - `MysqlAdapter` - Used by gems: `mysql`, `activerecord-jdbcmysql-adapter`.
   # - `Mysql2Adapter` - Used by `mysql2` gem.
@@ -18,7 +18,7 @@ class CreateVersions < ActiveRecord::Migration[4.2]
   TEXT_BYTES = 1_073_741_823
 
   def change
-    create_table(:versions, versions_table_options) do |t|
+    create_table(:versions) do |t|
       t.string(:item_type, item_type_options)
       t.integer(:item_id, null: false)
       t.string(:event, null: false)

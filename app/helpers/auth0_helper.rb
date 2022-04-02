@@ -13,8 +13,10 @@ module Auth0Helper
 
   # Set the @current_user or redirect to public page
   def authenticate_user!
+    return if user_signed_in?
+
     # Redirect to page that has the login here
-    redirect_to(login_path, notice: "Please log in or sign up first") unless user_signed_in?
+    redirect_to(root_path(anchor: "login"), notice: "Please log in or sign up first")
   end
 
   # What's the current_user?
@@ -33,7 +35,7 @@ module Auth0Helper
   end
 
   def role?(role)
-    (current_user || user)&.extra&.raw_info&.roles&.include?(role)
+    (current_user || user)&.extra&.raw_info.try("https://jazzify.ca/roles")&.include?(role)
   end
 
   def applicant?

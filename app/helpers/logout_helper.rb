@@ -2,13 +2,13 @@
 
 module LogoutHelper
   def logout_url
-    domain = ENV["AUTH0_DOMAIN"]
+    domain = Rails.application.credentials.auth0[:domain]
     request_params = {
       returnTo: root_url,
       client_id: client_id,
     }
 
-    URI::HTTPS.build(host: domain, path: "/logout", query: to_query(request_params))
+    # URI::HTTPS.build(host: domain, path: "/logout", query: to_query(request_params))
   end
 
   private

@@ -10,7 +10,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "< 6"
+gem "rails", "< 7"
 # Use postgresql as the database for Active Record
 gem "pg"
 # Use Puma as the app server
@@ -35,10 +35,13 @@ gem "jbuilder"
 gem "auth0"
 gem "omniauth"
 gem "omniauth-auth0"
+gem "omniauth-rails_csrf_protection"
 gem "pundit"
 
+gem "bootsnap"
+
 # error tracking
-gem "rollbar"
+# gem "rollbar"
 
 # versionining and history
 gem "paper_trail"
