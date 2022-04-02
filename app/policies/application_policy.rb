@@ -38,7 +38,9 @@ class ApplicationPolicy
   end
 
   def scope
-    Pundit.policy_scope!(user, record.class)
+    # in case record is already a class
+    klass = record.is_a?(ActiveRecord::Base) ? record.class : record
+    Pundit.policy_scope!(user, klass)
   end
 
   class Scope
