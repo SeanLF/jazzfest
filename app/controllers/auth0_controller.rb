@@ -16,7 +16,6 @@ class Auth0Controller < ApplicationController
 
     profile = Profile.find_by(auth0_id: auth0_id)
 
-    binding.break
     if profile.nil?
       Profile.new(
         auth0_id: auth0_id,
