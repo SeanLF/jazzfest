@@ -13,5 +13,6 @@ Datadog.configure do |c|
   c.tracer(tags: {
     "lightstep.service_name" => "jazzify-webapp",
     "lightstep.access_token" => Rails.application.credentials.lightstep[:access_token],
+    "lightstep.env" => Rails.env,
   })
 end
