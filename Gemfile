@@ -42,6 +42,8 @@ gem "bootsnap", require: false
 
 # error tracking
 gem "rollbar"
+gem "ls-trace"
+gem "ddtrace"
 
 # versionining and history
 gem "paper_trail"
@@ -63,4 +65,5 @@ group :development do
   gem "awesome_print"
   gem "rubocop-shopify"
   gem "web-console"
+  gem "dotenv-rails"
 end
