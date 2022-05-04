@@ -43,7 +43,7 @@ gem "bootsnap", require: false
 # error tracking
 gem "rollbar"
 gem "ls-trace"
-gem "ddtrace"
+gem "ddtrace", "< 1.0"
 
 # versionining and history
 gem "paper_trail"
