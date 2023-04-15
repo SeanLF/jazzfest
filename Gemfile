@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby "3.1.2"
+ruby "3.2.2"
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -10,7 +10,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "< 7"
+gem "rails"
 # Use postgresql as the database for Active Record
 gem "pg"
 # Use Puma as the app server
